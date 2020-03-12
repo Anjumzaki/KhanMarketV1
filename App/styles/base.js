@@ -10,10 +10,36 @@ const conStyles = StyleSheet.create({
     flexGrow: 1
   }
 });
+const cardStyles = StyleSheet.create({
+  storeCard: {
+    borderRadius: 10,
+    shadowColor: "#000",
+    justifyContent: "center",
+    backgroundColor: "white",
+    margin:10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+
+    elevation: 7
+  },
+  cImgWrap: {
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    overflow: "hidden"
+  },
+  cTextWrap:{
+    padding:10
+  }
+});
 const headerStyles = StyleSheet.create({
   storeStyles: {
     height: 100,
-    backgroundColor: "#2E2E2E",
+    backgroundColor: "#2E2E2E"
     // paddingHorizontal:20,
     // paddingVertical:15,
   }
@@ -51,4 +77,4 @@ const btnStyles = StyleSheet.create({
   }
 });
 
-export { conStyles, textStyles, textIn, btnStyles,headerStyles };
+export { conStyles, textStyles, textIn, btnStyles, headerStyles, cardStyles };

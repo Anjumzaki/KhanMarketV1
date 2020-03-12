@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, StyleSheet, Button, Image } from "react-native";
+import { View, Text, StyleSheet, Button, Image,StatusBar } from "react-native";
 import { conStyles, headerStyles } from "../styles/base";
 import {
   Entypo,
@@ -16,7 +16,9 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 export default class StoreHeader extends React.Component {
   render() {
     return (
-      <SafeAreaView style={conStyles.safeAreaMy}>
+      <SafeAreaView style={[conStyles.safeAreaMy, { backgroundColor: '#2E2E2E' }]}>
+        <StatusBar barStyle="light-content" backgroundColor='white'/>
+
         <View style={headerStyles.storeStyles}>
           <View
             style={{ justifyContent: "space-between", flexDirection: "row" }}

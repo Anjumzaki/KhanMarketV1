@@ -7,7 +7,8 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from "react-native";
 import { BackStack } from "../Helpers/BackStack";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -72,7 +73,9 @@ export default class Login extends React.Component {
       myText: { fontSize: hp("5%") }
     });
     return (
-      <SafeAreaView style={conStyles.safeAreaMy}>
+      <SafeAreaView style={[conStyles.safeAreaMy, { backgroundColor: 'white' }]}>
+        <StatusBar barStyle="dark-content" backgroundColor='white'/>
+
         <ScrollView
           style={{ flex: 1 }}
           contentContainerStyle={conStyles.scroll}
