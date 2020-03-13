@@ -155,7 +155,7 @@ export default class Login extends React.Component {
           >
             <TouchableOpacity
               style={btnStyles.basic}
-              onPress={() => this.props.navigation.push("Map")}
+              onPress={() => this.props.navigation.push("App")}
             >
               <LatoText
                 fontName="Lato-Regular"

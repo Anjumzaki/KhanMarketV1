@@ -38,9 +38,9 @@ export default class StoreHeader extends React.Component {
                 text={"STORES NEAR YOU"}
               />
             </View>
-            <View   style={{padding:20}}>
+            <TouchableOpacity onPress={()=>this.props.navigation.push('Cart')}   style={{padding:20}}>
               <MaterialIcons name="shopping-cart" size={26} color={"white"} />
-            </View>
+            </TouchableOpacity>
           </View>
 
           <View style={{ flexDirection: "row",justifyContent:'center'}}>

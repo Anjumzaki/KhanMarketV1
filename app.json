@@ -23,6 +23,11 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "package": "com.sposieapps.AssurePay",
+      "versionCode": 1,
+      "permissions": ["CAMERA", "RECORD_AUDIO","READ_PHONE_STATE","READ_CONTACTS"]
+    },
     "ios": {
       "supportsTablet": true
     }
