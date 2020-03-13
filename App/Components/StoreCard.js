@@ -3,23 +3,27 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { cardStyles } from "../styles/base";
 import LatoText from "../Helpers/LatoText";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import firebase from "firebase";
 
 export default class StoreCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+     image:""
+    };
+  }
+  componentDidMount() {
+        const ref = firebase
+          .storage()
+          .ref("/store_images/"+this.props.img+".jpg");
+        ref.getDownloadURL().then(url => {
+          console.log(url, "I ma here");
+          this.setState({ image: url });
+        });
+  }
   render() {
     const { name, distance, address, img } = this.props;
     console.log("props data", name, distance, address)
-
-    // img.getDownloadURL().then(function(url) {
-    //   console.log("url card",url);
-    //   // return url;
-    //   // that.state.images.push(url)
-    //   // await that.state.images.push(url)
-    //   // console.log("after save")
-    //   // newImg=url
-    //   //  that.setState({img: url})
-    // }, function(error){
-    //     console.log(error);
-    // });
     return (
       <TouchableOpacity
         onPress={() => this.props.navigation.push("StoreDetails")}
@@ -28,7 +32,7 @@ export default class StoreCard extends React.Component {
         <View style={cardStyles.cImgWrap}> 
           <Image
             style={{ width: "100%", height: 200 }}
-            source={img}
+            source={{uri:this.state.image}}
           />
         </View>
         <View style={cardStyles.cTextWrap}>
