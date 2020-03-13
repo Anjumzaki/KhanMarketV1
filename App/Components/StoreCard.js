@@ -6,16 +6,17 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default class StoreCard extends React.Component {
   render() {
-    const { name, distance, address } = this.props;
+    const { name, distance, address, img } = this.props;
+    console.log("props data", name, distance, address, img)
     return (
       <TouchableOpacity
         onPress={() => this.props.navigation.push("StoreDetails")}
         style={cardStyles.storeCard}
       >
-        <View style={cardStyles.cImgWrap}>
+        <View style={cardStyles.cImgWrap}> 
           <Image
             style={{ width: "100%", height: 200 }}
-            source={require("../../assets/Store_Locator03.jpg")}
+            source={img}
           />
         </View>
         <View style={cardStyles.cTextWrap}>

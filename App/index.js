@@ -23,6 +23,9 @@ import {
 import ProductDetails from './screens/ProductDetails'
 import StoreDetails from "./screens/StoreDetails";
 import SingleStoreHeader from "./Helpers/SingleStoreHeader";
+import store from "./store";
+import { Provider as StoreProvider } from 'react-redux';
+
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
   <AuthStack.Navigator headerMode="none">
@@ -153,10 +156,15 @@ const RootStackScreen = ({ userToken }) => (
 );
 export default () => {
   return (
+
+   
+<StoreProvider store={store}>
     <SafeAreaProvider>
       <NavigationContainer>
         <RootStackScreen />
       </NavigationContainer>
     </SafeAreaProvider>
+</StoreProvider>
+
   );
 };
