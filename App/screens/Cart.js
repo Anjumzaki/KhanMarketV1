@@ -14,7 +14,7 @@ import { AntDesign } from "@expo/vector-icons";
 import LatoText from "../Helpers/LatoText";
 import { ScrollView } from "react-native-gesture-handler";
 import Expandable from "../Helpers/Expandable";
-import { btnStyles, bottomTab } from "../styles/base";
+import { btnStyles, bottomTab, lines } from "../styles/base";
 import { Row } from "native-base";
 const { width } = Dimensions.get("window");
 const { height } = 300;
@@ -45,7 +45,89 @@ export default class Cart extends Component {
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>
-          <Text>asdasd</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingVertical: 30,
+              alignItems: "center"
+            }}
+          >
+            <Image
+              style={{ width: 44, height: 44, marginRight: 10 }}
+              source={require("../../assets/new.png")}
+            />
+            <LatoText
+              fontName="Lato-Regular"
+              fonSiz={20}
+              col="#2E2E2E"
+              text="KHAN MARKET"
+            ></LatoText>
+          </View>
+          <View style={lines.simple} />
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingVertical: 30,
+              justifyContent: "space-between"
+            }}
+          >
+            <View style={{ flexDirection: "row" }}>
+              <Image
+                style={{
+                  width: 53,
+                  height: 61,
+                  marginRight: 10,
+                  borderRadius: 10
+                }}
+                source={require("../../assets/products/beef1.png")}
+              />
+              <LatoText
+                fontName="Lato-Regular"
+                fonSiz={15}
+                col="#2E2E2E"
+                text="RIB EYE"
+              />
+            </View>
+            <View style={{alignItems:'flex-end',justifyContent:'space-between'}}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  // alignItems: "center",
+                  justifyContent: "space-between",
+                  alignContent: "flex-end"
+                }}
+              >
+                <TouchableOpacity
+                  style={[btnStyles.plusBtn,{paddingTop:0}]}
+                  onPress={() => this.handleChange(-1)}
+                >
+                  <AntDesign color="#B50000" size={18} name="minus" />
+                </TouchableOpacity>
+                <LatoText
+                  fontName="Lato-Regular"
+                  fonSiz={15}
+                  col="#5C5C5C"
+                  text={this.state.qt}
+                />
+                <TouchableOpacity
+                  style={[btnStyles.plusBtn,{paddingTop:0}]}
+                  onPress={() => this.handleChange(1)}
+                >
+                  <AntDesign color="#B50000" size={18} name="plus" />
+                </TouchableOpacity>
+              </View>
+              <View style={{marginRight:20}}>
+                <LatoText
+                  fontName="Lato-Regular"
+                  fonSiz={15}
+                  col="#5C5C5C"
+                  text={"$4.95"}
+                />
+              </View>
+            </View>
+          </View>
         </ScrollView>
         <View style={bottomTab.cartSheet}>
           <TouchableOpacity
@@ -59,6 +141,7 @@ export default class Cart extends Component {
               text="CONTINUE AS GUEST"
             ></LatoText>
           </TouchableOpacity>
+
           <TouchableOpacity
             onPress={() => this.setState({ cart: true })}
             style={[btnStyles.cartBtn, { width: "40%" }]}

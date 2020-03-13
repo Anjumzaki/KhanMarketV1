@@ -126,7 +126,7 @@ class StoreDetails extends React.Component {
 
   componentDidMount(){
     console.log("store details props", this.props.route.params.storeId)
-    axios.get("http://192.168.0.103:3000/get/all/products/"+this.props.route.params.storeId)
+    axios.get("https://mysterious-temple-58549.herokuapp.com/get/all/products/"+this.props.route.params.storeId)
     .then(resp => {
         console.log("product response",resp)
         this.setState({products: resp.data})
