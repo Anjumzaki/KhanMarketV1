@@ -118,6 +118,14 @@ const bottomTab = StyleSheet.create({
     elevation: 24
   }
 });
+const lines = StyleSheet.create({
+  simple:{
+    width:'100%',
+    marginVertical:10,
+    borderBottomColor:'#EFEFF4',
+    borderBottomWidth:1,
+  }
+});
 
 export {
   conStyles,
@@ -126,5 +134,6 @@ export {
   btnStyles,
   headerStyles,
   cardStyles,
-  bottomTab
+  bottomTab,
+  lines
 };
