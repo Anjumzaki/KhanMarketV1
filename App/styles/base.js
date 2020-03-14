@@ -40,8 +40,17 @@ const headerStyles = StyleSheet.create({
   storeStyles: {
     height: 100,
     backgroundColor: "#2E2E2E"
-    // paddingHorizontal:20,
-    // paddingVertical:15,
+  },
+  cartTxt: {
+    position: "absolute",
+    right: 0,
+    width: 14,
+    height: 14,
+    borderRadius: 100,
+    elevation: 5,
+    backgroundColor: "#7AB87F",
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
 const textStyles = StyleSheet.create({
@@ -85,7 +94,7 @@ const btnStyles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20
   },
-  cartBtnOutline:{
+  cartBtnOutline: {
     backgroundColor: "white",
     borderRadius: 5,
     color: "white",
@@ -94,14 +103,14 @@ const btnStyles = StyleSheet.create({
     alignContent: "center",
     paddingVertical: 11,
     alignItems: "center",
-    borderWidth:1,
-    borderColor:'#2E2E2E'
+    borderWidth: 1,
+    borderColor: "#2E2E2E"
   }
 });
 const bottomTab = StyleSheet.create({
   cartSheet: {
     paddingHorizontal: 20,
-    paddingVertical:15,
+    paddingVertical: 15,
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: "white",
@@ -119,11 +128,11 @@ const bottomTab = StyleSheet.create({
   }
 });
 const lines = StyleSheet.create({
-  simple:{
-    width:'100%',
-    marginVertical:10,
-    borderBottomColor:'#EFEFF4',
-    borderBottomWidth:1,
+  simple: {
+    width: "100%",
+    marginVertical: 10,
+    borderBottomColor: "#EFEFF4",
+    borderBottomWidth: 1
   }
 });
 

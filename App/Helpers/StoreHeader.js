@@ -39,7 +39,21 @@ export default class StoreHeader extends React.Component {
               />
             </View>
             <TouchableOpacity onPress={()=>this.props.navigation.push('Cart')}   style={{padding:20}}>
-              <MaterialIcons name="shopping-cart" size={26} color={"white"} />
+               <View>
+                  <View style={headerStyles.cartTxt}>
+                    <LatoText
+                      fontName="Lato-Regular"
+                      fonSiz={7}
+                      col="white"
+                      text={"1"}
+                    />
+                  </View>
+                  <MaterialIcons
+                    name="shopping-cart"
+                    size={26}
+                    color={"white"}
+                  />
+                </View>
             </TouchableOpacity>
           </View>
 
