@@ -2,7 +2,10 @@ import React from "react";
 import {
   AntDesign} from '@expo/vector-icons'
   import firebase from "firebase";
-  import { StyleSheet, Text, View, ScrollView } from 'react-native';
+  import { StyleSheet, Text, View, ScrollView,ImageBackground } from 'react-native';
+  import { TouchableOpacity } from "react-native-gesture-handler";
+  import LatoText from '../Helpers/LatoText'
+  import { btnStyles } from "../styles/base";
 
 class ProCards extends React.Component {
   state = {

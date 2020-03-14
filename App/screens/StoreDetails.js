@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View,ScrollView } from 'react-native';
+import { TouchableOpacity } from "react-native-gesture-handler";
+
 import Slider from '../Components/Slider'
 import CardsRow from '../Components/CardsRow'
 import beef1 from '../../assets/products/beef1.png'

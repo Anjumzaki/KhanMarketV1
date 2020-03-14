@@ -21,7 +21,7 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     axios
-      .get("https://mysterious-temple-58549.herokuapp.com/get/stores/")
+      .get("http://192.168.0.103:3000/get/stores/")
       .then(resp => {
         this.setState({
           stores: resp.data
