@@ -7,11 +7,9 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class Cart extends React.Component {
 
-   
-
-
     render() {
-        return (
+        console.log("this.props.products",this.props.products)
+        return ( 
             <View>
                 <View style={{ flexDirection: 'row', padding: 10 }}>
                     <View style={{ width: '80%' }}>
@@ -25,7 +23,7 @@ class Cart extends React.Component {
                             </View>
                         </View>
                     </TouchableOpacity>
-
+ 
                 </View>
                 <View style={{ height: 260 }}>
                     <ScrollView

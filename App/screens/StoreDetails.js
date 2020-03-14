@@ -9,7 +9,7 @@ import beef4 from '../../assets/products/beef4.png'
 import beef5 from '../../assets/products/beef5.png'
 import chicken1 from '../../assets/products/chicken1.png'
 import chicken2 from '../../assets/products/chicken2.png'
-import chicken3 from '../../assets/products/chicken3.png'
+import chicken3 from '../../assets/products/chicken3.png' 
 import chicken4 from '../../assets/products/chicken4.png'
 import chicken5 from '../../assets/products/chicken5.png'
 import veg1 from '../../assets/products/veg1.png'
@@ -17,13 +17,15 @@ import veg2 from '../../assets/products/veg2.png'
 import veg3 from '../../assets/products/veg3.png'
 import veg4 from '../../assets/products/veg4.png'
 import veg5 from '../../assets/products/veg5.png'
+import axios from "axios";
 
 class StoreDetails extends React.Component {
 
   constructor(props) 
   { 
       super(props); 
-      this.state = { beefs : [
+      this.state = { 
+        beefs : [
           {
               name: 'Rib Eye',
               price: 5,
@@ -116,17 +118,41 @@ class StoreDetails extends React.Component {
       image: veg5,
       discount: 10
   }],
+  products: []
     }; 
   } 
 
-
+  componentDidMount(){
+    console.log("store details props", this.props.route.params.storeId)
+    axios.get("http://192.168.0.103:3000/get/all/products/"+this.props.route.params.storeId)
+    .then(resp => {
+        console.log("product response",resp)
+        this.setState({products: resp.data})
+    })
+    .catch(err => console.log(err))
+  }
   render() {
+    console.log("products",this.state.products)
+    
+    var beef = this.state.products.filter(function(item){
+      return item.productType == 'Beef';
+    })
+    var veg = this.state.products.filter(function(item){
+      return item.productType == 'Vegetable';
+    })
+    var chicken = this.state.products.filter(function(item){
+      return item.productType == 'Chicken';
+    })
+    console.log("beef",beef)
+    console.log("veg",veg)
+    console.log("chicken",chicken)
+
     return (
       <ScrollView showsVerticalScrollIndicator={false} >
         <Slider />
-       <CardsRow navigation={this.props.navigation} products={this.state.beefs} name={'Beef'}/>
-       <CardsRow navigation={this.props.navigation} products={this.state.chickens} name={'Chicken'}/>
-       <CardsRow navigation={this.props.navigation} products={this.state.vegs} name={'Vegetables'}/>
+       <CardsRow navigation={this.props.navigation} products={beef} name={'Beef'}/>
+       <CardsRow navigation={this.props.navigation} products={veg} name={'Chicken'}/>
+       <CardsRow navigation={this.props.navigation} products={chicken} name={'Vegetables'}/>
      <View style={{paddingTop:10}}>
 
      </View>

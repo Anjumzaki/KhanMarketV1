@@ -15,18 +15,20 @@ export default class StoreCard extends React.Component {
   componentDidMount() {
         const ref = firebase
           .storage()
-          .ref("/store_images/"+this.props.img+".jpg");
+          .ref("/store_images/"+this.props.id+".jpg");
         ref.getDownloadURL().then(url => {
           console.log(url, "I ma here");
           this.setState({ image: url });
         });
   }
   render() {
-    const { name, distance, address, img } = this.props;
+    const { name, distance, address, id } = this.props;
     console.log("props data", name, distance, address)
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.push("StoreDetails")}
+        onPress={() => this.props.navigation.push("StoreDetails",{
+          storeId: id
+        })}
         style={cardStyles.storeCard}
       >
         <View style={cardStyles.cImgWrap}> 

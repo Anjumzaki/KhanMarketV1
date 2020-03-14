@@ -26,13 +26,13 @@ export default class Home extends React.Component {
         this.setState({
           stores: resp.data
         });
-        const ref = firebase
-          .storage()
-          .ref("/store_images/5e6b45971ccdc7e0d1210ed5.jpg");
-        ref.getDownloadURL().then(url => {
-          console.log(url, "I ma here");
-          this.setState({ image: url });
-        });
+        // const ref = firebase
+        //   .storage()
+        //   .ref("/store_images/5e6b45971ccdc7e0d1210ed5.jpg");
+        // ref.getDownloadURL().then(url => {
+        //   console.log(url, "I ma here");
+        //   this.setState({ image: url });
+        // });
       });
   }
   render() {
@@ -41,14 +41,14 @@ export default class Home extends React.Component {
       <View style={{ marginTop: 100, justifyContent: "center" }}>
         <ScrollView>
           {this.state.stores.length > 0 &&
-            this.state.stores.map(item => (
-              <StoreCard
+            this.state.stores.map((item,ind) => (
+              <StoreCard key={ind}
               key={item._id}
               navigation={this.props.navigation}
               name={item.storeName}
               distance="1 mile away"
-              address={"asdasdasd"}
-              img={item._id}
+              address={item.storeAddress}
+              id={item._id}
             />
             ))}
 

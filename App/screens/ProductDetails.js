@@ -3,7 +3,7 @@ import {
   Text,
   View,
   Dimensions,
-  ImageBackground,
+  ImageBackground, 
   Image,
   StyleSheet,
   LinearGradient,
@@ -26,6 +26,12 @@ export default class ProductDetails extends Component {
       heart: false
     };
   }
+
+  componentDidMount(){
+    console.log("product details props", this.props)
+
+  }
+
 
   _onLayoutDidChange = e => {
     const layout = e.nativeEvent.layout;

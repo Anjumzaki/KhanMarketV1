@@ -3,15 +3,31 @@ import { StyleSheet, Text, View, ImageBackground,TouchableOpacity } from 'react-
 import LatoText from './LatoText';
 import {
   AntDesign} from '@expo/vector-icons'
+  import firebase from "firebase";
 
 class ProCards extends React.Component {
   state = {
-    heart:false
-  }
+    heart:false,
+    image: ""
+  } 
+
+  componentDidMount() {
+    const ref = firebase
+      .storage()
+      .ref("/product_images/"+this.props.product._id+"_1.jpg");
+    ref.getDownloadURL().then(url => {
+      console.log(url, "I ma here");
+      this.setState({ image: url });
+    });
+}
+
+
   render() {
     return (
-      <TouchableOpacity onPress={()=>this.props.navigation.push('ProductDetails')} style={styles.procards}>
-        <ImageBackground  style={styles.proCardsImage} source={this.props.product.image}>
+      <TouchableOpacity onPress={()=>this.props.navigation.push('ProductDetails',{
+        product: this.props.product
+      })} style={styles.procards}>
+        <ImageBackground  style={styles.proCardsImage} source={{uri:this.state.image}}>
           <TouchableOpacity onPress={()=>this.setState(prevState => {
       return {
         heart : !prevState.heart
@@ -21,7 +37,7 @@ class ProCards extends React.Component {
           </TouchableOpacity>
         </ImageBackground>
         <View style={styles.underCard}>
-        <LatoText fontName="Lato-Regular" fonSiz={20} col='#5C5C5C' text={this.props.product.name} ></LatoText>
+        <LatoText fontName="Lato-Regular" fonSiz={20} col='#5C5C5C' text={this.props.product.productName} ></LatoText>
           <View style={{flex: 1, flexDirection: 'row',paddingTop:5}}>
           <LatoText fontName="Lato-Regular" fonSiz={17} col='#89898C' text= { '$' +this.props.product.price + ' / kg'} ></LatoText>
           <Text>     </Text>
