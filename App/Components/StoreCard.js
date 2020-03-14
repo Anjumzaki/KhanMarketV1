@@ -7,7 +7,19 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 export default class StoreCard extends React.Component {
   render() {
     const { name, distance, address, img } = this.props;
-    console.log("props data", name, distance, address, img)
+    console.log("props data", name, distance, address)
+
+    // img.getDownloadURL().then(function(url) {
+    //   console.log("url card",url);
+    //   // return url;
+    //   // that.state.images.push(url)
+    //   // await that.state.images.push(url)
+    //   // console.log("after save")
+    //   // newImg=url
+    //   //  that.setState({img: url})
+    // }, function(error){
+    //     console.log(error);
+    // });
     return (
       <TouchableOpacity
         onPress={() => this.props.navigation.push("StoreDetails")}
