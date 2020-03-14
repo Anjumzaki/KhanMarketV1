@@ -1,8 +1,8 @@
 import React from "react";
 import {
-<<<<<<< HEAD
   AntDesign} from '@expo/vector-icons'
   import firebase from "firebase";
+  import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 class ProCards extends React.Component {
   state = {
@@ -42,92 +42,6 @@ class ProCards extends React.Component {
           <Text>     </Text>
           <LatoText fontName="Lato-Regular" fonSiz={17} col='#2E2E2E' text= { '$' +(this.props.product.price - ((this.props.product.price * this.props.product.discount)/100)) + ' / kg'} ></LatoText>
 
-=======
-  StyleSheet,
-  Text,
-  View,
-  ImageBackground,
-  TouchableOpacity
-} from "react-native";
-import LatoText from "./LatoText";
-import { AntDesign } from "@expo/vector-icons";
-import { btnStyles } from "../styles/base";
-
-class ProCards extends React.Component {
-  state = {
-    heart: false,
-    cart: false,
-    qt: 1
-  };
-  handleChange (num){
-    var preNum = this.state.qt
-    preNum =num + preNum
-    console.log(preNum)
-    if(preNum>=1){
-      this.setState({qt:preNum})
-    }
-  }
-  render() {
-    return (
-      <TouchableOpacity
-        onPress={() => this.props.navigation.push("ProductDetails")}
-        style={styles.procards}
-      >
-        <ImageBackground
-          style={styles.proCardsImage}
-          source={this.props.product.image}
-        >
-          <TouchableOpacity
-            onPress={() =>
-              this.setState(prevState => {
-                return {
-                  heart: !prevState.heart
-                };
-              })
-            }
-            style={{
-              alignSelf: "flex-end",
-              backgroundColor: "rgba(255, 255, 255,0.5)",
-              margin: 10,
-              padding: 7,
-              borderRadius: 50
-            }}
-          >
-            {this.state.heart ? (
-              <AntDesign color="#B50000" size={18} name="heart" />
-            ) : (
-              <AntDesign color="#B50000" size={18} name="hearto" />
-            )}
-          </TouchableOpacity>
-        </ImageBackground>
-        <View style={styles.underCard}>
-          <LatoText
-            fontName="Lato-Regular"
-            fonSiz={20}
-            col="#5C5C5C"
-            text={this.props.product.name}
-          ></LatoText>
-          <View style={{ flex: 1, flexDirection: "row", paddingTop: 5 }}>
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={17}
-              col="#89898C"
-              text={"$" + this.props.product.price + " / kg"}
-            ></LatoText>
-            <Text> </Text>
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={17}
-              col="#2E2E2E"
-              text={
-                "$" +
-                (this.props.product.price -
-                  (this.props.product.price * this.props.product.discount) /
-                    100) +
-                " / kg"
-              }
-            ></LatoText>
->>>>>>> b51c4a2da9e9ecd144e3d470f32954982d31b1aa
           </View>
           <View>
             <LatoText
