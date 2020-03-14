@@ -64,9 +64,9 @@ export default class SingleStoreHeader extends React.Component {
                 text={"KHAN MARKET"}
               />
             </View>
-            <View   style={{padding:20}}>
+            <TouchableOpacity onPress={()=>this.props.navigation.push('Cart')}   style={{padding:20}}>
               <MaterialIcons name="shopping-cart" size={26} color={"white"} />
-            </View>
+            </TouchableOpacity>
           </View>
         <View
           style={{

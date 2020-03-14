@@ -16,7 +16,7 @@ const cardStyles = StyleSheet.create({
     shadowColor: "#000",
     justifyContent: "center",
     backgroundColor: "white",
-    margin:10,
+    margin: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -32,8 +32,8 @@ const cardStyles = StyleSheet.create({
     borderTopRightRadius: 10,
     overflow: "hidden"
   },
-  cTextWrap:{
-    padding:10
+  cTextWrap: {
+    padding: 10
   }
 });
 const headerStyles = StyleSheet.create({
@@ -74,7 +74,57 @@ const btnStyles = StyleSheet.create({
     alignContent: "center",
     paddingVertical: 11,
     alignItems: "center"
+  },
+  cartBtn: {
+    backgroundColor: "#2E2E2E",
+    paddingVertical: 10,
+    alignItems: "center",
+    borderRadius: 5
+  },
+  plusBtn: {
+    paddingVertical: 10,
+    paddingHorizontal: 20
+  },
+  cartBtnOutline:{
+    backgroundColor: "white",
+    borderRadius: 5,
+    color: "white",
+    textAlign: "center",
+    justifyContent: "center",
+    alignContent: "center",
+    paddingVertical: 11,
+    alignItems: "center",
+    borderWidth:1,
+    borderColor:'#2E2E2E'
+  }
+});
+const bottomTab = StyleSheet.create({
+  cartSheet: {
+    paddingHorizontal: 20,
+    paddingVertical:15,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "white",
+    shadowColor: "#000",
+    marginTop: 5,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 12
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.0,
+
+    elevation: 24
   }
 });
 
-export { conStyles, textStyles, textIn, btnStyles, headerStyles, cardStyles };
+export {
+  conStyles,
+  textStyles,
+  textIn,
+  btnStyles,
+  headerStyles,
+  cardStyles,
+  bottomTab
+};

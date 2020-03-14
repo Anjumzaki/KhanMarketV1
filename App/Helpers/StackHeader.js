@@ -1,6 +1,15 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, StyleSheet, Button, Image,Dimensions,TextInput,StatusBar } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  Image,
+  Dimensions,
+  TextInput,
+  StatusBar
+} from "react-native";
 import { conStyles, headerStyles } from "../styles/base";
 
 import {
@@ -45,51 +54,54 @@ export default class StackHeader extends React.Component {
           source={require("../../assets/bgheader.png")}
           resizeMode="cover"
         />
-         <View
-            style={{ justifyContent: "space-between", flexDirection: "row" }}
+        <View style={{ justifyContent: "space-between", flexDirection: "row" }}>
+          <TouchableOpacity
+            style={{ padding: 20 }}
+            onPress={() => this.props.navigation.goBack()}
           >
-            <TouchableOpacity
-            style={{padding:20}}
-              onPress={() => this.props.navigation.goBack()}
-            >
-              <MaterialIcons name="arrow-back" color="white" size={25} />
-            </TouchableOpacity>
-            <View
-              style={{padding:20}}>
-              <LatoText
-                fontName="Lato-Regular"
-                fonSiz={20}
-                col="white"
-                text={"Product Details"}
-              />
-            </View>
-            <View   style={{padding:20}}>
-              <MaterialIcons name="shopping-cart" size={26} color={"white"} />
-            </View>
+            <MaterialIcons name="arrow-back" color="white" size={25} />
+          </TouchableOpacity>
+          <View style={{ padding: 20 }}>
+            <LatoText
+              fontName="Lato-Regular"
+              fonSiz={20}
+              col="white"
+              text={this.props.nameTitle}
+            />
           </View>
-       
-       
+
+          <View>
+            <TouchableOpacity
+              onPress={()=>this.props.navigation.push("Cart")}
+              style={{ padding: 20 }}
+            >
+              {this.props.cart ? (
+                <MaterialIcons name="shopping-cart" size={26} color={"white"} />
+              ):   <View style={{paddingHorizontal:20}} />}
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
   textI: {
-      width: '100%',
-      paddingLeft: 5,
-      fontSize: 17,
+    width: "100%",
+    paddingLeft: 5,
+    fontSize: 17
   },
   wrapperText: {
-      flexDirection: 'row',
-      backgroundColor: 'white',
-      width: '94%',
-      paddingHorizontal: 7,
-      paddingVertical: 7,
-      borderRadius: 5,
-      paddingLeft: 20,
-      marginLeft: 10,
-      marginBottom: 10,
-      opacity: 0.9,
-      alignItems: 'center'
+    flexDirection: "row",
+    backgroundColor: "white",
+    width: "94%",
+    paddingHorizontal: 7,
+    paddingVertical: 7,
+    borderRadius: 5,
+    paddingLeft: 20,
+    marginLeft: 10,
+    marginBottom: 10,
+    opacity: 0.9,
+    alignItems: "center"
   }
 });

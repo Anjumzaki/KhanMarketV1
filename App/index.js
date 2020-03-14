@@ -10,7 +10,7 @@ import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Map from "./screens/Map";
 import StoreHeader from "./Helpers/StoreHeader";
-import StackHeader from './Helpers/StackHeader'
+import StackHeader from "./Helpers/StackHeader";
 import {
   Entypo,
   Feather,
@@ -20,11 +20,12 @@ import {
   MaterialIcons,
   MaterialCommunityIcons
 } from "@expo/vector-icons";
-import ProductDetails from './screens/ProductDetails'
+import ProductDetails from "./screens/ProductDetails";
 import StoreDetails from "./screens/StoreDetails";
 import SingleStoreHeader from "./Helpers/SingleStoreHeader";
 import store from "./store";
-import { Provider as StoreProvider } from 'react-redux';
+import { Provider as StoreProvider } from "react-redux";
+import Cart from './screens/Cart'
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
@@ -42,7 +43,6 @@ const Tabs = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const SearchStack = createStackNavigator();
 
-
 const HomeStackScreen = () => (
   <HomeStack.Navigator>
     <HomeStack.Screen
@@ -58,15 +58,21 @@ const HomeStackScreen = () => (
     <HomeStack.Screen
       name="ProductDetails"
       component={ProductDetails}
-      options={{ header: props => <StackHeader {...props} /> }}
+      options={{
+        header: props => (
+          <StackHeader cart={true} nameTitle="Product Details" {...props} />
+        )
+      }}
     />
-    {/* <HomeStack.Screen
-      name="Details"
-      component={Details}
-      options={({ route }) => ({
-        title: route.params.name
-      })}
-    /> */}
+    <HomeStack.Screen
+      name="Cart"
+      component={Cart}
+      options={{
+        header: props => (
+          <StackHeader cart={false} nameTitle="Cart" {...props} />
+        )
+      }}
+    />
   </HomeStack.Navigator>
 );
 const SearchStackScreen = () => (
@@ -156,15 +162,12 @@ const RootStackScreen = ({ userToken }) => (
 );
 export default () => {
   return (
-
-   
-<StoreProvider store={store}>
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <RootStackScreen />
-      </NavigationContainer>
-    </SafeAreaProvider>
-</StoreProvider>
-
+    <StoreProvider store={store}>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <RootStackScreen />
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </StoreProvider>
   );
 };
