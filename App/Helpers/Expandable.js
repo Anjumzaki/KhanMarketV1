@@ -14,8 +14,9 @@ import {
 //import basic react native components
 import LatoText from "./LatoText";
 import { AntDesign } from "@expo/vector-icons";
+import { Content } from "native-base";
 class ExpandableItemComponent extends Component {
-  //Custom Component for the Expandable List
+  //Custom Component for the Expandable List 
   constructor() {
     super();
     this.state = {
@@ -44,7 +45,14 @@ class ExpandableItemComponent extends Component {
     return false;
   }
 
+  componentDidMount(){
+    // console.log("Expanablesssssssssssssssss", this.props)
+
+  }
+
   render() {
+    // console.log("Expanablesssssssssssssssss", this.props)
+
     return (
       <View>
         <TouchableOpacity
@@ -132,7 +140,7 @@ class ExpandableItemComponent extends Component {
                   fontName="Lato-Regular"
                   fonSiz={17}
                   col="#5C5C5C"
-                  text={"Serving Size 100g"}
+                  text={`Serving Size ${this.props.item.subcategory[0].val}g`}
                 />
               </View>
               <View style={styles.bordeBottom}>
@@ -140,7 +148,7 @@ class ExpandableItemComponent extends Component {
                   fontName="Lato-Regular"
                   fonSiz={17}
                   col="#5C5C5C"
-                  text={"Servings Per Container 10"}
+                  text={`Servings Per Container ${this.props.item.subcategory[1].val}`}
                 />
               </View>
               <View style={styles.bordeBottomSlick}>
@@ -167,7 +175,7 @@ class ExpandableItemComponent extends Component {
                   fontName="Lato-Regular"
                   fonSiz={20}
                   col="#5C5C5C"
-                  text={" 143"}
+                  text={` ${this.props.item.subcategory[2].val}`}
                 />
               </View>
 
@@ -205,7 +213,7 @@ class ExpandableItemComponent extends Component {
                     fontName="Lato-Regular"
                     fonSiz={20}
                     col="#5C5C5C"
-                    text={" 3.5 g"}
+                    text={` ${this.props.item.subcategory[3].val} g`}
                   />
                 </View>
                 <View>
@@ -223,7 +231,7 @@ class ExpandableItemComponent extends Component {
                   fontName="Lato-Regular"
                   fonSiz={15}
                   col="#5C5C5C"
-                  text={"Saturated fat 1.2 g"}
+                  text={`Saturated fat ${this.props.item.subcategory[4].val} g`}
                 />
               </View>
               <View style={styles.bordeBottomSlick1}>
@@ -231,7 +239,7 @@ class ExpandableItemComponent extends Component {
                   fontName="Lato-Regular"
                   fonSiz={15}
                   col="#5C5C5C"
-                  text={"Polyunsaturated fat 0.5 g"}
+                  text={`Polyunsaturated fat ${this.props.item.subcategory[5].val} g`}
                 />
               </View>
               <View style={styles.bordeBottomSlick1}>
@@ -239,7 +247,7 @@ class ExpandableItemComponent extends Component {
                   fontName="Lato-Regular"
                   fonSiz={15}
                   col="#5C5C5C"
-                  text={"Monounsaturated fat 1.3 g"}
+                  text={`Monounsaturated fat ${this.props.item.subcategory[6].val} g`}
                 />
               </View>
               <View style={styles.bordeBottomSlick1}>
@@ -247,7 +255,7 @@ class ExpandableItemComponent extends Component {
                   fontName="Lato-Regular"
                   fonSiz={15}
                   col="#5C5C5C"
-                  text={"Trans fat 0 g"}
+                  text={`Trans fat ${this.props.item.subcategory[7].val} g`}
                 />
               </View>
               <View
@@ -271,7 +279,7 @@ class ExpandableItemComponent extends Component {
                     fontName="Lato-Regular"
                     fonSiz={20}
                     col="#5C5C5C"
-                    text={" 73 mg"}
+                    text={` ${this.props.item.subcategory[8].val} mg`}
                   />
                 </View>
                 <View>
@@ -305,7 +313,7 @@ class ExpandableItemComponent extends Component {
                     fontName="Lato-Regular"
                     fonSiz={20}
                     col="#5C5C5C"
-                    text={" 57 mg"}
+                    text={` ${this.props.item.subcategory[9].val} mg`}
                   />
                 </View>
                 <View>
@@ -339,7 +347,7 @@ class ExpandableItemComponent extends Component {
                     fontName="Lato-Regular"
                     fonSiz={20}
                     col="#5C5C5C"
-                    text={" 421 mg"}
+                    text={` ${this.props.item.subcategory[10].val} mg`}
                   />
                 </View>
                 <View>
@@ -373,7 +381,7 @@ class ExpandableItemComponent extends Component {
                     fontName="Lato-Regular"
                     fonSiz={20}
                     col="#5C5C5C"
-                    text={" 0 g "}
+                    text={` ${this.props.item.subcategory[11].val} g `}
                   />
                 </View>
                 <View>
@@ -390,7 +398,7 @@ class ExpandableItemComponent extends Component {
                   fontName="Lato-Regular"
                   fonSiz={15}
                   col="#5C5C5C"
-                  text={"Dietary fiber 0 g"}
+                  text={`Dietary fiber ${this.props.item.subcategory[12].val} g`}
                 />
               </View>
               <View style={styles.bordeBottomSlick1}>
@@ -398,7 +406,7 @@ class ExpandableItemComponent extends Component {
                   fontName="Lato-Regular"
                   fonSiz={15}
                   col="#5C5C5C"
-                  text={"Sugar 0 g"}
+                  text={`Sugar ${this.props.item.subcategory[13].val} g`}
                 />
               </View>
               <View
@@ -422,7 +430,7 @@ class ExpandableItemComponent extends Component {
                     fontName="Lato-Regular"
                     fonSiz={20}
                     col="#5C5C5C"
-                    text={" 26 g "}
+                    text={` ${this.props.item.subcategory[14].val} g `}
                   />
                 </View>
                 <View>
@@ -449,7 +457,7 @@ export default class App extends Component {
     if (Platform.OS === "android") {
       UIManager.setLayoutAnimationEnabledExperimental(true);
     }
-    this.state = { listDataSource: CONTENT };
+    this.state = { listDataSource: [] };
   }
 
   updateLayout = index => {
@@ -462,6 +470,58 @@ export default class App extends Component {
       };
     });
   };
+
+  componentDidMount(){
+    // console.log("pro",this.props.product);
+    var CONTENT = []
+
+    CONTENT.push( {
+      isExpanded: false,
+      category_name: "Nutritional Facts",
+      subcategory: [
+        { id: 1, val:  this.props.product.servingSize},
+        { id: 2, val: this.props.product.servingPerContainer },
+        { id: 3, val: this.props.product.calories },
+        { id: 4, val: this.props.product.fatInGm },
+        { id: 5, val: this.props.product.saturatedFatInGm },
+        { id: 6, val: this.props.product.polyunsaturatedFatInGm },
+        { id: 7, val: this.props.product.monounsaturatedFatInGm },
+        { id: 8, val: this.props.product.transFatInGm },
+        { id: 9, val: this.props.product.cholesterol },
+        { id: 10, val: this.props.product.sodium },
+        { id: 11, val: this.props.product.potassium },
+        { id: 12, val: this.props.product.totalCarbs },
+        { id: 13, val: this.props.product.dietaryFiber },
+        { id: 14, val: this.props.product.sugar },
+        { id: 15, val: this.props.product.protienInGm}
+      ]
+    })
+
+    CONTENT.push({
+      isExpanded: false,
+      category_name: "Special Instructions",
+      subcategory: [
+        {
+          id: 1,
+          val:  this.props.product.specialInstruction
+        }
+      ]
+    })
+    CONTENT.push({
+      isExpanded: false,
+      category_name: "Disclaimer",
+      subcategory: [
+        {
+          id: 7,
+          val:
+            "Eiusmod qui esse ullamco laborum quis. Magna duis laborum est et exercitation minim esse ad esse excepteur. Cupidatat minim consequat anim non laboris veniam nisi ullamco esse. Ullamco aliqua aliqua tempor fugiat esse exercitation culpa."
+        }
+      ]
+    })
+
+    this.setState({listDataSource: CONTENT})
+
+  }
 
   render() {
     return (

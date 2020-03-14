@@ -14,10 +14,12 @@ import { AntDesign } from "@expo/vector-icons";
 import LatoText from "../Helpers/LatoText";
 import { ScrollView } from "react-native-gesture-handler";
 import Expandable from "../Helpers/Expandable";
+import CourselImage from "../Components/CourselImage";
 import { btnStyles,bottomTab } from "../styles/base";
 import { Row } from "native-base";
 const { width } = Dimensions.get("window");
 const { height } = 300;
+import firebase from "firebase";
 
 export default class ProductDetails extends Component {
   constructor(props) {
@@ -30,7 +32,22 @@ export default class ProductDetails extends Component {
   }
 
   componentDidMount(){
-    console.log("product details props", this.props)
+    console.log("product details props", this.props.route.params.product)
+    // var count =0
+    // for(var i=0; i<10; i++){
+    //   const ref = firebase
+    //   .storage()
+    //   .ref("/product_images/"+this.props.route.params.product._id+"_"+parseInt(i+1)+".jpg");
+    //     ref.getDownloadURL().then(url => {
+    //       console.log(url, "I ma here"+i);
+    //       this.setState({ image: url });
+    //       if(url){
+    //         count++
+    //       }
+    //     });
+    // }
+
+    // console.log("COUNT",count)
 
   }
 
@@ -48,6 +65,16 @@ export default class ProductDetails extends Component {
     }
   }
   render() {
+    var product = this.props.route.params.product
+    var noOfImg = product.noOfImages
+    noOfImg = parseInt(noOfImg)
+    console.log("typeOf",typeof(noOfImg))
+    var temp=[]
+    for(var i=0; i< noOfImg; i++){
+      temp.push(i)
+    }
+    console.log("TEMP",temp)
+    var abc= [1,2,3]
     return (
       <View style={{ flex: 1, backgroundColor: "white"  }}>
         <ScrollView style={{ backgroundColor: "white" }}>
@@ -70,7 +97,7 @@ export default class ProductDetails extends Component {
               }}
               autoplay={true}
               bullets
-              onAnimateNextPage={p => console.log(p)}
+              // onAnimateNextPage={p => console.log(p)}
               bulletStyle={{
                 padding: 0,
                 margin: 3,
@@ -83,37 +110,17 @@ export default class ProductDetails extends Component {
                 marginTop: 80,
                 backgroundColor: "#89898C"
               }}
-            >
+            > 
+            {temp.map((item,index) => (
               <View style={{ borderRadius: 10, overflow: "hidden" }}>
-                <Image
+                  {/* <Image key={index}
                   style={{ width: Dimensions.get("window").width - 40 }}
                   source={require("../../assets/products/beef1.png")}
-                />
+                  /> */}
+                  <CourselImage id={product._id} index={index+1}/>
               </View>
-              <View style={{ borderRadius: 10, overflow: "hidden" }}>
-                <Image
-                  style={{ width: Dimensions.get("window").width - 40 }}
-                  source={require("../../assets/products/beef2.png")}
-                />
-              </View>
-              <View style={{ borderRadius: 10, overflow: "hidden" }}>
-                <Image
-                  style={{ width: Dimensions.get("window").width - 40 }}
-                  source={require("../../assets/products/beef3.png")}
-                />
-              </View>
-              <View style={{ borderRadius: 10, overflow: "hidden" }}>
-                <Image
-                  style={{ width: Dimensions.get("window").width - 40 }}
-                  source={require("../../assets/products/beef4.png")}
-                />
-              </View>
-              <View style={{ borderRadius: 10, overflow: "hidden" }}>
-                <Image
-                  style={{ width: Dimensions.get("window").width - 40 }}
-                  source={require("../../assets/products/beef5.png")}
-                />
-              </View>
+                ))}
+                
             </Carousel>
           </View>
 
@@ -166,7 +173,7 @@ export default class ProductDetails extends Component {
               fontName="Lato-Regular"
               fonSiz={25}
               col="#5C5C5C"
-              text={"Rib Eye"}
+              text={product.productName}
             />
             <View
               style={{
@@ -186,13 +193,13 @@ export default class ProductDetails extends Component {
                   fontName="Lato-Regular"
                   fonSiz={17}
                   col="#89898C"
-                  text={"$5.0 / lb "}
+                  text={`$${product.price} / lb `}
                 />
                 <LatoText
                   fontName="Lato-Bold"
                   fonSiz={20}
                   col="#5C5C5C"
-                  text={" $4.5 / lb "}
+                  text={` $${product.price - ((product.price * product.discount)/100)} / lb `}
                 />
               </View>
               <View style={{ marginTop: 22 }}>
@@ -200,7 +207,7 @@ export default class ProductDetails extends Component {
                   fontName="Lato-Regular"
                   fonSiz={17}
                   col="#B50000"
-                  text={" You will save 10% "}
+                  text={` You will save ${product.discount}% `}
                 />
               </View>
             </View>
@@ -210,12 +217,12 @@ export default class ProductDetails extends Component {
                 fonSiz={17}
                 col="#5C5C5C"
                 text={
-                  "Eiusmod qui esse ullamco laborum quis. Magna duis laborum est et exercitation minim esse ad esse excepteur. Cupidatat minim consequat anim non laboris veniam nisi ullamco esse. "
+                  product.productDescription
                 }
               />
             </View>
           </View>
-          <Expandable />
+          <Expandable product={product}/>
         </ScrollView>
         <View style={bottomTab.cartSheet}>
           <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',width:'50%'}}>
