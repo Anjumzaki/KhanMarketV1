@@ -131,7 +131,7 @@ export default class Cart extends Component {
         </ScrollView>
         <View style={bottomTab.cartSheet}>
           <TouchableOpacity
-            onPress={() => this.setState({ cart: true })}
+            onPress={() => this.props.navigation.push('Checkout1')}
             style={[btnStyles.cartBtnOutline, { width: "55%" }]}
           >
             <LatoText
@@ -143,7 +143,7 @@ export default class Cart extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => this.setState({ cart: true })}
+            onPress={() => this.props.navigation.push('Checkout1')}
             style={[btnStyles.cartBtn, { width: "40%" }]}
           >
             <LatoText

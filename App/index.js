@@ -26,6 +26,8 @@ import SingleStoreHeader from "./Helpers/SingleStoreHeader";
 import store from "./store";
 import { Provider as StoreProvider } from "react-redux";
 import Cart from './screens/Cart'
+import Checkout1 from './screens/Checkout1'
+
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
@@ -44,7 +46,8 @@ const HomeStack = createStackNavigator();
 const SearchStack = createStackNavigator();
 
 const HomeStackScreen = () => (
-  <HomeStack.Navigator>
+  <HomeStack.Navigator 
+  >
     <HomeStack.Screen
       name="Home"
       component={Home}
@@ -61,7 +64,8 @@ const HomeStackScreen = () => (
       options={{
         header: props => (
           <StackHeader cart={true} nameTitle="Product Details" {...props} />
-        )
+        ),
+        tabBarOptions: false
       }}
     />
     <HomeStack.Screen
@@ -70,6 +74,15 @@ const HomeStackScreen = () => (
       options={{
         header: props => (
           <StackHeader cart={false} nameTitle="Cart" {...props} />
+        )
+      }}
+    />
+     <HomeStack.Screen
+      name="Checkout1"
+      component={Checkout1}
+      options={{
+        header: props => (
+          <StackHeader cart={false} nameTitle="PICK UP DETAILS" {...props} />
         )
       }}
     />
