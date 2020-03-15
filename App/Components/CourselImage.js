@@ -26,8 +26,8 @@ class CourseImage extends React.Component {
 
   render() {
     //   console.log("COURSEL STATE", this.state, this.props.index)
-      var url= "../../assets/products/beef"+this.props.index+".png"
-      console.log("URL",url)
+      // var url= "../../assets/products/beef"+this.props.index+".png"
+      // console.log("URL",url)
     return (
         <Image
             style={{ width: Dimensions.get("window").width - 40 }}

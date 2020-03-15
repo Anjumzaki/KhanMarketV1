@@ -153,8 +153,8 @@ class StoreDetails extends React.Component {
       <ScrollView showsVerticalScrollIndicator={false} >
         <Slider />
        <CardsRow navigation={this.props.navigation} products={beef} name={'Beef'}/>
-       <CardsRow navigation={this.props.navigation} products={veg} name={'Chicken'}/>
-       <CardsRow navigation={this.props.navigation} products={chicken} name={'Vegetables'}/>
+       <CardsRow navigation={this.props.navigation} products={chicken} name={'Chicken'}/>
+       <CardsRow navigation={this.props.navigation} products={veg} name={'Vegetables'}/>
      <View style={{paddingTop:10}}>
 
      </View>

@@ -20,8 +20,11 @@ import { Row } from "native-base";
 const { width } = Dimensions.get("window");
 const { height } = 300;
 import firebase from "firebase";
+import { bindActionCreators } from "redux";
+import { cartAsync } from "../store/actions";
+import { connect } from "react-redux";
 
-export default class ProductDetails extends Component {
+class ProductDetails extends Component {
   constructor(props) {
     super(props);
 
@@ -65,15 +68,15 @@ export default class ProductDetails extends Component {
     }
   }
   render() {
+    // console.log("PRODUCT DETAIL PROPS",this.props)
+
     var product = this.props.route.params.product
     var noOfImg = product.noOfImages
     noOfImg = parseInt(noOfImg)
-    console.log("typeOf",typeof(noOfImg))
     var temp=[]
     for(var i=0; i< noOfImg; i++){
       temp.push(i)
     }
-    console.log("TEMP",temp)
     var abc= [1,2,3]
     return (
       <View style={{ flex: 1, backgroundColor: "white"  }}>
@@ -112,13 +115,10 @@ export default class ProductDetails extends Component {
               }}
             > 
             {temp.map((item,index) => (
-              <View style={{ borderRadius: 10, overflow: "hidden" }}>
-                  {/* <Image key={index}
-                  style={{ width: Dimensions.get("window").width - 40 }}
-                  source={require("../../assets/products/beef1.png")}
-                  /> */}
+              // <View style={{ borderRadius: 10, overflow: "hidden" }}>
+            
                   <CourselImage id={product._id} index={index+1}/>
-              </View>
+              // </View>
                 ))}
                 
             </Carousel>
@@ -240,7 +240,16 @@ export default class ProductDetails extends Component {
                 </TouchableOpacity>
           </View>
           <TouchableOpacity
-            onPress={() => this.setState({ cart: true })}
+            // onPress={() => this.setState({ cart: true })}
+            onPress={() => {
+              console.log("props check", this.props.cart)
+              var pCart=this.props.cart;
+              pCart.push({
+                product: product,
+                quantity: this.state.qt
+              })
+              this.props.cartAsync(pCart)
+            }}
             style={[btnStyles.cartBtn,{width:'40%'}]}
           >
             <LatoText
@@ -300,3 +309,21 @@ const styles = StyleSheet.create({
     elevation: 5
   }
 });
+
+const mapStateToProps = state => ({
+  cart: state.Cart.cartData,
+  loading: state.Cart.cartLoading,
+  error: state.Cart.cartError
+});
+const mapDispatchToProps = (dispatch, ownProps) =>
+  bindActionCreators(
+      {
+          cartAsync
+      },
+      dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductDetails);
