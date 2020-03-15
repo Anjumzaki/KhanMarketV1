@@ -70,14 +70,6 @@ class Cart extends Component {
             ></LatoText>
           </View>
           <View style={lines.simple} />
-<<<<<<< HEAD
-          {
-            this.props.cart.map((item,index) => (
-                <CartCard product={item} index={index} id={item.product._id}/> 
-            ))
-          }
-              
-=======
           <View
             style={{
               flexDirection: "row",
@@ -168,7 +160,6 @@ class Cart extends Component {
               </View>
             </View>
           </View>
->>>>>>> a3c986f46f4507be67ec7b851b303727ca6a7727
         </ScrollView>
         <View style={bottomTab.cartSheet}>
           <TouchableOpacity

@@ -51,28 +51,6 @@ export default class Home extends React.Component {
               id={item._id}
             />
             ))}
-
-
-          <Button
-            title="React Native by Example"
-            onPress={() =>
-              this.props.navigation.push("Details", {
-                name: "React Native by Example "
-              })
-            }
-          />
-          <Button
-            title="React Native School"
-            onPress={() =>
-              this.props.navigation.push("Details", {
-                name: "React Native School"
-              })
-            }
-          />
-          <Button
-            title="Drawer"
-            onPress={() => this.props.navigation.toggleDrawer()}
-          />
         </ScrollView>
       </View>
     );
