@@ -292,7 +292,7 @@ class Cart extends Component {
           <TouchableOpacity
             onPress={() => {
               this.setState({ cart: true })
-              axios.post('http://192.168.0.103:3000/add/order',{
+              axios.post('https://mysterious-temple-58549.herokuapp.com/add/order',{
                 storeId: sId,
                 products: this.props.cart,
                 totalAmount: "1000",
