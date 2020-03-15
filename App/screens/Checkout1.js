@@ -283,7 +283,7 @@ export default class Cart extends Component {
         </ScrollView>
         <View style={bottomTab.cartSheet}>
           <TouchableOpacity
-            onPress={() => this.setState({ cart: true })}
+            onPress={() => this.props.navigation.push('QrCode')}
             style={[btnStyles.cartBtn, { width: "100%" }]}
           >
             <LatoText

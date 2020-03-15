@@ -128,6 +128,33 @@ export default class Cart extends Component {
               </View>
             </View>
           </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingVertical: 30,
+              justifyContent: "space-between"
+            }}
+          >
+            <View style={{ flexDirection: "row" }}>
+              <LatoText
+                fontName="Lato-Bold"
+                fonSiz={25}
+                col="#2E2E2E"
+                text="Subtotal"
+              />
+            </View>
+            <View style={{alignItems:'flex-end',justifyContent:'space-between'}}>
+              <View style={{marginRight:20}}>
+                <LatoText
+                  fontName="Lato-Bold"
+                  fonSiz={25}
+                  col="#5C5C5C"
+                  text={"$4.95"}
+                />
+              </View>
+            </View>
+          </View>
         </ScrollView>
         <View style={bottomTab.cartSheet}>
           <TouchableOpacity
