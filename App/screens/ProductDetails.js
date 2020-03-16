@@ -35,7 +35,7 @@ class ProductDetails extends Component {
   }
 
   componentDidMount(){
-    console.log("product details props", this.props.route.params.product)
+    // console.log("product details props", this.props.route.params.product)
     // var count =0
     // for(var i=0; i<10; i++){
     //   const ref = firebase
@@ -311,7 +311,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  cart: state.Cart.cartData,
+  cart: state.Cart.cartData, 
   loading: state.Cart.cartLoading,
   error: state.Cart.cartError
 });

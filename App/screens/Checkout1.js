@@ -19,12 +19,16 @@ import { Row } from "native-base";
 import CheckBox from "react-native-check-box";
 const { width } = Dimensions.get("window");
 const { height } = 300;
+import { bindActionCreators } from "redux";
+import { cartAsync } from "../store/actions";
+import { connect } from "react-redux";
+import axios from "axios";
 
-export default class Cart extends Component {
+class Cart extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state = { 
       heart: false,
       qt: 1
     };
@@ -43,6 +47,9 @@ export default class Cart extends Component {
     }
   }
   render() {
+    console.log("checkout props", this.props.cart)
+    var sId = this.props.cart[0].product.storeId
+    console.log("SIDDDDDDDDDDDDD", sId)
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>
@@ -283,7 +290,17 @@ export default class Cart extends Component {
         </ScrollView>
         <View style={bottomTab.cartSheet}>
           <TouchableOpacity
-            onPress={() => this.setState({ cart: true })}
+            onPress={() => {
+              this.setState({ cart: true })
+              axios.post('http://192.168.0.103:3000/add/order',{
+                storeId: sId,
+                products: this.props.cart,
+                totalAmount: "1000",
+                name: "Bernard Murphey",
+                phone: "(555) 555-1234",
+                email: "b.murphey@gmail.com"
+              })
+            }}
             style={[btnStyles.cartBtn, { width: "100%" }]}
           >
             <LatoText
@@ -343,3 +360,22 @@ const styles = StyleSheet.create({
     elevation: 5
   }
 });
+
+
+const mapStateToProps = state => ({
+  cart: state.Cart.cartData, 
+  loading: state.Cart.cartLoading,
+  error: state.Cart.cartError
+});
+const mapDispatchToProps = (dispatch, ownProps) =>
+  bindActionCreators(
+      {
+          cartAsync
+      },
+      dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cart);

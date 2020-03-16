@@ -11,15 +11,19 @@ import {
 } from "react-native";
 import Carousel from "react-native-looped-carousel";
 import { AntDesign } from "@expo/vector-icons";
-import LatoText from "../Helpers/LatoText";
+import LatoText from "../Helpers/LatoText"; 
 import { ScrollView } from "react-native-gesture-handler";
 import Expandable from "../Helpers/Expandable";
 import { btnStyles, bottomTab, lines } from "../styles/base";
 import { Row } from "native-base";
 const { width } = Dimensions.get("window");
 const { height } = 300;
+import { bindActionCreators } from "redux";
+import { cartAsync } from "../store/actions";
+import { connect } from "react-redux";
+import CartCard from '../Components/cartCards.js'
 
-export default class Cart extends Component {
+class Cart extends Component {
   constructor(props) {
     super(props);
 
@@ -42,6 +46,7 @@ export default class Cart extends Component {
     }
   }
   render() {
+    console.log("Cart props", this.props)
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>
@@ -65,69 +70,12 @@ export default class Cart extends Component {
             ></LatoText>
           </View>
           <View style={lines.simple} />
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingVertical: 30,
-              justifyContent: "space-between"
-            }}
-          >
-            <View style={{ flexDirection: "row" }}>
-              <Image
-                style={{
-                  width: 53,
-                  height: 61,
-                  marginRight: 10,
-                  borderRadius: 10
-                }}
-                source={require("../../assets/products/beef1.png")}
-              />
-              <LatoText
-                fontName="Lato-Regular"
-                fonSiz={15}
-                col="#2E2E2E"
-                text="RIB EYE"
-              />
-            </View>
-            <View style={{alignItems:'flex-end',justifyContent:'space-between'}}>
-              <View
-                style={{
-                  flexDirection: "row",
-                  // alignItems: "center",
-                  justifyContent: "space-between",
-                  alignContent: "flex-end"
-                }}
-              >
-                <TouchableOpacity
-                  style={[btnStyles.plusBtn,{paddingTop:0}]}
-                  onPress={() => this.handleChange(-1)}
-                >
-                  <AntDesign color="#B50000" size={18} name="minus" />
-                </TouchableOpacity>
-                <LatoText
-                  fontName="Lato-Regular"
-                  fonSiz={15}
-                  col="#5C5C5C"
-                  text={this.state.qt}
-                />
-                <TouchableOpacity
-                  style={[btnStyles.plusBtn,{paddingTop:0}]}
-                  onPress={() => this.handleChange(1)}
-                >
-                  <AntDesign color="#B50000" size={18} name="plus" />
-                </TouchableOpacity>
-              </View>
-              <View style={{marginRight:20}}>
-                <LatoText
-                  fontName="Lato-Regular"
-                  fonSiz={15}
-                  col="#5C5C5C"
-                  text={"$4.95"}
-                />
-              </View>
-            </View>
-          </View>
+          {
+            this.props.cart.map((item,index) => (
+                <CartCard product={item} index={index} id={item.product._id}/> 
+            ))
+          }
+              
         </ScrollView>
         <View style={bottomTab.cartSheet}>
           <TouchableOpacity
@@ -203,3 +151,21 @@ const styles = StyleSheet.create({
     elevation: 5
   }
 });
+
+const mapStateToProps = state => ({
+  cart: state.Cart.cartData, 
+  loading: state.Cart.cartLoading,
+  error: state.Cart.cartError
+});
+const mapDispatchToProps = (dispatch, ownProps) =>
+  bindActionCreators(
+      {
+          cartAsync
+      },
+      dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cart);
