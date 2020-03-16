@@ -70,105 +70,12 @@ class Cart extends Component {
             ></LatoText>
           </View>
           <View style={lines.simple} />
-<<<<<<< HEAD
           {
             this.props.cart.map((item,index) => (
                 <CartCard product={item} index={index} id={item.product._id}/> 
             ))
           }
               
-=======
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingVertical: 30,
-              justifyContent: "space-between"
-            }}
-          >
-            <View style={{ flexDirection: "row" }}>
-              <Image
-                style={{
-                  width: 53,
-                  height: 61,
-                  marginRight: 10,
-                  borderRadius: 10
-                }}
-                source={require("../../assets/products/beef1.png")}
-              />
-              <LatoText
-                fontName="Lato-Regular"
-                fonSiz={15}
-                col="#2E2E2E"
-                text="RIB EYE"
-              />
-            </View>
-            <View style={{alignItems:'flex-end',justifyContent:'space-between'}}>
-              <View
-                style={{
-                  flexDirection: "row",
-                  // alignItems: "center",
-                  justifyContent: "space-between",
-                  alignContent: "flex-end"
-                }}
-              >
-                <TouchableOpacity
-                  style={[btnStyles.plusBtn,{paddingTop:0}]}
-                  onPress={() => this.handleChange(-1)}
-                >
-                  <AntDesign color="#B50000" size={18} name="minus" />
-                </TouchableOpacity>
-                <LatoText
-                  fontName="Lato-Regular"
-                  fonSiz={15}
-                  col="#5C5C5C"
-                  text={this.state.qt}
-                />
-                <TouchableOpacity
-                  style={[btnStyles.plusBtn,{paddingTop:0}]}
-                  onPress={() => this.handleChange(1)}
-                >
-                  <AntDesign color="#B50000" size={18} name="plus" />
-                </TouchableOpacity>
-              </View>
-              <View style={{marginRight:20}}>
-                <LatoText
-                  fontName="Lato-Regular"
-                  fonSiz={15}
-                  col="#5C5C5C"
-                  text={"$4.95"}
-                />
-              </View>
-            </View>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingVertical: 30,
-              justifyContent: "space-between"
-            }}
-          >
-            <View style={{ flexDirection: "row" }}>
-              <LatoText
-                fontName="Lato-Bold"
-                fonSiz={25}
-                col="#2E2E2E"
-                text="Subtotal"
-              />
-            </View>
-            <View style={{alignItems:'flex-end',justifyContent:'space-between'}}>
-              <View style={{marginRight:20}}>
-                <LatoText
-                  fontName="Lato-Bold"
-                  fonSiz={25}
-                  col="#5C5C5C"
-                  text={"$4.95"}
-                />
-              </View>
-            </View>
-          </View>
->>>>>>> a3c986f46f4507be67ec7b851b303727ca6a7727
         </ScrollView>
         <View style={bottomTab.cartSheet}>
           <TouchableOpacity
