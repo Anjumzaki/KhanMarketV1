@@ -27,6 +27,8 @@ import store from "./store";
 import { Provider as StoreProvider } from "react-redux";
 import Cart from './screens/Cart'
 import Checkout1 from './screens/Checkout1'
+import QrCode from './screens/QrCode'
+
 
 
 const AuthStack = createStackNavigator();
@@ -86,6 +88,16 @@ const HomeStackScreen = () => (
         )
       }}
     />
+    <HomeStack.Screen
+      name="QrCode"
+      component={QrCode}
+      options={{
+        header: props => (
+          <StackHeader cart={false} nameTitle="ORDER PLACED" {...props} />
+        )
+      }}
+    />
+    
   </HomeStack.Navigator>
 );
 const SearchStackScreen = () => (

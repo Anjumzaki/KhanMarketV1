@@ -299,7 +299,8 @@ class Cart extends Component {
                 name: "Bernard Murphey",
                 phone: "(555) 555-1234",
                 email: "b.murphey@gmail.com"
-              })
+              }).then(resp =>  this.props.navigation.push('QrCode'))
+              
             }}
             style={[btnStyles.cartBtn, { width: "100%" }]}
           >
