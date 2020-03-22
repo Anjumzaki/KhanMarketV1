@@ -15,7 +15,7 @@ class Cart extends React.Component {
                     <View style={{ width: '80%' }}>
                         <LatoText fontName="Sarabun-Light" fonSiz={21} col='#5C5C5C' text={this.props.name} ></LatoText>
                     </View>
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={()=>{this.props.navigation.push('SingleCateg')}}>
                         <View style={{  justifyContent: 'center', position: 'relative', top: 12 }}>
                             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                                 <LatoText style={{ alignSelf: 'flex-end' }} fontName="Lato-Light" fonSiz={16} col='#5C5C5C' text="See All" ></LatoText>

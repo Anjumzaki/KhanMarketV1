@@ -23,7 +23,7 @@ import {
 } from "@expo/vector-icons";
 import LatoText from "./LatoText";
 import { TouchableOpacity } from "react-native-gesture-handler";
-export default class SingleStoreHeader extends React.Component {
+export default class SingleCategHeader extends React.Component {
   render() {
     return (
       <View

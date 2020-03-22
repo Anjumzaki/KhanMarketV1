@@ -105,6 +105,7 @@ class Cart extends Component {
               text="451 Washington Ave Manchester, Kentucky 39495 "
             />
           </View>
+          
           <View style={lines.simple} />
           <View
             style={{

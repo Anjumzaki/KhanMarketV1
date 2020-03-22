@@ -23,11 +23,15 @@ import {
 import ProductDetails from "./screens/ProductDetails";
 import StoreDetails from "./screens/StoreDetails";
 import SingleStoreHeader from "./Helpers/SingleStoreHeader";
+import SingleCategHeader from "./Helpers/SingleCategHeader";
 import store from "./store";
 import { Provider as StoreProvider } from "react-redux";
-import Cart from './screens/Cart'
-import Checkout1 from './screens/Checkout1'
-import QrCode from './screens/QrCode'
+import Cart from "./screens/Cart";
+import Checkout1 from "./screens/Checkout1";
+import QrCode from "./screens/QrCode";
+import StoreInfo from "./screens/StoreInfo";
+import Filters from "./screens/Filters";
+import SingleCateg from "./screens/SingleCateg";
 
 
 
@@ -48,8 +52,7 @@ const HomeStack = createStackNavigator();
 const SearchStack = createStackNavigator();
 
 const HomeStackScreen = () => (
-  <HomeStack.Navigator 
-  >
+  <HomeStack.Navigator>
     <HomeStack.Screen
       name="Home"
       component={Home}
@@ -79,7 +82,7 @@ const HomeStackScreen = () => (
         )
       }}
     />
-     <HomeStack.Screen
+    <HomeStack.Screen
       name="Checkout1"
       component={Checkout1}
       options={{
@@ -97,7 +100,33 @@ const HomeStackScreen = () => (
         )
       }}
     />
-    
+    <HomeStack.Screen
+      name="StoreInfo"
+      component={StoreInfo}
+      options={{
+        header: props => (
+          <StackHeader cart={false} nameTitle="STORE INFO" {...props} />
+        )
+      }}
+    />
+    <HomeStack.Screen
+      name="Filters"
+      component={Filters}
+      options={{
+        header: props => (
+          <StackHeader cart={false} nameTitle="BEEF" {...props} />
+        )
+      }}
+    />
+    <HomeStack.Screen
+      name="SingleCateg"
+      component={SingleCateg}
+      options={{
+        header: props => (
+          <SingleCategHeader cart={false} nameTitle="BEEF" {...props} />
+        )
+      }}
+    />
   </HomeStack.Navigator>
 );
 const SearchStackScreen = () => (
