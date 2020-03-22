@@ -5,12 +5,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Text, View } from "react-native";
-import { CreateAccount, Search, Details, Search2, Profile } from "./Screens";
-import Home from "./screens/Home";
-import Login from "./screens/Login";
-import Map from "./screens/Map";
-import StoreHeader from "./Helpers/StoreHeader";
-import StackHeader from "./Helpers/StackHeader";
+import { CreateAccount, Search, Details, Search2, Profile } from "./src/Screens";
+import Home from "./src/screens/Home";
+import Login from "./src/screens/Login";
+import Map from "./src/screens/Map";
+import StoreHeader from "./src/Helpers/StoreHeader";
+import StackHeader from "./src/Helpers/StackHeader";
 import {
   Entypo,
   Feather,
@@ -20,18 +20,18 @@ import {
   MaterialIcons,
   MaterialCommunityIcons
 } from "@expo/vector-icons";
-import ProductDetails from "./screens/ProductDetails";
-import StoreDetails from "./screens/StoreDetails";
-import SingleStoreHeader from "./Helpers/SingleStoreHeader";
-import SingleCategHeader from "./Helpers/SingleCategHeader";
-import store from "./store";
+import ProductDetails from "./src/screens/ProductDetails";
+import StoreDetails from "./src/screens/StoreDetails";
+import SingleStoreHeader from "./src/Helpers/SingleStoreHeader";
+import SingleCategHeader from "./src/Helpers/SingleCategHeader";
+import store from "./src/store";
 import { Provider as StoreProvider } from "react-redux";
-import Cart from "./screens/Cart";
-import Checkout1 from "./screens/Checkout1";
-import QrCode from "./screens/QrCode";
-import StoreInfo from "./screens/StoreInfo";
-import Filters from "./screens/Filters";
-import SingleCateg from "./screens/SingleCateg";
+import Cart from "./src/screens/Cart";
+import Checkout1 from "./src/screens/Checkout1";
+import QrCode from "./src/screens/QrCode";
+import StoreInfo from "./src/screens/StoreInfo";
+import Filters from "./src/screens/Filters";
+import SingleCateg from "./src/screens/SingleCateg";
 
 
 
