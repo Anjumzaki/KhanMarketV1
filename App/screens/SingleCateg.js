@@ -17,6 +17,7 @@ import Expandable from "../Helpers/Expandable";
 import { btnStyles, bottomTab, lines } from "../styles/base";
 import { Row } from "native-base";
 import CheckBox from "react-native-check-box";
+import ProcardsSmall from "../Helpers/ProcardsSmall";
 const { width } = Dimensions.get("window");
 const { height } = 300;
 
@@ -46,146 +47,143 @@ export default class SingleCateg extends Component {
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingVertical: 30,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={25}
-              col="#5C5C5C"
-              text="Single Categ"
-            ></LatoText>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              alignItems: "center",
-              paddingBottom:30,
-              justifyContent: "center",
-              alignContent:'center',
-              alignItems:'center'
-            }}
-          >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={15}
-              col="#5C5C5C"
-              text="We have recieved your order. You can check its status in ‘My Orders’ section. We hope you enjoy your purchase from Khan Market!"
-            ></LatoText>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              justifyContent: "center",
-
-            }}
-          >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={20}
-              col="#5C5C5C"
-              text="Your order number is DBZ-876"
+          <View style={{ marginVertical: 10, flexDirection: "row",width:'100%',flexWrap: 'wrap' }}>
+            <ProcardsSmall
+              navigation={this.props.navigation}
+              key={1}
+              product={{
+                __v: 0,
+                _id: "5e6c73426ab4b4fa150ea5ef",
+                calories: "32",
+                cholesterol: "34",
+                dietaryFiber: "34",
+                discount: "23",
+                fatInGm: "54",
+                monounsaturatedFatInGm: "344",
+                noOfImages: "3",
+                polyunsaturatedFatInGm: "3",
+                potassium: "34",
+                price: "23",
+                productDescription:
+                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
+                productName: "ASD",
+                productType: "Vegetable",
+                protienInGm: "34",
+                saturatedFatInGm: "34",
+                servingPerContainer: "34",
+                servingSize: "34",
+                sodium: "34",
+                specialInstruction:
+                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
+                storeId: "5e658f62cead2c04281c9f85",
+                sugar: "34",
+                totalCarbs: "34",
+                transFatInGm: "34"
+              }}
+            />
+            <ProcardsSmall
+              width={"50%"}
+              navigation={this.props.navigation}
+              key={1}
+              product={{
+                __v: 0,
+                _id: "5e6c73426ab4b4fa150ea5ef",
+                calories: "32",
+                cholesterol: "34",
+                dietaryFiber: "34",
+                discount: "23",
+                fatInGm: "54",
+                monounsaturatedFatInGm: "344",
+                noOfImages: "3",
+                polyunsaturatedFatInGm: "3",
+                potassium: "34",
+                price: "23",
+                productDescription:
+                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
+                productName: "ASD",
+                productType: "Vegetable",
+                protienInGm: "34",
+                saturatedFatInGm: "34",
+                servingPerContainer: "34",
+                servingSize: "34",
+                sodium: "34",
+                specialInstruction:
+                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
+                storeId: "5e658f62cead2c04281c9f85",
+                sugar: "34",
+                totalCarbs: "34",
+                transFatInGm: "34"
+              }}
+            />
+            <ProcardsSmall
+              navigation={this.props.navigation}
+              key={1}
+              product={{
+                __v: 0,
+                _id: "5e6c73426ab4b4fa150ea5ef",
+                calories: "32",
+                cholesterol: "34",
+                dietaryFiber: "34",
+                discount: "23",
+                fatInGm: "54",
+                monounsaturatedFatInGm: "344",
+                noOfImages: "3",
+                polyunsaturatedFatInGm: "3",
+                potassium: "34",
+                price: "23",
+                productDescription:
+                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
+                productName: "ASD",
+                productType: "Vegetable",
+                protienInGm: "34",
+                saturatedFatInGm: "34",
+                servingPerContainer: "34",
+                servingSize: "34",
+                sodium: "34",
+                specialInstruction:
+                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
+                storeId: "5e658f62cead2c04281c9f85",
+                sugar: "34",
+                totalCarbs: "34",
+                transFatInGm: "34"
+              }}
+            />
+            <ProcardsSmall
+              width={"50%"}
+              navigation={this.props.navigation}
+              key={1}
+              product={{
+                __v: 0,
+                _id: "5e6c73426ab4b4fa150ea5ef",
+                calories: "32",
+                cholesterol: "34",
+                dietaryFiber: "34",
+                discount: "23",
+                fatInGm: "54",
+                monounsaturatedFatInGm: "344",
+                noOfImages: "3",
+                polyunsaturatedFatInGm: "3",
+                potassium: "34",
+                price: "23",
+                productDescription:
+                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
+                productName: "ASD",
+                productType: "Vegetable",
+                protienInGm: "34",
+                saturatedFatInGm: "34",
+                servingPerContainer: "34",
+                servingSize: "34",
+                sodium: "34",
+                specialInstruction:
+                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
+                storeId: "5e658f62cead2c04281c9f85",
+                sugar: "34",
+                totalCarbs: "34",
+                transFatInGm: "34"
+              }}
             />
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingVertical:30,
-              justifyContent: "center",
-
-            }}
-          >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={15}
-              col="#5C5C5C"
-              text="Use the below QR code while recieving the order."
-            />
-          </View>
-        
-        
-          
-         
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingBottom: 20,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-           <Image source={require('../../assets/qr.png')}/>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingBottom: 20,
-              paddingTop:10,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <LatoText
-              fontName="Lato-Bold"
-              fonSiz={17}
-              col="#2E2E2E"
-              text="Cancel Order"
-            />
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingBottom: 20,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={15}
-              col="#2E2E2E"
-              text="(Only possible before the order is 'being prepared)"
-            />
-          </View>
-         
         </ScrollView>
-        <View style={bottomTab.cartSheet}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.push('Home')}
-            style={[btnStyles.cartBtn, { width: "55%" }]}
-          >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={15}
-              col="white"
-              text="KEEP SHOPING"
-            ></LatoText>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.setState({ cart: true })}
-            style={[btnStyles.cartBtn, { width: "40%" }]}
-          >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={15}
-              col="white"
-              text="MY ORDERS"
-            ></LatoText>
-          </TouchableOpacity>
-          
-        </View>
       </View>
     );
   }

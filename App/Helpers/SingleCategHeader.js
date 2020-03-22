@@ -67,7 +67,7 @@ export default class SingleCategHeader extends React.Component {
               fontName="Lato-Regular"
               fonSiz={20}
               col="white"
-              text={"KHAN MARKET"}
+              text={"BEEF"}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -87,28 +87,16 @@ export default class SingleCategHeader extends React.Component {
             </View>
           </TouchableOpacity>
         </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            position: "relative",
-            bottom: 15
-          }}
-        >
-          <MaterialIcons name="location-on" size={16} color="white" />
-          <LatoText
-            fontName="Lato-Light"
-            fonSiz={16}
-            col="white"
-            text="Hemisphere Black 32"
-          />
-        </View>
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row" ,paddingHorizontal:10,justifyContent:'space-between',alignItems:'center',marginBottom:10,}}>
           <View style={styles.wrapperText}>
             <EvilIcons name="search" size={26} color="#89898c" />
             <TextInput style={styles.textI} placeholder="Search..." />
           </View>
+          <TouchableOpacity onPress={()=>this.props.navigation.push('Filters')}>
+          <Image source={require('../../assets/filters.png')} />
+
+          </TouchableOpacity>
+
         </View>
       </View>
     );
@@ -123,13 +111,12 @@ const styles = StyleSheet.create({
   wrapperText: {
     flexDirection: "row",
     backgroundColor: "white",
-    width: "94%",
+    width: "87%",
     paddingHorizontal: 7,
     paddingVertical: 7,
     borderRadius: 5,
     paddingLeft: 20,
     marginLeft: 10,
-    marginBottom: 10,
     opacity: 0.9,
     alignItems: "center"
   }

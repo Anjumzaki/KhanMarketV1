@@ -114,7 +114,7 @@ const HomeStackScreen = () => (
       component={Filters}
       options={{
         header: props => (
-          <StackHeader cart={false} nameTitle="BEEF" {...props} />
+          <StackHeader cart={false} nameTitle="Filters" {...props} />
         )
       }}
     />

@@ -46,146 +46,317 @@ export default class Filters extends Component {
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>
+        <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingVertical: 30,
+              alignItems: "center",
+            }}
+          >
+           <LatoText
+              fontName="Lato-Regular"
+              fonSiz={20}
+              col="#5C5C5C"
+              text="Filter"
+            ></LatoText>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingBottom:20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CheckBox
+              style={{ flex: 1 }}
+              onClick={() => {
+                this.setState({
+                  isChecked: !this.state.isChecked
+                });
+              }}
+              isChecked={this.state.isChecked}
+              rightText={"CheckBox"}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingBottom:20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CheckBox
+              style={{ flex: 1 }}
+              onClick={() => {
+                this.setState({
+                  isChecked: !this.state.isChecked
+                });
+              }}
+              isChecked={this.state.isChecked}
+              rightText={"CheckBox"}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingBottom:20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CheckBox
+              style={{ flex: 1 }}
+              onClick={() => {
+                this.setState({
+                  isChecked: !this.state.isChecked
+                });
+              }}
+              isChecked={this.state.isChecked}
+              rightText={"CheckBox"}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingBottom:20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CheckBox
+              style={{ flex: 1 }}
+              onClick={() => {
+                this.setState({
+                  isChecked: !this.state.isChecked
+                });
+              }}
+              isChecked={this.state.isChecked}
+              rightText={"CheckBox"}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingBottom:20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CheckBox
+              style={{ flex: 1 }}
+              onClick={() => {
+                this.setState({
+                  isChecked: !this.state.isChecked
+                });
+              }}
+              isChecked={this.state.isChecked}
+              rightText={"CheckBox"}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingBottom:20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CheckBox
+              style={{ flex: 1 }}
+              onClick={() => {
+                this.setState({
+                  isChecked: !this.state.isChecked
+                });
+              }}
+              isChecked={this.state.isChecked}
+              rightText={"CheckBox"}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingBottom:20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CheckBox
+              style={{ flex: 1 }}
+              onClick={() => {
+                this.setState({
+                  isChecked: !this.state.isChecked
+                });
+              }}
+              isChecked={this.state.isChecked}
+              rightText={"CheckBox"}
+            />
+          </View>
           <View
             style={{
               flexDirection: "row",
               paddingHorizontal: 20,
               paddingVertical: 30,
               alignItems: "center",
-              justifyContent: "center"
             }}
           >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={25}
-              col="#5C5C5C"
-              text="Thank You"
-            ></LatoText>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              alignItems: "center",
-              paddingBottom:30,
-              justifyContent: "center",
-              alignContent:'center',
-              alignItems:'center'
-            }}
-          >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={15}
-              col="#5C5C5C"
-              text="We have recieved your order. You can check its status in ‘My Orders’ section. We hope you enjoy your purchase from Khan Market!"
-            ></LatoText>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              justifyContent: "center",
-
-            }}
-          >
-            <LatoText
+           <LatoText
               fontName="Lato-Regular"
               fonSiz={20}
               col="#5C5C5C"
-              text="Your order number is DBZ-876"
-            />
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingVertical:30,
-              justifyContent: "center",
-
-            }}
-          >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={15}
-              col="#5C5C5C"
-              text="Use the below QR code while recieving the order."
-            />
-          </View>
-        
-        
-          
-         
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingBottom: 20,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-           <Image source={require('../../assets/qr.png')}/>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingBottom: 20,
-              paddingTop:10,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <LatoText
-              fontName="Lato-Bold"
-              fonSiz={17}
-              col="#2E2E2E"
-              text="Cancel Order"
-            />
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingBottom: 20,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={15}
-              col="#2E2E2E"
-              text="(Only possible before the order is 'being prepared)"
-            />
-          </View>
-         
-        </ScrollView>
-        <View style={bottomTab.cartSheet}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.push('Home')}
-            style={[btnStyles.cartBtn, { width: "55%" }]}
-          >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={15}
-              col="white"
-              text="KEEP SHOPING"
+              text="Filter"
             ></LatoText>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.setState({ cart: true })}
-            style={[btnStyles.cartBtn, { width: "40%" }]}
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingBottom:20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
           >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={15}
-              col="white"
-              text="MY ORDERS"
-            ></LatoText>
-          </TouchableOpacity>
-          
-        </View>
+            <CheckBox
+              style={{ flex: 1 }}
+              onClick={() => {
+                this.setState({
+                  isChecked: !this.state.isChecked
+                });
+              }}
+              isChecked={this.state.isChecked}
+              rightText={"CheckBox"}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingBottom:20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CheckBox
+              style={{ flex: 1 }}
+              onClick={() => {
+                this.setState({
+                  isChecked: !this.state.isChecked
+                });
+              }}
+              isChecked={this.state.isChecked}
+              rightText={"CheckBox"}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingBottom:20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CheckBox
+              style={{ flex: 1 }}
+              onClick={() => {
+                this.setState({
+                  isChecked: !this.state.isChecked
+                });
+              }}
+              isChecked={this.state.isChecked}
+              rightText={"CheckBox"}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingBottom:20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CheckBox
+              style={{ flex: 1 }}
+              onClick={() => {
+                this.setState({
+                  isChecked: !this.state.isChecked
+                });
+              }}
+              isChecked={this.state.isChecked}
+              rightText={"CheckBox"}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingBottom:20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CheckBox
+              style={{ flex: 1 }}
+              onClick={() => {
+                this.setState({
+                  isChecked: !this.state.isChecked
+                });
+              }}
+              isChecked={this.state.isChecked}
+              rightText={"CheckBox"}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingBottom:20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CheckBox
+              style={{ flex: 1 }}
+              onClick={() => {
+                this.setState({
+                  isChecked: !this.state.isChecked
+                });
+              }}
+              isChecked={this.state.isChecked}
+              rightText={"CheckBox"}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingBottom:20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CheckBox
+              style={{ flex: 1 }}
+              onClick={() => {
+                this.setState({
+                  isChecked: !this.state.isChecked
+                });
+              }}
+              isChecked={this.state.isChecked}
+              rightText={"CheckBox"}
+            />
+          </View>
+          </ScrollView>
       </View>
     );
   }
