@@ -17,6 +17,7 @@ import Expandable from "../Helpers/Expandable";
 import { btnStyles, bottomTab, lines } from "../styles/base";
 import { Row } from "native-base";
 import CheckBox from "react-native-check-box";
+import InQrCode from './InQrCode'
 const { width } = Dimensions.get("window");
 const { height } = 300;
 
@@ -115,17 +116,7 @@ export default class QrCode extends Component {
         
           
          
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingBottom: 20,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-           <Image source={require('../../assets/qr.png')}/>
-          </View>
+          <InQrCode/>
           <View
             style={{
               flexDirection: "row",
@@ -184,7 +175,7 @@ export default class QrCode extends Component {
               text="MY ORDERS"
             ></LatoText>
           </TouchableOpacity>
-          
+        
         </View>
       </View>
     );
