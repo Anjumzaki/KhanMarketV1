@@ -62,14 +62,14 @@ export default class SingleStoreHeader extends React.Component {
           >
             <MaterialIcons name="arrow-back" color="white" size={25} />
           </TouchableOpacity>
-          <View style={{ padding: 20 }}>
+          <TouchableOpacity onPress={()=> this.props.navigation.push('StoreInfo')} style={{ padding: 20 }}>
             <LatoText
               fontName="Lato-Regular"
               fonSiz={20}
               col="white"
               text={"KHAN MARKET"}
             />
-          </View>
+          </TouchableOpacity>
           <TouchableOpacity
             onPress={() => this.props.navigation.push("Cart")}
             style={{ padding: 20 }}

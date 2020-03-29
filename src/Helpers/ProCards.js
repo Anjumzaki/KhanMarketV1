@@ -4,7 +4,7 @@ import {
   import firebase from "firebase";
   import { StyleSheet, Text, View, ScrollView,ImageBackground } from 'react-native';
   import { TouchableOpacity } from "react-native-gesture-handler";
-  import LatoText from '../Helpers/LatoText'
+  import LatoText from './LatoText'
   import { btnStyles } from "../styles/base";
 
 class ProCards extends React.Component {
