@@ -115,7 +115,7 @@ class ProductDetails extends Component {
               }}
             > 
             {/* <> */}
-            {abc.map((item,index) => (
+            {temp.map((item,index) => (
               // <View style={{ borderRadius: 10, overflow: "hidden" }}>
             
                   <CourselImage id={product._id} index={index+1}/>

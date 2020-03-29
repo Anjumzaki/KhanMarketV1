@@ -50,7 +50,7 @@ class StoreCard extends React.Component {
               fontName="Lato-Bold"
               fonSiz={20}
               col="#5C5C5C"
-              text={name}
+              text={name.substring(0,18)}
             />
             <LatoText
               fontName="Lato-Regular"

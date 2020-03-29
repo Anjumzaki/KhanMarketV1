@@ -18,10 +18,14 @@ import { btnStyles, bottomTab, lines } from "../styles/base";
 import { Row } from "native-base";
 import CheckBox from "react-native-check-box";
 import InQrCode from './InQrCode'
+import { bindActionCreators } from "redux";
+import { cartAsync } from "../store/actions";
+import { connect } from "react-redux";
+
 const { width } = Dimensions.get("window");
 const { height } = 300;
 
-export default class QrCode extends Component {
+class QrCode extends Component {
   constructor(props) {
     super(props);
 
@@ -31,6 +35,9 @@ export default class QrCode extends Component {
     };
   }
 
+  componentDidMount(){
+    this.props.cartAsync([])
+  }
   _onLayoutDidChange = e => {
     const layout = e.nativeEvent.layout;
     this.setState({ size: { width: layout.width, height: layout.height } });
@@ -44,6 +51,7 @@ export default class QrCode extends Component {
     }
   }
   render() {
+    console.log("qr props", this.props.route.params.orderId)
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>
@@ -116,7 +124,7 @@ export default class QrCode extends Component {
         
           
          
-          <InQrCode/>
+          <InQrCode orderId={this.props.route.params.orderId}/>
           <View
             style={{
               flexDirection: "row",
@@ -226,3 +234,21 @@ const styles = StyleSheet.create({
     elevation: 5
   }
 });
+
+const mapStateToProps = state => ({
+  cart: state.Cart.cartData, 
+  loading: state.Cart.cartLoading,
+  error: state.Cart.cartError
+});
+const mapDispatchToProps = (dispatch, ownProps) =>
+  bindActionCreators(
+      {
+          cartAsync
+      },
+      dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(QrCode);

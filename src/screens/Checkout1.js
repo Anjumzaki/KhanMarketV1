@@ -16,14 +16,13 @@ import { ScrollView } from "react-native-gesture-handler";
 import Expandable from "../Helpers/Expandable";
 import { btnStyles, bottomTab, lines } from "../styles/base";
 import { Row } from "native-base";
-import CheckBox from "react-native-check-box";
+import CheckBox from "react-native-check-box"; 
 const { width } = Dimensions.get("window");
 const { height } = 300;
 import { bindActionCreators } from "redux";
 import { cartAsync } from "../store/actions";
 import { connect } from "react-redux";
 import axios from "axios";
-
 class Cart extends Component {
   constructor(props) {
     super(props);
@@ -48,7 +47,11 @@ class Cart extends Component {
   }
   render() {
     console.log("checkout props", this.props.cart)
-    var sId = this.props.cart[0].product.storeId
+    if(this.props.cart.length >0){
+      var sId = this.props.cart[0].product.storeId
+    }else{
+      var sId = "123"
+    }
     console.log("SIDDDDDDDDDDDDD", sId)
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
@@ -299,8 +302,17 @@ class Cart extends Component {
                 totalAmount: "1000",
                 name: "Bernard Murphey",
                 phone: "(555) 555-1234",
-                email: "b.murphey@gmail.com"
-              }).then(resp =>  this.props.navigation.push('QrCode'))
+                email: "b.murphey@gmail.com",
+                address: "b.murphey@gmail.com",
+                orderTime: "b.murphey@gmail.com",
+                orderDate: "b.murphey@gmail.com",
+                orderTimeZone: "b.murphey@gmail.com",
+              }).then(resp =>  {
+                console.log("order resp1111111111111111111111111111111111111111111111111111111111", resp.data)
+                this.props.navigation.push('QrCode',{
+                  orderId: resp.data.order1._id
+                })
+              })
               
             }}
             style={[btnStyles.cartBtn, { width: "100%" }]}

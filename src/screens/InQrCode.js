@@ -18,7 +18,7 @@ export default class InQrCode extends Component {
       <View style={styles.container}>
        
         <QRCode
-          value={this.state.text}
+          value={this.props.orderId}
           size={200}
           bgColor='black'
           fgColor='white'/>

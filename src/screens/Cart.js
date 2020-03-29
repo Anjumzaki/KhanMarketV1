@@ -50,9 +50,11 @@ class Cart extends Component {
     var subTotal = 0
     
     for(var i=0; i < this.props.cart.length; i++){
-      var temp = (this.props.cart[i].product.price - ((this.props.cart[i].product.price * this.props.cart[i].product.discount)/100) * this.props.cart[i].quantity)
+      // var temp = (this.props.cart[i].product.price - ((this.props.cart[i].product.price * this.props.cart[i].product.discount)/100) * this.props.cart[i].quantity)
       console.log("TEMP",temp)
-      subTotal = subTotal + temp 
+      var temp=this.props.cart[i].price
+      // var temp=0
+      subTotal = subTotal + parseFloat(temp) 
     }
 
     return (

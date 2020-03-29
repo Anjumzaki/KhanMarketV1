@@ -12,7 +12,7 @@ import {
 
 class CartCards extends React.Component {
   state = {
-    heart:false,
+    heart:false, 
     image: "",
     qt: 0,
     cart: []
@@ -81,13 +81,16 @@ class CartCards extends React.Component {
                   style={[btnStyles.plusBtn,{paddingTop:0}]}
                   onPress={() => {
                     //   this.handleChange(-1)
+                    if(this.state.qt-1 >= 1){
                       this.setState({qt: this.state.qt-1})
-
                       var temp=this.state.cart[this.props.index]
-                    temp.price = ((this.props.product.product.price - ((this.props.product.product.price * this.props.product.product.discount)/100))*parseInt(this.state.qt-1)).toFixed(3)
-                    temp.quantity = parseInt(this.state.qt-1)
-                    this.state.cart[this.props.index] = temp
-                    this.props.cartAsync(this.state.cart)
+                      temp.price = ((this.props.product.product.price - ((this.props.product.product.price * this.props.product.product.discount)/100))*parseInt(this.state.qt-1)).toFixed(3)
+                      temp.quantity = parseInt(this.state.qt-1)
+                      this.state.cart[this.props.index] = temp
+                      this.props.cartAsync(this.state.cart)
+                    }
+
+                    
                 }}
                 >
                   <AntDesign color="#B50000" size={18} name="minus" />

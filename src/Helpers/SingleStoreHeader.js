@@ -73,7 +73,7 @@ class SingleStoreHeader extends React.Component {
               fontName="Lato-Regular"
               fonSiz={20}
               col="white"
-              text={this.props.store.toUpperCase()}
+              text={this.props.store.toUpperCase().substring(0,18)}
             />
           </TouchableOpacity> 
           <TouchableOpacity
