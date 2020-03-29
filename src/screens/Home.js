@@ -18,7 +18,7 @@ export default class Home extends React.Component {
       image: ""
     };
   }
-
+ 
   componentDidMount() {
     axios
       .get("https://mysterious-temple-58549.herokuapp.com/get/stores/")

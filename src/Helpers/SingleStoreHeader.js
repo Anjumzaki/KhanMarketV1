@@ -23,8 +23,14 @@ import {
 } from "@expo/vector-icons";
 import LatoText from "./LatoText";
 import { TouchableOpacity } from "react-native-gesture-handler";
-export default class SingleStoreHeader extends React.Component {
+import { bindActionCreators } from "redux";
+import { storeAsync } from "../store/actions";
+import { connect } from "react-redux";
+
+class SingleStoreHeader extends React.Component {
   render() {
+    console.log("HEAAAAAAAAAAAAAAAAAADER", this.props.store)
+
     return (
       <View
         style={{
@@ -67,9 +73,9 @@ export default class SingleStoreHeader extends React.Component {
               fontName="Lato-Regular"
               fonSiz={20}
               col="white"
-              text={"KHAN MARKET"}
+              text={this.props.store.toUpperCase()}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> 
           <TouchableOpacity
             onPress={() => this.props.navigation.push("Cart")}
             style={{ padding: 20 }}
@@ -134,3 +140,21 @@ const styles = StyleSheet.create({
     alignItems: "center"
   }
 });
+
+const mapStateToProps = state => ({
+  store: state.Store.storeData, 
+  loading: state.Store.storeLoading,
+  error: state.Store.storeError
+});
+const mapDispatchToProps = (dispatch, ownProps) =>
+  bindActionCreators(
+      {
+          storeAsync
+      },
+      dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SingleStoreHeader);

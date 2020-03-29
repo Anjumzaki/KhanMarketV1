@@ -37,7 +37,7 @@ class ProCards extends React.Component {
     })} style={{alignSelf:'flex-end',backgroundColor:'rgba(255, 255, 255,0.5)',margin:10,padding:7,borderRadius:50}} > 
           {this.state.heart ?<AntDesign color='#B50000' size={18} name="heart"/>:<AntDesign color='#B50000' size={18} name="hearto"/> }
           </TouchableOpacity>
-        </ImageBackground>
+        </ImageBackground> 
         <View style={styles.underCard}>
         <LatoText fontName="Lato-Regular" fonSiz={20} col='#5C5C5C' text={this.props.product.productName} ></LatoText>
           <View style={{flex: 1, flexDirection: 'row',paddingTop:5}}>

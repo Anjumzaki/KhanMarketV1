@@ -4,14 +4,17 @@ import { cardStyles } from "../styles/base";
 import LatoText from "../Helpers/LatoText";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import firebase from "firebase";
+import { bindActionCreators } from "redux";
+import { storeAsync } from "../store/actions";
+import { connect } from "react-redux";
 
-export default class StoreCard extends React.Component {
+class StoreCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
      image:""
     };
-  }
+  } 
   componentDidMount() {
         const ref = firebase
           .storage()
@@ -26,9 +29,11 @@ export default class StoreCard extends React.Component {
     console.log("props data", name, distance, address)
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.push("StoreDetails",{
+        onPress={() => {
+          this.props.storeAsync(name)
+          this.props.navigation.push("StoreDetails",{
           storeId: id
-        })}
+        })}}
         style={cardStyles.storeCard}
       >
         <View style={cardStyles.cImgWrap}> 
@@ -73,3 +78,23 @@ export default class StoreCard extends React.Component {
     );
   }
 }
+
+
+const mapStateToProps = state => ({
+  store: state.Store.storeData, 
+  loading: state.Store.storeLoading,
+  error: state.Store.storeError
+});
+const mapDispatchToProps = (dispatch, ownProps) =>
+  bindActionCreators(
+      {
+          storeAsync
+      },
+      dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(StoreCard);
+
