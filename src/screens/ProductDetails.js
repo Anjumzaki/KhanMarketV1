@@ -68,7 +68,7 @@ class ProductDetails extends Component {
     }
   }
   render() {
-    // console.log("PRODUCT DETAIL PROPS",this.props)
+    console.log("PRODUCT DETAIL PROPS",this.props, this.props.route.params.product)
 
     var product = this.props.route.params.product
     var noOfImg = product.noOfImages
@@ -114,13 +114,14 @@ class ProductDetails extends Component {
                 backgroundColor: "#89898C"
               }}
             > 
-            {temp.map((item,index) => (
+            {/* <> */}
+            {abc.map((item,index) => (
               // <View style={{ borderRadius: 10, overflow: "hidden" }}>
             
                   <CourselImage id={product._id} index={index+1}/>
               // </View>
                 ))}
-                
+                {/* </> */}
             </Carousel>
           </View>
 

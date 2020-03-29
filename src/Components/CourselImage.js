@@ -11,7 +11,7 @@ class CourseImage extends React.Component {
   state = {
     heart:false,
     image: ""
-  } 
+  }  
 
   componentWillMount() {
     const ref = firebase
