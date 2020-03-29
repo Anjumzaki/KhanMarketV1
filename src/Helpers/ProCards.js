@@ -41,7 +41,7 @@ class ProCards extends React.Component {
         <View style={styles.underCard}>
         <LatoText fontName="Lato-Regular" fonSiz={20} col='#5C5C5C' text={this.props.product.productName} ></LatoText>
           <View style={{flex: 1, flexDirection: 'row',paddingTop:5}}>
-          <LatoText fontName="Lato-Regular" fonSiz={17} col='#89898C' text= { '$' +this.props.product.price + ' / kg'} ></LatoText>
+          <LatoText fontName="Lato-Regular" fonSiz={17} lineThrough={true} col='#89898C' text= { '$' +this.props.product.price + ' / kg'} ></LatoText>
           <Text>     </Text>
           <LatoText fontName="Lato-Regular" fonSiz={17} col='#2E2E2E' text= { '$' +(this.props.product.price - ((this.props.product.price * this.props.product.discount)/100)) + ' / kg'} ></LatoText>
 
@@ -51,7 +51,7 @@ class ProCards extends React.Component {
               fontName="Lato-Regular"
               fonSiz={15}
               col="#B50000"
-              text={"You will save" + this.props.product.discount + "%"}
+              text={"You will save " + this.props.product.discount + "%"}
             ></LatoText>
           </View>
           <View style={{ marginTop: 20 }}>

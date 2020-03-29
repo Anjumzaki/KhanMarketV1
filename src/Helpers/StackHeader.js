@@ -23,7 +23,11 @@ import {
 } from "@expo/vector-icons";
 import LatoText from "./LatoText";
 import { TouchableOpacity } from "react-native-gesture-handler";
-export default class StackHeader extends React.Component {
+import { bindActionCreators } from "redux";
+import { storeAsync, cartAsync } from "../store/actions";
+import { connect } from "react-redux";
+
+class StackHeader extends React.Component {
   render() {
     return (
       <View
@@ -82,7 +86,7 @@ export default class StackHeader extends React.Component {
                       fontName="Lato-Regular"
                       fonSiz={7}
                       col="white"
-                      text={"1"}
+                      text={this.props.cartData.length}
                     />
                   </View>
                   <MaterialIcons
@@ -121,3 +125,23 @@ const styles = StyleSheet.create({
     alignItems: "center"
   }
 });
+
+const mapStateToProps = state => ({
+  store: state.Store.storeData, 
+  cartData: state.Cart.cartData, 
+  loading: state.Store.storeLoading,
+  error: state.Store.storeError
+});
+const mapDispatchToProps = (dispatch, ownProps) =>
+  bindActionCreators(
+      {
+          storeAsync,
+          cartAsync
+      },
+      dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(StackHeader);

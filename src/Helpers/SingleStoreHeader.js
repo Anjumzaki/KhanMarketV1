@@ -24,12 +24,12 @@ import {
 import LatoText from "./LatoText";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { bindActionCreators } from "redux";
-import { storeAsync } from "../store/actions";
+import { storeAsync, cartAsync } from "../store/actions";
 import { connect } from "react-redux";
 
 class SingleStoreHeader extends React.Component {
   render() {
-    console.log("HEAAAAAAAAAAAAAAAAAADER", this.props.store)
+    console.log("HEAAAAAAAAAAAAAAAAAADER", this.props.cartData.length)
 
     return (
       <View
@@ -86,7 +86,7 @@ class SingleStoreHeader extends React.Component {
                   fontName="Lato-Regular"
                   fonSiz={7}
                   col="white"
-                  text={"1"}
+                  text={this.props.cartData.length}
                 />
               </View>
               <MaterialIcons name="shopping-cart" size={26} color={"white"} />
@@ -143,13 +143,15 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   store: state.Store.storeData, 
+  cartData: state.Cart.cartData, 
   loading: state.Store.storeLoading,
   error: state.Store.storeError
 });
 const mapDispatchToProps = (dispatch, ownProps) =>
   bindActionCreators(
       {
-          storeAsync
+          storeAsync,
+          cartAsync
       },
       dispatch
   );
