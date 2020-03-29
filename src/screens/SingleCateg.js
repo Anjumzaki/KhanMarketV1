@@ -23,7 +23,7 @@ const { height } = 300;
 
 export default class SingleCateg extends Component {
   constructor(props) {
-    super(props);
+    super(props); 
 
     this.state = {
       heart: false,
@@ -44,6 +44,7 @@ export default class SingleCateg extends Component {
     }
   }
   render() {
+    console.log("single cat props",this.props)
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>

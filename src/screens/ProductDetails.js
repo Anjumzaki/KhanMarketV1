@@ -23,7 +23,7 @@ import firebase from "firebase";
 import { bindActionCreators } from "redux";
 import { cartAsync } from "../store/actions";
 import { connect } from "react-redux";
-
+ 
 class ProductDetails extends Component {
   constructor(props) {
     super(props);

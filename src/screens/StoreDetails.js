@@ -27,100 +27,9 @@ class StoreDetails extends React.Component {
   { 
       super(props); 
       this.state = { 
-        beefs : [
-          {
-              name: 'Rib Eye',
-              price: 5,
-              image: beef1,
-              discount: 10
-          },
-          {
-            name: 'Rib Eye',
-            price: 5,
-            image: beef2,
-            discount: 10
-        },
-        {
-          name: 'Rib Eye',
-          price: 5,
-          image: beef3,
-          discount: 10
-        },
-          {
-            name: 'Rib Eye',
-            price: 5,
-            image: beef4,
-            discount: 10
-        },
-        {
-          name: 'Rib Eye',
-          price: 5,
-          image: beef5,
-          discount: 10
-      }], 
-      chickens : [
-        {
-            name: 'Boneless',
-            price: 5,
-            image: chicken1,
-            discount: 10
-        },
-        {
-          name: 'Breast',
-          price: 5,
-          image: chicken2,
-          discount: 10
-      },
-      {
-        name: 'Breast',
-        price: 5,
-        image: chicken3,
-        discount: 10
-      },
-        {
-          name: 'Whole Chicken',
-          price: 5,
-          image: chicken4,
-          discount: 10
-      },
-      {
-        name: 'Breast',
-        price: 5,
-        image: chicken5,
-        discount: 10
-    }],
-    vegs : [
-      {
-          name: 'Broccoli',
-          price: 5,
-          image: veg1,
-          discount: 10
-      },
-      {
-        name: 'Carrots',
-        price: 5,
-        image: veg2,
-        discount: 10
-    },
-    {
-      name: 'Cauli Flower',
-      price: 5,
-      image: veg3,
-      discount: 10
-    },
-      {
-        name: 'Peas',
-        price: 5,
-        image: veg4,
-        discount: 10
-    },
-    {
-      name: 'Red Turnips',
-      price: 5,
-      image: veg5,
-      discount: 10
-  }],
-  products: []
+        categories: [],
+        products: [],
+        finalProducts: []
     }; 
   } 
 
@@ -128,33 +37,61 @@ class StoreDetails extends React.Component {
     console.log("store details props", this.props.route.params.storeId)
     axios.get("https://mysterious-temple-58549.herokuapp.com/get/all/products/"+this.props.route.params.storeId)
     .then(resp => {
-        console.log("product response",resp)
+        // console.log("product response",resp)
         this.setState({products: resp.data})
     })
     .catch(err => console.log(err))
+
+    
+    axios.get("https://mysterious-temple-58549.herokuapp.com/get/all/categories")
+    .then(resp => {
+      console.log("CATEGORIESS",resp.data)
+      this.setState({categories: resp.data})})
+    .catch(err => console.log(err))
+
   }
+   capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+  }
+
   render() {
     console.log("products",this.state.products)
-    
-    var beef = this.state.products.filter(function(item){
-      return item.productType == 'Beef';
-    })
-    var veg = this.state.products.filter(function(item){
-      return item.productType == 'Vegetable';
-    })
-    var chicken = this.state.products.filter(function(item){
-      return item.productType == 'Chicken';
-    })
-    console.log("beef",beef)
-    console.log("veg",veg)
-    console.log("chicken",chicken)
+    var fp=[]
+    this.state.categories.map((category,index) => (
+      fp.push({
+          name: category.category,
+          products: this.state.products.filter(function(item){
+            return item.productType == category.category;
+          })
+        })
+    ))
+    // var beef = this.state.products.filter(function(item){
+    //   return item.productType == 'beef';
+    // })
+    // var veg = this.state.products.filter(function(item){
+    //   return item.productType == 'vegetable';
+    // })
+    // var chicken = this.state.products.filter(function(item){
+    //   return item.productType == 'chicken';
+    // })
+
+    console.log("FINAL Prodducts", fp)
+    // console.log("beef",beef)
+    // console.log("veg",veg)
+    // console.log("chicken",chicken)
 
     return (
       <ScrollView showsVerticalScrollIndicator={false} >
         <Slider />
-       <CardsRow navigation={this.props.navigation} products={beef} name={'Beef'}/>
-       <CardsRow navigation={this.props.navigation} products={chicken} name={'Chicken'}/>
-       <CardsRow navigation={this.props.navigation} products={veg} name={'Vegetables'}/>
+        {fp.map((cat,index) => (
+          cat.products.length > 0 ? (
+          <CardsRow navigation={this.props.navigation} key={index} products={cat.products} name={this.capitalize(cat.name)}/>
+          ) : null
+        ))}
+       
+       {/* <CardsRow navigation={this.props.navigation} products={chicken} name={'Chicken'}/>
+       <CardsRow navigation={this.props.navigation} products={veg} name={'Vegetables'}/> */}
      <View style={{paddingTop:10}}>
 
      </View>
