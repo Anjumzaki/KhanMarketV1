@@ -104,14 +104,16 @@ class Cart extends Component {
               fontName="Lato-Bold"
               fonSiz={25}
               col="#2E2E2E"
-              text={`$${subTotal.toFixed()}`}
+              text={`$${subTotal.toFixed(3)}`}
             ></LatoText>
           </View>
               
         </ScrollView>
         <View style={bottomTab.cartSheet}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.push('Checkout1')}
+            onPress={() => this.props.navigation.push('Checkout1', {
+              totalAmount: subTotal.toFixed(3)
+            })}
             style={[btnStyles.cartBtnOutline, { width: "55%" }]}
           >
             <LatoText

@@ -299,16 +299,15 @@ class Cart extends Component {
               axios.post('https://mysterious-temple-58549.herokuapp.com/add/order',{
                 storeId: sId,
                 products: this.props.cart,
-                totalAmount: "1000",
+                totalAmount: this.props.route.params.totalAmount,
                 name: "Bernard Murphey",
                 phone: "(555) 555-1234",
                 email: "b.murphey@gmail.com",
-                address: "b.murphey@gmail.com",
-                orderTime: "b.murphey@gmail.com",
-                orderDate: "b.murphey@gmail.com",
-                orderTimeZone: "b.murphey@gmail.com",
+                address: "bac Street",
+                orderTime: "5:00 PM",
+                orderDate: "Jan,3 2020",
+                orderTimeZone: "UST",
               }).then(resp =>  {
-                console.log("order resp1111111111111111111111111111111111111111111111111111111111", resp.data)
                 this.props.navigation.push('QrCode',{
                   orderId: resp.data.order1._id
                 })
