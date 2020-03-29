@@ -23,7 +23,6 @@ class CartCards extends React.Component {
       .storage()
       .ref("/product_images/"+this.props.id+"_1.jpg");
     ref.getDownloadURL().then(url => {
-      console.log(url, "I ma here in coursel");
       this.setState({ image: url });
     });
 
@@ -38,10 +37,7 @@ class CartCards extends React.Component {
 
 
   render() {
-    //   console.log("COURSEL STATE", this.state, this.props.index)
-      // var url= "../../assets/products/beef"+this.props.index+".png"
-      // console.log("cartCard state",this.state)
-      // console.log("cartCard props",this.props.cart)
+   
     return (
         <View
             style={{

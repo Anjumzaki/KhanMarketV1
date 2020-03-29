@@ -18,16 +18,12 @@ class CourseImage extends React.Component {
       .storage()
       .ref("/product_images/"+this.props.id+"_"+this.props.index+".jpg");
     ref.getDownloadURL().then(url => {
-      console.log(url, "I ma here in coursel");
       this.setState({ image: url });
     });
 }
 
 
   render() {
-    //   console.log("COURSEL STATE", this.state, this.props.index)
-      // var url= "../../assets/products/beef"+this.props.index+".png"
-      // console.log("URL",url)
     return (
         <Image
             style={{ width: Dimensions.get("window").width - 40 }}

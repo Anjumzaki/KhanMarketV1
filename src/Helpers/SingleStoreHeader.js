@@ -29,7 +29,6 @@ import { connect } from "react-redux";
 
 class SingleStoreHeader extends React.Component {
   render() {
-    console.log("HEAAAAAAAAAAAAAAAAAADER", this.props.cartData.length)
 
     return (
       <View

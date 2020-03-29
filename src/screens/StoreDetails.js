@@ -34,10 +34,8 @@ class StoreDetails extends React.Component {
   } 
 
   componentDidMount(){
-    console.log("store details props", this.props.route.params.storeId)
     axios.get("https://mysterious-temple-58549.herokuapp.com/get/all/products/"+this.props.route.params.storeId)
     .then(resp => {
-        // console.log("product response",resp)
         this.setState({products: resp.data})
     })
     .catch(err => console.log(err))
@@ -45,7 +43,6 @@ class StoreDetails extends React.Component {
     
     axios.get("https://mysterious-temple-58549.herokuapp.com/get/all/categories")
     .then(resp => {
-      console.log("CATEGORIESS",resp.data)
       this.setState({categories: resp.data})})
     .catch(err => console.log(err))
 
@@ -56,7 +53,6 @@ class StoreDetails extends React.Component {
   }
 
   render() {
-    console.log("products",this.state.products)
     var fp=[]
     this.state.categories.map((category,index) => (
       fp.push({
@@ -66,20 +62,7 @@ class StoreDetails extends React.Component {
           })
         })
     ))
-    // var beef = this.state.products.filter(function(item){
-    //   return item.productType == 'beef';
-    // })
-    // var veg = this.state.products.filter(function(item){
-    //   return item.productType == 'vegetable';
-    // })
-    // var chicken = this.state.products.filter(function(item){
-    //   return item.productType == 'chicken';
-    // })
 
-    console.log("FINAL Prodducts", fp)
-    // console.log("beef",beef)
-    // console.log("veg",veg)
-    // console.log("chicken",chicken)
 
     return (
       <ScrollView showsVerticalScrollIndicator={false} >

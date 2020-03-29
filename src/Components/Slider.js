@@ -62,16 +62,26 @@ export default class CarouselExample extends Component {
 
     render() {
         return (
-            <View onLayout={this._onLayoutDidChange}>
+            <View onLayout={this._onLayoutDidChange} style={{marginBottom:40}}>
                 {/* <Text>asd</Text> */}
                 <Carousel
                     delay={6000}
                     style={{ width: Dimensions.get('window').width, height: 250 }}
                     autoplay={true}
                     bullets
-                    onAnimateNextPage={(p) => console.log(p)}
-                    bulletStyle={{ padding: 0, margin: 3, marginBottom: 110 }}
-                    chosenBulletStyle={{ padding: 0, margin: 3, marginBottom: 110 }}
+                    bulletStyle={{
+                        padding: 0,
+                        margin: 3,
+                        marginTop: 110,
+                        borderColor: "#89898C"
+                      }}
+                      chosenBulletStyle={{
+                        padding: 0,
+                        margin: 3,
+                        marginTop: 110,
+                        backgroundColor: "#89898C"
+                      }}
+                    
                 >
                     <SliderItem data={this.state.data}/>
                     <SliderItem data={this.state.data1}/>

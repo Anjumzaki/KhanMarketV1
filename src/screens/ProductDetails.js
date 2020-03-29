@@ -34,26 +34,6 @@ class ProductDetails extends Component {
     };
   }
 
-  componentDidMount(){
-    // console.log("product details props", this.props.route.params.product)
-    // var count =0
-    // for(var i=0; i<10; i++){
-    //   const ref = firebase
-    //   .storage()
-    //   .ref("/product_images/"+this.props.route.params.product._id+"_"+parseInt(i+1)+".jpg");
-    //     ref.getDownloadURL().then(url => {
-    //       console.log(url, "I ma here"+i);
-    //       this.setState({ image: url });
-    //       if(url){
-    //         count++
-    //       }
-    //     });
-    // }
-
-    // console.log("COUNT",count)
-
-  }
-
 
   _onLayoutDidChange = e => {
     const layout = e.nativeEvent.layout;
@@ -62,13 +42,11 @@ class ProductDetails extends Component {
   handleChange (num){
     var preNum = this.state.qt
     preNum =num + preNum
-    console.log(preNum)
     if(preNum>=1){
       this.setState({qt:preNum})
     }
   }
   render() {
-    console.log("PRODUCT DETAIL PROPS",this.props, this.props.route.params.product)
 
     var product = this.props.route.params.product
     var noOfImg = product.noOfImages
@@ -241,9 +219,7 @@ class ProductDetails extends Component {
                 </TouchableOpacity>
           </View>
           <TouchableOpacity
-            // onPress={() => this.setState({ cart: true })}
             onPress={() => {
-              console.log("props check", this.props.cart)
               var pCart=this.props.cart;
               pCart.push({
                 product: product,

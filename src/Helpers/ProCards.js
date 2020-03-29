@@ -1,50 +1,114 @@
 import React from "react";
+import { AntDesign } from "@expo/vector-icons";
+import firebase from "firebase";
 import {
-  AntDesign} from '@expo/vector-icons'
-  import firebase from "firebase";
-  import { StyleSheet, Text, View, ScrollView,ImageBackground } from 'react-native';
-  import { TouchableOpacity } from "react-native-gesture-handler";
-  import LatoText from './LatoText'
-  import { btnStyles } from "../styles/base";
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  ImageBackground
+} from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import LatoText from "./LatoText";
+import { btnStyles } from "../styles/base";
 
 class ProCards extends React.Component {
   state = {
-    heart:false,
-    image: ""
-  } 
+    heart: false,
+    image: "",
+    qt: 1
+  };
 
   componentDidMount() {
     const ref = firebase
       .storage()
-      .ref("/product_images/"+this.props.product._id+"_1.jpg");
+      .ref("/product_images/" + this.props.product._id + "_1.jpg");
     ref.getDownloadURL().then(url => {
-      console.log(url, "I ma here");
       this.setState({ image: url });
     });
-}
-
-
+  }
+  handleChange(num) {
+    var preNum = this.state.qt;
+    preNum = num + preNum;
+    if (preNum >= 1) {
+      this.setState({ qt: preNum });
+    }
+  }
   render() {
     return (
-      <TouchableOpacity onPress={()=>this.props.navigation.push('ProductDetails',{
-        product: this.props.product
-      })} style={styles.procards}>
-        <ImageBackground  style={styles.proCardsImage} source={{uri:this.state.image}}>
-          <TouchableOpacity onPress={()=>this.setState(prevState => {
-      return {
-        heart : !prevState.heart
-      };
-    })} style={{alignSelf:'flex-end',backgroundColor:'rgba(255, 255, 255,0.5)',margin:10,padding:7,borderRadius:50}} > 
-          {this.state.heart ?<AntDesign color='#B50000' size={18} name="heart"/>:<AntDesign color='#B50000' size={18} name="hearto"/> }
-          </TouchableOpacity>
-        </ImageBackground> 
+      <View style={styles.procards}>
+        <TouchableOpacity
+          onPress={() =>
+            this.props.navigation.push("ProductDetails", {
+              product: this.props.product
+            })
+          }
+        >
+          <ImageBackground
+            style={styles.proCardsImage}
+            source={{ uri: this.state.image }}
+          >
+            <TouchableOpacity
+              onPress={() =>
+                this.setState(prevState => {
+                  return {
+                    heart: !prevState.heart
+                  };
+                })
+              }
+              style={{
+                alignSelf: "flex-end",
+                backgroundColor: "rgba(255, 255, 255,0.5)",
+                margin: 10,
+                padding: 7,
+                borderRadius: 50
+              }}
+            >
+              {this.state.heart ? (
+                <AntDesign color="#B50000" size={18} name="heart" />
+              ) : (
+                <AntDesign color="#B50000" size={18} name="hearto" />
+              )}
+            </TouchableOpacity>
+          </ImageBackground>
+        </TouchableOpacity>
         <View style={styles.underCard}>
-        <LatoText fontName="Lato-Regular" fonSiz={20} col='#5C5C5C' text={this.props.product.productName} ></LatoText>
-          <View style={{flex: 1, flexDirection: 'row',paddingTop:5}}>
-          <LatoText fontName="Lato-Regular" fonSiz={17} lineThrough={true} col='#89898C' text= { '$' +this.props.product.price + ' / kg'} ></LatoText>
-          <Text>     </Text>
-          <LatoText fontName="Lato-Regular" fonSiz={17} col='#2E2E2E' text= { '$' +(this.props.product.price - ((this.props.product.price * this.props.product.discount)/100)) + ' / kg'} ></LatoText>
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.push("ProductDetails", {
+                product: this.props.product
+              })
+            }
+          >
+            <LatoText
+              fontName="Lato-Regular"
+              fonSiz={20}
+              col="#5C5C5C"
+              text={this.props.product.productName}
+            ></LatoText>
+          </TouchableOpacity>
 
+          <View style={{ flex: 1, flexDirection: "row", paddingTop: 5 }}>
+            <LatoText
+              fontName="Lato-Regular"
+              fonSiz={17}
+              lineThrough="line-through"
+              col="#89898C"
+              text={"$" + this.props.product.price + " / kg"}
+            ></LatoText>
+            <Text> </Text>
+            <LatoText
+              fontName="Lato-Regular"
+              fonSiz={17}
+              col="#2E2E2E"
+              text={
+                "$" +
+                (this.props.product.price -
+                  (this.props.product.price * this.props.product.discount) /
+                    100) +
+                " / kg"
+              }
+            ></LatoText>
           </View>
           <View>
             <LatoText
@@ -63,7 +127,10 @@ class ProCards extends React.Component {
                   alignItems: "center"
                 }}
               >
-                <TouchableOpacity style={btnStyles.plusBtn} onPress={()=>this.handleChange(-1)}>
+                <TouchableOpacity
+                  style={btnStyles.plusBtn}
+                  onPress={() => this.handleChange(-1)}
+                >
                   <AntDesign color="#B50000" size={18} name="minus" />
                 </TouchableOpacity>
                 <LatoText
@@ -72,7 +139,10 @@ class ProCards extends React.Component {
                   col="#5C5C5C"
                   text={this.state.qt}
                 />
-                <TouchableOpacity style={btnStyles.plusBtn} onPress={()=>this.handleChange(1)}>
+                <TouchableOpacity
+                  style={btnStyles.plusBtn}
+                  onPress={() => this.handleChange(1)}
+                >
                   <AntDesign color="#B50000" size={18} name="plus" />
                 </TouchableOpacity>
               </View>
@@ -91,7 +161,7 @@ class ProCards extends React.Component {
             )}
           </View>
         </View>
-      </TouchableOpacity>
+      </View>
     );
   }
 }

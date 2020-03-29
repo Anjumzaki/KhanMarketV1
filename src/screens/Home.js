@@ -8,6 +8,10 @@ import fb from "../config/Fire";
 import firebase from "firebase";
 
 export default class Home extends React.Component {
+  static navigationOptions = {
+    //To hide the ActionBar/NavigationBar
+    header: null,
+};
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +22,6 @@ export default class Home extends React.Component {
       image: ""
     };
   }
- 
   componentDidMount() {
     axios
       .get("https://mysterious-temple-58549.herokuapp.com/get/stores/")
@@ -26,17 +29,10 @@ export default class Home extends React.Component {
         this.setState({
           stores: resp.data
         });
-        // const ref = firebase
-        //   .storage()
-        //   .ref("/store_images/5e6b45971ccdc7e0d1210ed5.jpg");
-        // ref.getDownloadURL().then(url => {
-        //   console.log(url, "I ma here");
-        //   this.setState({ image: url });
-        // });
+       
       });
   }
   render() {
-    console.log(this.state.stores);
     return (
       <View style={{ marginTop: 100, justifyContent: "center" }}>
         <ScrollView>

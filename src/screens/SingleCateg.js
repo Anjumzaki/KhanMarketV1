@@ -38,13 +38,11 @@ export default class SingleCateg extends Component {
   handleChange(num) {
     var preNum = this.state.qt;
     preNum = num + preNum;
-    console.log(preNum);
     if (preNum >= 1) {
       this.setState({ qt: preNum });
     }
   }
   render() {
-    console.log("single cat props",this.props)
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>

@@ -10,7 +10,8 @@ import {
 class ProCards extends React.Component {
   state = {
     heart:false,
-    image: ""
+    image: "",
+    qt:1,
   } 
 
   componentDidMount() {
@@ -18,18 +19,25 @@ class ProCards extends React.Component {
       .storage()
       .ref("/product_images/"+this.props.product._id+"_1.jpg");
     ref.getDownloadURL().then(url => {
-      console.log(url, "I ma here");
       this.setState({ image: url });
     });
 }
 
-
+handleChange(num) {
+  var preNum = this.state.qt;
+  preNum = num + preNum;
+  if (preNum >= 1) {
+    this.setState({ qt: preNum });
+  }
+}
   render() {
     return (
-      <TouchableOpacity onPress={()=>this.props.navigation.push('ProductDetails',{
+      <View  style={styles.procards}>
+        <TouchableOpacity onPress={()=>this.props.navigation.push('ProductDetails',{
         product: this.props.product
-      })} style={styles.procards}>
+      })}>
         <ImageBackground  style={styles.proCardsImage} source={{uri:this.state.image}}>
+          
           <TouchableOpacity onPress={()=>this.setState(prevState => {
       return {
         heart : !prevState.heart
@@ -38,10 +46,11 @@ class ProCards extends React.Component {
           {this.state.heart ?<AntDesign color='#B50000' size={18} name="heart"/>:<AntDesign color='#B50000' size={18} name="hearto"/> }
           </TouchableOpacity>
         </ImageBackground>
+        </TouchableOpacity>
         <View style={styles.underCard}>
         <LatoText fontName="Lato-Regular" fonSiz={20} col='#5C5C5C' text={this.props.product.productName} ></LatoText>
           <View style={{flex: 1, flexDirection: 'row',paddingTop:5}}>
-          <LatoText fontName="Lato-Regular" fonSiz={13} col='#89898C' text= { '$' +this.props.product.price + ' / kg'} ></LatoText>
+          <LatoText fontName="Lato-Regular" fonSiz={13} col='#89898C'  lineThrough='line-through' text= { '$' +this.props.product.price + ' / kg'} ></LatoText>
           <Text>     </Text>
           <LatoText fontName="Lato-Regular" fonSiz={13} col='#2E2E2E' text= { '$' +(this.props.product.price - ((this.props.product.price * this.props.product.discount)/100)) + ' / kg'} ></LatoText>
 
@@ -91,7 +100,7 @@ class ProCards extends React.Component {
             )}
           </View>
         </View>
-      </TouchableOpacity>
+      </View>
     );
   }
 }

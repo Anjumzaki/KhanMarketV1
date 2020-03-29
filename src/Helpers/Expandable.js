@@ -45,13 +45,9 @@ class ExpandableItemComponent extends Component {
     return false;
   }
 
-  componentDidMount(){
-    // console.log("Expanablesssssssssssssssss", this.props)
-
-  }
+ 
 
   render() {
-    // console.log("Expanablesssssssssssssssss", this.props)
 
     return (
       <View>
@@ -472,7 +468,6 @@ export default class App extends Component {
   };
 
   componentDidMount(){
-    // console.log("pro",this.props.product);
     var CONTENT = []
 
     CONTENT.push( {

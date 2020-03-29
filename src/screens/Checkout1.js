@@ -40,19 +40,16 @@ class Cart extends Component {
   handleChange(num) {
     var preNum = this.state.qt;
     preNum = num + preNum;
-    console.log(preNum);
     if (preNum >= 1) {
       this.setState({ qt: preNum });
     }
   }
   render() {
-    console.log("checkout props", this.props.cart)
     if(this.props.cart.length >0){
       var sId = this.props.cart[0].product.storeId
     }else{
       var sId = "123"
     }
-    console.log("SIDDDDDDDDDDDDD", sId)
 
     var subTotal = 0
     

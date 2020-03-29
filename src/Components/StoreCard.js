@@ -20,13 +20,11 @@ class StoreCard extends React.Component {
           .storage()
           .ref("/store_images/"+this.props.id+".jpg");
         ref.getDownloadURL().then(url => {
-          console.log(url, "I ma here");
           this.setState({ image: url });
         });
   }
   render() {
     const { name, distance, address, id } = this.props;
-    console.log("props data", name, distance, address)
     return (
       <TouchableOpacity
         onPress={() => {

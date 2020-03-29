@@ -40,18 +40,15 @@ class Cart extends Component {
   handleChange(num) {
     var preNum = this.state.qt;
     preNum = num + preNum;
-    console.log(preNum);
     if (preNum >= 1) {
       this.setState({ qt: preNum });
     }
   }
   render() {
-    console.log("Cart props", this.props.cart)
     var subTotal = 0
     
     for(var i=0; i < this.props.cart.length; i++){
       // var temp = (this.props.cart[i].product.price - ((this.props.cart[i].product.price * this.props.cart[i].product.discount)/100) * this.props.cart[i].quantity)
-      console.log("TEMP",temp)
       var temp=this.props.cart[i].price
       // var temp=0
       subTotal = subTotal + parseFloat(temp) 
@@ -105,6 +102,27 @@ class Cart extends Component {
               fonSiz={25}
               col="#2E2E2E"
               text={`$${subTotal.toFixed(3)}`}
+            ></LatoText>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              alignItems: "center",
+              justifyContent:'space-between'
+            }}
+          >
+            <LatoText
+              fontName="Lato-Regular"
+              fonSiz={20}
+              col="#2E2E2E"
+              text="Tax(dummy)"
+            ></LatoText>
+            <LatoText
+              fontName="Lato-Bold"
+              fonSiz={25}
+              col="#2E2E2E"
+              text={'$2.78'}
             ></LatoText>
           </View>
               
