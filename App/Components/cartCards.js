@@ -40,8 +40,8 @@ class CartCards extends React.Component {
   render() {
     //   console.log("COURSEL STATE", this.state, this.props.index)
       // var url= "../../assets/products/beef"+this.props.index+".png"
-      console.log("cartCard state",this.state)
-      console.log("cartCard props",this.props.cart)
+      // console.log("cartCard state",this.state)
+      // console.log("cartCard props",this.props.cart)
     return (
         <View
             style={{

@@ -46,7 +46,15 @@ class Cart extends Component {
     }
   }
   render() {
-    console.log("Cart props", this.props)
+    console.log("Cart props", this.props.cart)
+    var subTotal = 0
+    
+    for(var i=0; i < this.props.cart.length; i++){
+      var temp = (this.props.cart[i].product.price - ((this.props.cart[i].product.price * this.props.cart[i].product.discount)/100) * this.props.cart[i].quantity)
+      console.log("TEMP",temp)
+      subTotal = subTotal + temp 
+    }
+
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>
@@ -94,7 +102,7 @@ class Cart extends Component {
               fontName="Lato-Bold"
               fonSiz={25}
               col="#2E2E2E"
-              text="$456"
+              text={`$${subTotal.toFixed()}`}
             ></LatoText>
           </View>
               
