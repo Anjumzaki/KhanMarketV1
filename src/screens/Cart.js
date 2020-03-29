@@ -111,9 +111,7 @@ class Cart extends Component {
         </ScrollView>
         <View style={bottomTab.cartSheet}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.push('Checkout1', {
-              totalAmount: subTotal.toFixed(3)
-            })}
+            onPress={() => this.props.navigation.push('Checkout1')}
             style={[btnStyles.cartBtnOutline, { width: "55%" }]}
           >
             <LatoText

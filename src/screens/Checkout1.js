@@ -53,6 +53,13 @@ class Cart extends Component {
       var sId = "123"
     }
     console.log("SIDDDDDDDDDDDDD", sId)
+
+    var subTotal = 0
+    
+    for(var i=0; i < this.props.cart.length; i++){
+      var temp=this.props.cart[i].price
+      subTotal = subTotal + parseFloat(temp) 
+    }
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>
@@ -299,7 +306,7 @@ class Cart extends Component {
               axios.post('https://mysterious-temple-58549.herokuapp.com/add/order',{
                 storeId: sId,
                 products: this.props.cart,
-                totalAmount: this.props.route.params.totalAmount,
+                totalAmount: subTotal,
                 name: "Bernard Murphey",
                 phone: "(555) 555-1234",
                 email: "b.murphey@gmail.com",
