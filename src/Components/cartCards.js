@@ -111,7 +111,7 @@ class CartCards extends React.Component {
                     }}
                 >
                   <AntDesign color="#B50000" size={18} name="plus" />
-                </TouchableOpacity>
+                </TouchableOpacity> 
               </View>
               <View style={{marginRight:20}}>
                 <LatoText
