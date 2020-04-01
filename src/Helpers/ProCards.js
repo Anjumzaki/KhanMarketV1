@@ -123,14 +123,17 @@ class ProCards extends React.Component {
           </TouchableOpacity>
 
           <View style={{ flex: 1, flexDirection: "row", paddingTop: 5 }}>
+          <View style={{marginRight:5}}>
             <LatoText
               fontName="Lato-Regular"
-              fonSiz={17}
+              fonSiz={15}
               lineThrough="line-through"
               col="#89898C"
               text={"$" + this.props.product.price + " / kg"}
             ></LatoText>
-            <Text> </Text>
+            </View>
+
+            <View style={{marginLeft:5}}>
             <LatoText
               fontName="Lato-Regular"
               fonSiz={17}
@@ -143,6 +146,8 @@ class ProCards extends React.Component {
                 " / kg"
               }
             ></LatoText>
+            </View>
+     
           </View>
           <View>
             <LatoText
