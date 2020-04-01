@@ -41,7 +41,7 @@ class StoreDetails extends React.Component {
     .catch(err => console.log(err))
 
     
-    axios.get("https://mysterious-temple-58549.herokuapp.com/get/all/categories")
+    axios.get("https://mysterious-temple-58549.herokuapp.com/get/all/subCategories")
     .then(resp => {
       this.setState({categories: resp.data})})
     .catch(err => console.log(err))
@@ -58,7 +58,7 @@ class StoreDetails extends React.Component {
       fp.push({
           name: category.category,
           products: this.state.products.filter(function(item){
-            return item.productType == category.category;
+            return item.productType == category.subCategory;
           })
         })
     ))
