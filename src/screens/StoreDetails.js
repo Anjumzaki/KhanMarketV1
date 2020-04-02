@@ -36,6 +36,7 @@ class StoreDetails extends React.Component {
   componentDidMount(){
     axios.get("https://mysterious-temple-58549.herokuapp.com/get/all/products/"+this.props.route.params.storeId)
     .then(resp => {
+      console.log("PRODUCTS", resp.data)
         this.setState({products: resp.data})
     })
     .catch(err => console.log(err))
@@ -43,6 +44,7 @@ class StoreDetails extends React.Component {
     
     axios.get("https://mysterious-temple-58549.herokuapp.com/get/all/subCategories")
     .then(resp => {
+      console.log("Cat", resp.data)
       this.setState({categories: resp.data})})
     .catch(err => console.log(err))
 
@@ -56,13 +58,14 @@ class StoreDetails extends React.Component {
     var fp=[]
     this.state.categories.map((category,index) => (
       fp.push({
-          name: category.category,
+          name: category.subCategory,
           products: this.state.products.filter(function(item){
             return item.productType == category.subCategory;
           })
         })
     ))
-
+      console.log("FFFFFPPPPPP",fp)
+      console.log("stateeeeeeeee",this.state)
 
     return (
       <ScrollView showsVerticalScrollIndicator={false} >

@@ -25,7 +25,7 @@ class Cart extends React.Component {
                     </TouchableOpacity>
  
                 </View> 
-                <View style={{ height: 312 }}>
+                <View style={{ height: 312 }}> 
                     <ScrollView
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
