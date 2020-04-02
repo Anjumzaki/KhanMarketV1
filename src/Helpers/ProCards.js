@@ -118,7 +118,7 @@ class ProCards extends React.Component {
               fontName="Lato-Regular"
               fonSiz={20}
               col="#5C5C5C"
-              text={this.props.product.productName}
+              text={this.props.product.productName.substring(0,15)}
             ></LatoText>
           </TouchableOpacity>
 
