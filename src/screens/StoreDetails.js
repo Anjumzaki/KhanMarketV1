@@ -29,7 +29,8 @@ class StoreDetails extends React.Component {
       this.state = { 
         categories: [],
         products: [],
-        finalProducts: []
+        finalProducts: [],
+        featuredProducts: []
     }; 
   } 
 
@@ -40,6 +41,14 @@ class StoreDetails extends React.Component {
         this.setState({products: resp.data})
     })
     .catch(err => console.log(err))
+
+    axios.get("https://mysterious-temple-58549.herokuapp.com/get/all/featured/products/"+this.props.route.params.storeId)
+    .then(resp => {
+        console.log(resp)
+        this.setState({featuredProducts: resp.data, loading: false})
+    })
+    .catch(err => console.log(err))
+
 
     
     axios.get("https://mysterious-temple-58549.herokuapp.com/get/all/subCategories")
@@ -69,7 +78,9 @@ class StoreDetails extends React.Component {
 
     return (
       <ScrollView showsVerticalScrollIndicator={false} >
-        <Slider />
+        {this.state.featuredProducts.length > 0 ? (
+          <Slider featuredProducts={this.state.featuredProducts}/>
+        ): null}
         {fp.map((cat,index) => (
           cat.products.length > 0 ? (
           <CardsRow navigation={this.props.navigation} key={index} products={cat.products} name={this.capitalize(cat.name)}/>

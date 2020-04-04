@@ -1,17 +1,32 @@
 import React from 'react';
 import { StyleSheet, Text, View,Dimensions,ImageBackground,TouchableOpacity } from 'react-native';
+import firebase from "firebase";
 
 import LatoText from '../Helpers/LatoText'
 class SliderItem extends React.Component {
+
+    state = {
+        image: ""
+      };
+
+      
+    componentDidMount(){
+        const ref = firebase
+      .storage()
+      .ref("/featured_product_images/" + this.props.data._id + ".jpg");
+        ref.getDownloadURL().then(url => {
+        this.setState({ image: url });
+        });
+    }
   render(){
     return (
         <View>
-        <ImageBackground style={styles.imgCon} source={this.props.data.imgUrl} >
-            <View style={[styles.wrapTop,{backgroundColor:this.props.data.colo}]}>
+        <ImageBackground style={styles.imgCon} source={{uri: this.state.image}} >
+            <View style={[styles.wrapTop,{backgroundColor: "#7cba80"}]}>
                 <View style={styles.topRight}>
-                    <LatoText fontName="Lato-Bold" fonSiz={16} col='white' text={this.props.data.Discount} />
+                    <LatoText fontName="Lato-Bold" fonSiz={16} col='white' text={this.props.data.featuredQuantity+ " for $"+parseFloat(this.props.data.featuredPrice).toFixed(2)} />
                     <View style={{ marginTop: 5 }}>
-                        <LatoText fontName="Lato-Light" fonSiz={13} col='white' text={this.props.data.DisAmmount} />
+                        <LatoText fontName="Lato-Light" fonSiz={13} col='white' text={"Save $"+parseFloat(this.props.data.featuredSaving).toFixed(2)} />
                     </View>
                 </View>
             </View>
@@ -19,7 +34,7 @@ class SliderItem extends React.Component {
                 <ImageBackground style={{ width: Dimensions.get('window').width, height: 170 }} source={require('../../assets/bgSlider.png')} >
                     <View style={{ flexDirection: 'row' }}>
                         <View style={{ paddingTop: 105, paddingHorizontal: 10, width: '73%' }}>
-                            <LatoText fontName="Lato-Regular" fonSiz={17} col='white' text={this.props.data.itemDescri} />
+                            <LatoText fontName="Lato-Regular" fonSiz={17} col='white' text={this.props.data.featuredDetails} />
                         </View>
                         <View style={{ paddingTop: 105, paddingHorizontal: 10, width: '30%', justifyContent: 'flex-end' }}>
                             <TouchableOpacity style={styles.buybBtn}>

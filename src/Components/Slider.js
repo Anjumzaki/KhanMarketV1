@@ -13,7 +13,7 @@ import {
 import Carousel from 'react-native-looped-carousel';
 import SliderItem from './SliderItem'
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get('window'); 
 const { height } = 300;
 
 
@@ -61,6 +61,7 @@ export default class CarouselExample extends Component {
     }
 
     render() {
+        console.log("FeaturedProducts",this.props.featuredProducts)
         return (
             <View onLayout={this._onLayoutDidChange} style={{marginBottom:40}}>
                 {/* <Text>asd</Text> */}
@@ -83,10 +84,13 @@ export default class CarouselExample extends Component {
                       }}
                     
                 >
-                    <SliderItem data={this.state.data}/>
-                    <SliderItem data={this.state.data1}/>
+                    {this.props.featuredProducts.map((fp,ind) => (
+                    <SliderItem key={ind} data={fp}/>
+
+                    ))}
+                    {/* <SliderItem data={this.state.data1}/>
                     <SliderItem data={this.state.data2}/>
-                    <SliderItem data={this.state.data3}/>
+                    <SliderItem data={this.state.data3}/> */}
                 </Carousel>
             </View>
         );
