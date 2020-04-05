@@ -27,14 +27,15 @@ import { bindActionCreators } from "redux";
 import { storeAsync, cartAsync } from "../store/actions";
 import { connect } from "react-redux";
 
-class StackHeader extends React.Component {
+class StackGrayHeader extends React.Component {
   render() {
     return (
       <View
         style={{
-          height: 65 + StatusBar.currentHeight,
+          height: 50 + StatusBar.currentHeight,
           width: Dimensions.get("window").width,
           justifyContent: "flex-end",
+          padding: 5,
           backgroundColor: "transparent",
           shadowOffset: {
             width: 0,
@@ -48,7 +49,7 @@ class StackHeader extends React.Component {
       >
         <Image
           style={{
-          height: 65 + StatusBar.currentHeight,
+            height: 50 + StatusBar.currentHeight,
             width: Dimensions.get("window").width,
             position: "absolute",
             top: 0,
@@ -143,4 +144,4 @@ const mapDispatchToProps = (dispatch, ownProps) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(StackHeader);
+)(StackGrayHeader);

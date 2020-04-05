@@ -74,8 +74,7 @@ export default class Login extends React.Component {
     });
     return (
       <SafeAreaView style={[conStyles.safeAreaMy, { backgroundColor: 'white' }]}>
-        <StatusBar barStyle="dark-content" backgroundColor='white'/>
-
+        <StatusBar  translucent={true} barStyle="dark-content" backgroundColor='transparent'/>
         <ScrollView
           style={{ flex: 1 }}
           contentContainerStyle={conStyles.scroll}

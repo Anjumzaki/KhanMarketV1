@@ -21,7 +21,6 @@ class StoreHeader extends React.Component {
   render() {
     return (
       <SafeAreaView style={[conStyles.safeAreaMy, { backgroundColor: '#2E2E2E' }]}>
-        <StatusBar barStyle="light-content" backgroundColor='#2E2E2E'/>
 
         <View style={headerStyles.storeStyles}>
           <View

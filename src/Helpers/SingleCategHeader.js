@@ -32,7 +32,7 @@ class SingleCategHeader extends React.Component {
     return (
       <View
         style={{
-          height: 140 + StatusBar.currentHeight,
+          height: 120 + StatusBar.currentHeight,
           width: Dimensions.get("window").width,
           justifyContent: "flex-end",
           padding: 5,
@@ -50,7 +50,7 @@ class SingleCategHeader extends React.Component {
       >
         <Image
           style={{
-            height: 140 + StatusBar.currentHeight,
+            height: 120 + StatusBar.currentHeight,
             width: Dimensions.get("window").width,
             position: "absolute",
             top: 0,

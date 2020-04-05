@@ -27,6 +27,7 @@ import QrCode from "./src/screens/QrCode";
 import StoreInfo from "./src/screens/StoreInfo";
 import Filters from "./src/screens/Filters";
 import SingleCateg from "./src/screens/SingleCateg";
+import CustomDrawerContent from './src/Helpers/CustomDrawerContent'
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
   <AuthStack.Navigator headerMode="none">
@@ -42,6 +43,8 @@ const AuthStackScreen = () => (
 const Tabs = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const SearchStack = createStackNavigator();
+const FavouritesStack = createStackNavigator();
+
 const HomeStackScreen = () => (
   <HomeStack.Navigator
   >
@@ -134,6 +137,19 @@ const SearchStackScreen = () => (
     />
   </SearchStack.Navigator>
 );
+const FavouritesStackScreen = () => (
+  <FavouritesStack.Navigator initialRouteName="Favourites">
+    <FavouritesStack.Screen name="Favourites"  nameTitle="FOVOURITES" component={Search} 
+     options={{ header: props => <StackHeader {...props} />, }}
+    />
+    <FavouritesStack.Screen name="Search2" component={Search2} />
+    <FavouritesStack.Screen
+      name="StoreDetails"
+      component={StoreDetails}
+      options={{ header: props => <SingleStoreHeader {...props} />, }}
+    />
+  </FavouritesStack.Navigator>
+);
 const ProfileStack = createStackNavigator();
 const ProfileStackScreen = () => (
   <ProfileStack.Navigator>
@@ -143,7 +159,6 @@ const ProfileStackScreen = () => (
 const TabsScreen = () => (
   <Tabs.Navigator
     initialRouteName="Home"
-    
     screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
         let iconName;
@@ -189,9 +204,87 @@ const TabsScreen = () => (
 );
 const Drawer = createDrawerNavigator();
 const DrawerScreen = () => (
-  <Drawer.Navigator initialRouteName="Home">
-    <Drawer.Screen name="Home" component={TabsScreen} />
-    <Drawer.Screen name="Profile" component={ProfileStackScreen} />
+  <Drawer.Navigator  drawerContentOptions={{
+    activeTintColor: '#e91e63',
+    itemStyle: {backgroundColor:'transparent' },
+    labelStyle:{color:'#FFFFFF'}
+  }}  drawerContent={props => <CustomDrawerContent {...props} />}
+  screenOptions={({ route }) => ({
+    drawerIcon: ({ focused, color, size }) => {
+      let iconName;
+
+      if (route.name === "About Us") {
+        return (
+          <MaterialCommunityIcons
+            name="information"
+            size={26}
+            color={focused ? "#2e2e2e" : "#89898c"}
+          />
+        );
+      } else if (route.name === "Favourites") {
+        return (
+          <Entypo
+            name="heart"
+            size={26}
+            color={focused ? "#2e2e2e" : "#89898c"}
+          />
+        );
+      }
+      else if (route.name === "Home") {
+        return (
+          <Entypo
+            name="home"
+            size={26}
+            color={focused ? "#2e2e2e" : "#89898c"}
+          />
+        );
+      } else if (route.name === "My Orders") {
+        return (
+          <MaterialCommunityIcons
+            name="clipboard-text"
+            size={26}
+            color={focused ? "#2e2e2e" : "#89898c"}
+          />
+        );
+      }
+      else if (route.name === "Rate Us") {
+        return (
+          <MaterialCommunityIcons
+            name="star"
+            size={26}
+            color={focused ? "#2e2e2e" : "#89898c"}
+          />
+        );
+      }
+      else if (route.name === "Share") {
+        return (
+          <MaterialCommunityIcons
+            name="share-variant"
+            size={26}
+            color={focused ? "#2e2e2e" : "#89898c"}
+          />
+        );
+      }
+      else if (route.name === "Share") {
+        return (
+          <Entypo
+            name="Home"
+            size={26}
+            color={focused ? "#2e2e2e" : "#89898c"}
+          />
+        );
+      }
+
+    }
+  })}
+  
+  >
+    <Tabs.Screen name="Home" component={HomeStackScreen} />
+    <Drawer.Screen name="Favourites" component={TabsScreen} />
+    <Drawer.Screen name="My Orders" component={TabsScreen} />
+    <Drawer.Screen name="About Us" component={TabsScreen} />
+    <Drawer.Screen name="Rate Us" component={ProfileStackScreen} />
+    <Drawer.Screen name="Share" component={ProfileStackScreen} />
   </Drawer.Navigator>
 );
 

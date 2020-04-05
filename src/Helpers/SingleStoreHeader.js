@@ -33,7 +33,7 @@ class SingleStoreHeader extends React.Component {
     return (
       <View
         style={{
-          height: 120 + StatusBar.currentHeight,
+          height: 140 + StatusBar.currentHeight,
           width: Dimensions.get("window").width,
           justifyContent: "flex-end",
           padding: 5,
@@ -51,7 +51,7 @@ class SingleStoreHeader extends React.Component {
       >
         <Image
           style={{
-            height: 120 + StatusBar.currentHeight,
+            height: 140 + StatusBar.currentHeight,
             width: Dimensions.get("window").width,
             position: "absolute",
             top: 0,
