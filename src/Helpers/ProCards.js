@@ -129,7 +129,7 @@ class ProCards extends React.Component {
               fonSiz={15}
               lineThrough="line-through"
               col="#89898C"
-              text={"$" + this.props.product.price + " / kg"}
+              text={"$" + parseFloat(this.props.product.price).toFixed(1) + " / kg"}
             ></LatoText>
             </View>
 
@@ -142,7 +142,7 @@ class ProCards extends React.Component {
                 "$" +
                 (this.props.product.price -
                   (this.props.product.price * this.props.product.discount) /
-                    100) +
+                    100).toFixed(1) +
                 " / kg"
               }
             ></LatoText>
