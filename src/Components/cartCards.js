@@ -26,14 +26,24 @@ class CartCards extends React.Component {
       this.setState({ image: url });
     });
     
+    if(this.props.isFeatured){
+      this.setState({qt: this.props.product.quantity})
 
-    this.setState({qt: this.props.product.quantity})
+      await this.setState({cart: this.props.cart})
+      var temp=this.state.cart[this.props.index]
+      temp.price = this.props.product.price.toFixed(3)
+      this.state.cart[this.props.index] = temp
+      this.props.cartAsync(this.state.cart)
+    }else{
+      this.setState({qt: this.props.product.quantity})
 
-    await this.setState({cart: this.props.cart})
-    var temp=this.state.cart[this.props.index]
-    temp.price = ((this.props.product.product.price - ((this.props.product.product.price * this.props.product.product.discount)/100))*parseInt(this.state.qt)).toFixed(3)
-    this.state.cart[this.props.index] = temp
-    this.props.cartAsync(this.state.cart)
+      await this.setState({cart: this.props.cart})
+      var temp=this.state.cart[this.props.index]
+      temp.price = ((this.props.product.product.price - ((this.props.product.product.price * this.props.product.product.discount)/100))*parseInt(this.state.qt)).toFixed(3)
+      this.state.cart[this.props.index] = temp
+      this.props.cartAsync(this.state.cart)
+    }
+    
 }
 
 
@@ -86,8 +96,6 @@ class CartCards extends React.Component {
                       this.state.cart[this.props.index] = temp
                       this.props.cartAsync(this.state.cart)
                     }
-
-                    
                 }}
                 >
                   <AntDesign color="#B50000" size={18} name="minus" />
@@ -119,7 +127,7 @@ class CartCards extends React.Component {
                   fontName="Lato-Regular"
                   fonSiz={15}
                   col="#5C5C5C"
-                  text={`$${((this.props.product.product.price - ((this.props.product.product.price * this.props.product.product.discount)/100))*parseInt(this.state.qt)).toFixed(3)}`}
+                  text={!this.props.isFeatured ? (`$${((this.props.product.product.price - ((this.props.product.product.price * this.props.product.product.discount)/100))*parseInt(this.state.qt)).toFixed(3)}`) : "$"+this.props.product.product.price}
                 />
               </View>
             </View>

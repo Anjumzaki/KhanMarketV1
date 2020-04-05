@@ -79,7 +79,7 @@ class Cart extends Component {
           <View style={lines.simple} />
           {
             this.props.cart.map((item,index) => (
-                <CartCard product={item} index={index} id={item.product._id}/> 
+                <CartCard product={item} index={index} isFeatured={item.isFeatured} id={item.product._id}/> 
             ))
           }
            <View

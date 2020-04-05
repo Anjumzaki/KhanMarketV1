@@ -16,7 +16,7 @@ class SliderItem extends React.Component {
     componentDidMount(){
         const ref = firebase
       .storage()
-      .ref("/product_images/" + this.props.data._id + ".jpg");
+      .ref("/product_images/" + this.props.data._id + "_1.jpg");
         ref.getDownloadURL().then(url => {
         this.setState({ image: url });
         });
@@ -27,7 +27,7 @@ class SliderItem extends React.Component {
         <ImageBackground style={styles.imgCon} source={{uri: this.state.image}} >
             <View style={[styles.wrapTop,{backgroundColor: "#7cba80"}]}>
                 <View style={styles.topRight}>
-                    <LatoText fontName="Lato-Bold" fonSiz={16} col='white' text={this.props.data.featuredQuantity+ " for $"+parseFloat(this.props.data.featuredPrice).toFixed(2)} />
+                    <LatoText fontName="Lato-Bold" fonSiz={16} col='white' text={this.props.data.featuredQuantity+" "+this.props.data.featuredUnit+ " for $"+parseFloat(this.props.data.featuredPrice).toFixed(2)} />
                     <View style={{ marginTop: 5 }}>
                         <LatoText fontName="Lato-Light" fonSiz={13} col='white' text={"Save $"+parseFloat(this.props.data.featuredSaving).toFixed(2)} />
                     </View>
@@ -40,15 +40,18 @@ class SliderItem extends React.Component {
                             <LatoText fontName="Lato-Regular" fonSiz={17} col='white' text={this.props.data.featuredDetails} />
                         </View>
                         <View style={{ paddingTop: 105, paddingHorizontal: 10, width: '30%', justifyContent: 'flex-end' }}>
-                            <TouchableOpacity style={styles.buybBtn}  onPress={() => {
-                                var pCart=this.props.cart;
-                                pCart.push({
-                                    product: this.props.data,
-                                    quantity: this.props.data.featuredQuantity
-                                })
-                                this.props.cartAsync(pCart)
-                                this.setState({cart: true})
-                                }}>
+                            <TouchableOpacity style={styles.buybBtn}  
+                            // onPress={() => {
+                            //     var pCart=this.props.cart;
+                            //     pCart.push({
+                            //         product: this.props.data,
+                            //         quantity: parseInt(this.props.data.featuredQuantity),
+                            //         isFeatured: true
+                            //     })
+                            //     this.props.cartAsync(pCart)
+                            //     this.setState({cart: true})
+                            //     }}
+                                >
                                 <LatoText fontName="Lato-Regular" fonSiz={16} col='gray' text="BUY" />
                             </TouchableOpacity>
                         </View>
