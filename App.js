@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Text, View } from "react-native";
@@ -13,11 +13,6 @@ import StoreHeader from "./src/Helpers/StoreHeader";
 import StackHeader from "./src/Helpers/StackHeader";
 import {
   Entypo,
-  Feather,
-  FontAwesome,
-  EvilIcons,
-  AntDesign,
-  MaterialIcons,
   MaterialCommunityIcons
 } from "@expo/vector-icons";
 import ProductDetails from "./src/screens/ProductDetails";
@@ -32,9 +27,6 @@ import QrCode from "./src/screens/QrCode";
 import StoreInfo from "./src/screens/StoreInfo";
 import Filters from "./src/screens/Filters";
 import SingleCateg from "./src/screens/SingleCateg";
-
-
-
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
   <AuthStack.Navigator headerMode="none">
@@ -50,10 +42,8 @@ const AuthStackScreen = () => (
 const Tabs = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const SearchStack = createStackNavigator();
-
 const HomeStackScreen = () => (
   <HomeStack.Navigator
-  
   >
     <HomeStack.Screen
       name="Home"
@@ -64,8 +54,6 @@ const HomeStackScreen = () => (
       name="StoreDetails"
       component={StoreDetails}
       options={{ header: props => <SingleStoreHeader {...props} />}}
-      
-    
     />
     <HomeStack.Screen
       name="ProductDetails"
@@ -134,22 +122,6 @@ const HomeStackScreen = () => (
     />
   </HomeStack.Navigator>
 );
-HomeStack.navigationOptions = ({ navigation }) => {
-  let tabBarVisible;
-  if (navigation.state.routes.length > 1) {
-    navigation.state.routes.map(route => {
-      if (route.routeName === "StoreDetails") {
-        tabBarVisible = false;
-      } else {
-        tabBarVisible = true;
-      }
-    });
-  }
-
-  return {
-    tabBarVisible
-  };
-};
 const SearchStackScreen = () => (
   <SearchStack.Navigator>
     <SearchStack.Screen name="Search" component={Search} />
@@ -245,11 +217,9 @@ const RootStackScreen = ({ userToken }) => (
 export default () => {
   return (
     <StoreProvider store={store}>
-      <SafeAreaProvider>
         <NavigationContainer>
           <RootStackScreen />
         </NavigationContainer>
-      </SafeAreaProvider>
     </StoreProvider>
   );
 };
