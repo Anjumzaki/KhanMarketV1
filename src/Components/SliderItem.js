@@ -1,6 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View,Dimensions,ImageBackground,TouchableOpacity } from 'react-native';
 import firebase from "firebase";
+import { bindActionCreators } from "redux";
+import { cartAsync } from "../store/actions";
+import { connect } from "react-redux";
 
 import LatoText from '../Helpers/LatoText'
 class SliderItem extends React.Component {
@@ -13,7 +16,7 @@ class SliderItem extends React.Component {
     componentDidMount(){
         const ref = firebase
       .storage()
-      .ref("/featured_product_images/" + this.props.data._id + ".jpg");
+      .ref("/product_images/" + this.props.data._id + ".jpg");
         ref.getDownloadURL().then(url => {
         this.setState({ image: url });
         });
@@ -37,7 +40,15 @@ class SliderItem extends React.Component {
                             <LatoText fontName="Lato-Regular" fonSiz={17} col='white' text={this.props.data.featuredDetails} />
                         </View>
                         <View style={{ paddingTop: 105, paddingHorizontal: 10, width: '30%', justifyContent: 'flex-end' }}>
-                            <TouchableOpacity style={styles.buybBtn}>
+                            <TouchableOpacity style={styles.buybBtn}  onPress={() => {
+                                var pCart=this.props.cart;
+                                pCart.push({
+                                    product: this.props.data,
+                                    quantity: this.props.data.featuredQuantity
+                                })
+                                this.props.cartAsync(pCart)
+                                this.setState({cart: true})
+                                }}>
                                 <LatoText fontName="Lato-Regular" fonSiz={16} col='gray' text="BUY" />
                             </TouchableOpacity>
                         </View>
@@ -49,7 +60,7 @@ class SliderItem extends React.Component {
     );
   }
 }
-export default SliderItem
+// export default SliderItem
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -96,3 +107,22 @@ const styles = StyleSheet.create({
         elevation: 5,
     }
 });
+
+const mapStateToProps = state => ({
+    cart: state.Cart.cartData, 
+    loading: state.Cart.cartLoading,
+    error: state.Cart.cartError
+  });
+  const mapDispatchToProps = (dispatch, ownProps) =>
+    bindActionCreators(
+        {
+            cartAsync
+        },
+        dispatch
+    );
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SliderItem);
+  

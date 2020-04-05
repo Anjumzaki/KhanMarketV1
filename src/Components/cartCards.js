@@ -25,6 +25,7 @@ class CartCards extends React.Component {
     ref.getDownloadURL().then(url => {
       this.setState({ image: url });
     });
+    
 
     this.setState({qt: this.props.product.quantity})
 
