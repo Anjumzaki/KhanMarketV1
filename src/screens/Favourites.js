@@ -17,11 +17,11 @@ import Expandable from "../Helpers/Expandable";
 import { btnStyles, bottomTab, lines } from "../styles/base";
 import { Row } from "native-base";
 import CheckBox from "react-native-check-box";
-import ProcardsSmall from "../Helpers/ProcardsSmall";
+import FavCards from "../Helpers/FavCards";
 const { width } = Dimensions.get("window");
 const { height } = 300;
 
-export default class SingleCateg extends Component {
+export default class Favourites extends Component {
   constructor(props) {
     super(props); 
 
@@ -35,7 +35,7 @@ export default class SingleCateg extends Component {
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>
           <View style={{ marginVertical: 10, flexDirection: "row",width:'100%',flexWrap: 'wrap' }}>
-            <ProcardsSmall
+            <FavCards
               navigation={this.props.navigation}
               key={1}
               product={{
@@ -68,7 +68,7 @@ export default class SingleCateg extends Component {
                 transFatInGm: "34"
               }}
             />
-            <ProcardsSmall
+            <FavCards
               width={"50%"}
               navigation={this.props.navigation}
               key={1}
@@ -102,7 +102,7 @@ export default class SingleCateg extends Component {
                 transFatInGm: "34"
               }}
             />
-            <ProcardsSmall
+            <FavCards
               navigation={this.props.navigation}
               key={1}
               product={{
@@ -135,7 +135,7 @@ export default class SingleCateg extends Component {
                 transFatInGm: "34"
               }}
             />
-            <ProcardsSmall
+            <FavCards
               width={"50%"}
               navigation={this.props.navigation}
               key={1}

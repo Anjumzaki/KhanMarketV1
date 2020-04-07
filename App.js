@@ -28,6 +28,9 @@ import StoreInfo from "./src/screens/StoreInfo";
 import Filters from "./src/screens/Filters";
 import SingleCateg from "./src/screens/SingleCateg";
 import CustomDrawerContent from './src/Helpers/CustomDrawerContent'
+import Favourites from './src/screens/Favourites'
+import StackGrayHeader from './src/Helpers/StackGrayHeader'
+import MyOrders from "./src/screens/MyOrders";
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
   <AuthStack.Navigator headerMode="none">
@@ -123,6 +126,8 @@ const HomeStackScreen = () => (
         )
       }}
     />
+    <HomeStack.Screen name="Profile" component={Profile}  options={{ header: props => <StackGrayHeader nameTitle="My Profile" {...props} />, }}/>
+
   </HomeStack.Navigator>
 );
 const SearchStackScreen = () => (
@@ -139,23 +144,19 @@ const SearchStackScreen = () => (
 );
 const FavouritesStackScreen = () => (
   <FavouritesStack.Navigator initialRouteName="Favourites">
-    <FavouritesStack.Screen name="Favourites"  nameTitle="FOVOURITES" component={Search} 
-     options={{ header: props => <StackHeader {...props} />, }}
+    <FavouritesStack.Screen name="Favourites"   component={Favourites} 
+     options={{ header: props => <StackGrayHeader nameTitle="Favourites" {...props} />, }}
     />
-    <FavouritesStack.Screen name="Search2" component={Search2} />
-    <FavouritesStack.Screen
-      name="StoreDetails"
-      component={StoreDetails}
-      options={{ header: props => <SingleStoreHeader {...props} />, }}
-    />
+    
   </FavouritesStack.Navigator>
 );
-const ProfileStack = createStackNavigator();
-const ProfileStackScreen = () => (
-  <ProfileStack.Navigator>
-    <ProfileStack.Screen name="Profile" component={Profile} />
-  </ProfileStack.Navigator>
+const MyOrderStack = createStackNavigator();
+const MyOrderStackScreen = () => (
+  <MyOrderStack.Navigator initialRouteName="MyOrders">
+    <MyOrderStack.Screen name="MyOrders" component={MyOrders}  options={{ header: props => <StackGrayHeader nameTitle="My Orders" {...props} />, }}/>
+  </MyOrderStack.Navigator>
 );
+
 const TabsScreen = () => (
   <Tabs.Navigator
     initialRouteName="Home"
@@ -197,9 +198,9 @@ const TabsScreen = () => (
       inactiveTintColor: "#89898C",
     }}
   >
-    <Tabs.Screen name="Favourites" component={SearchStackScreen} />
+    <Tabs.Screen name="Favourites" component={FavouritesStackScreen} />
     <Tabs.Screen name="Home" component={HomeStackScreen} />
-    <Tabs.Screen name="My Orders" component={SearchStackScreen} />
+    <Tabs.Screen name="My Orders" component={MyOrderStackScreen} />
   </Tabs.Navigator>
 );
 const Drawer = createDrawerNavigator();
@@ -212,7 +213,6 @@ const DrawerScreen = () => (
   screenOptions={({ route }) => ({
     drawerIcon: ({ focused, color, size }) => {
       let iconName;
-
       if (route.name === "About Us") {
         return (
           <MaterialCommunityIcons
@@ -279,12 +279,12 @@ const DrawerScreen = () => (
   })}
   
   >
-    <Tabs.Screen name="Home" component={HomeStackScreen} />
-    <Drawer.Screen name="Favourites" component={TabsScreen} />
-    <Drawer.Screen name="My Orders" component={TabsScreen} />
+    <Drawer.Screen name="Home" component={TabsScreen} />
+    <Drawer.Screen name="Favourites" component={FavouritesStackScreen} />
+    <Drawer.Screen name="My Orders" component={MyOrderStackScreen} />
     <Drawer.Screen name="About Us" component={TabsScreen} />
-    <Drawer.Screen name="Rate Us" component={ProfileStackScreen} />
-    <Drawer.Screen name="Share" component={ProfileStackScreen} />
+    <Drawer.Screen name="Rate Us" component={TabsScreen} />
+    <Drawer.Screen name="Share" component={TabsScreen} />
   </Drawer.Navigator>
 );
 
@@ -298,6 +298,7 @@ const RootStackScreen = ({ userToken }) => (
         animationEnabled: false
       }}
     />
+
     <RootStack.Screen
       name="App"
       component={DrawerScreen}

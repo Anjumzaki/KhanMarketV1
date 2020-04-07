@@ -14,15 +14,6 @@ class ProCards extends React.Component {
     qt:1,
   } 
 
-  componentDidMount() {
-    const ref = firebase
-      .storage()
-      .ref("/product_images/"+this.props.product._id+"_1.jpg");
-    ref.getDownloadURL().then(url => {
-      this.setState({ image: url });
-    });
-}
-
 handleChange(num) {
   var preNum = this.state.qt;
   preNum = num + preNum;
@@ -36,7 +27,7 @@ handleChange(num) {
         <TouchableOpacity onPress={()=>this.props.navigation.push('ProductDetails',{
         product: this.props.product
       })}>
-        <ImageBackground  style={styles.proCardsImage} source={{uri:this.state.image}}>
+        <ImageBackground  style={styles.proCardsImage} source={require('../../assets/products/veg1.png')}>
           
           <TouchableOpacity onPress={()=>this.setState(prevState => {
       return {
@@ -60,7 +51,7 @@ handleChange(num) {
               fontName="Lato-Regular"
               fonSiz={15}
               col="#B50000"
-              text={"You will save" + this.props.product.discount + "%"}
+              text={"You will save " + this.props.product.discount + "%"}
             ></LatoText>
           </View>
           <View style={{ marginTop: 20 }}>

@@ -32,11 +32,11 @@ class StackGrayHeader extends React.Component {
     return (
       <View
         style={{
-          height: 50 + StatusBar.currentHeight,
+          height: 70 + StatusBar.currentHeight,
           width: Dimensions.get("window").width,
           justifyContent: "flex-end",
           padding: 5,
-          backgroundColor: "transparent",
+          backgroundColor: "#2E2E2E",
           shadowOffset: {
             width: 0,
             height: 0
@@ -47,17 +47,7 @@ class StackGrayHeader extends React.Component {
           elevation: 5
         }}
       >
-        <Image
-          style={{
-            height: 50 + StatusBar.currentHeight,
-            width: Dimensions.get("window").width,
-            position: "absolute",
-            top: 0,
-            left: 0
-          }}
-          source={require("../../assets/bgheader.png")}
-          resizeMode="cover"
-        />
+        
         <View style={{ justifyContent: "space-between", flexDirection: "row" }}>
           <TouchableOpacity
             style={{ padding: 20 }}
