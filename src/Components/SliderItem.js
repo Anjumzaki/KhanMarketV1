@@ -22,14 +22,15 @@ class SliderItem extends React.Component {
         });
     }
   render(){
+      console.log("CCCCC",this.props.data)
     return (
         <View>
         <ImageBackground style={styles.imgCon} source={{uri: this.state.image}} >
             <View style={[styles.wrapTop,{backgroundColor: "#7cba80"}]}>
                 <View style={styles.topRight}>
-                    <LatoText fontName="Lato-Bold" fonSiz={16} col='white' text={this.props.data.featuredQuantity+" "+this.props.data.featuredUnit+ " for $"+parseFloat(this.props.data.featuredPrice).toFixed(2)} />
+                    <LatoText fontName="Lato-Bold" fonSiz={16} col='white' text={"You will get "+this.props.data.discount+"% off"} />
                     <View style={{ marginTop: 5 }}>
-                        <LatoText fontName="Lato-Light" fonSiz={13} col='white' text={"Save $"+parseFloat(this.props.data.featuredSaving).toFixed(2)} />
+                        <LatoText fontName="Lato-Light" fonSiz={13} col='white' text={"Save $"+(parseFloat(this.props.data.discount/100) * parseFloat(this.props.data.price)).toFixed(2)} />
                     </View>
                 </View>
             </View>
@@ -40,7 +41,14 @@ class SliderItem extends React.Component {
                             <LatoText fontName="Lato-Regular" fonSiz={17} col='white' text={this.props.data.featuredDetails} />
                         </View>
                         <View style={{ paddingTop: 105, paddingHorizontal: 10, width: '30%', justifyContent: 'flex-end' }}>
-                            <TouchableOpacity style={styles.buybBtn}  
+                            <TouchableOpacity style={styles.buybBtn} 
+                            
+                            onPress={() =>
+                                this.props.navigation.push("ProductDetails", {
+                                  product: this.props.data
+                                })
+                              }
+                            
                             // onPress={() => {
                             //     var pCart=this.props.cart;
                             //     pCart.push({

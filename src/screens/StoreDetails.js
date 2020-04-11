@@ -35,7 +35,7 @@ class StoreDetails extends React.Component {
   } 
 
   componentDidMount(){
-    axios.get("https://mysterious-temple-58549.herokuapp.com/get/all/products/"+this.props.route.params.storeId)
+    axios.get("http://192.168.0.108:3000/get/all/products/"+this.props.route.params.storeId)
     .then(resp => {
       console.log("PRODUCTS", resp.data)
         this.setState({products: resp.data})
@@ -79,7 +79,7 @@ class StoreDetails extends React.Component {
     return (
       <ScrollView showsVerticalScrollIndicator={false} >
         {this.state.featuredProducts.length > 0 ? (
-          <Slider featuredProducts={this.state.featuredProducts}/>
+          <Slider navigation={this.props.navigation} featuredProducts={this.state.featuredProducts}/>
         ): null}
         {fp.map((cat,index) => (
           cat.products.length > 0 ? (

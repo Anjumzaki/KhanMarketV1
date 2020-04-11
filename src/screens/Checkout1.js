@@ -23,6 +23,8 @@ import { bindActionCreators } from "redux";
 import { cartAsync } from "../store/actions";
 import { connect } from "react-redux";
 import axios from "axios";
+import timestamp  from "time-stamp";
+
 class Cart extends Component {
   constructor(props) {
     super(props);
@@ -45,6 +47,11 @@ class Cart extends Component {
     }
   }
   render() {
+    console.log("DATEEEEEEEEE",new Date(), console.log(timestamp()))
+    console.log(timestamp('DDMMYYYY'));
+    console.log(timestamp('YYYY-MM-DD'));
+
+
     if(this.props.cart.length >0){
       var sId = this.props.cart[0].product.storeId
     }else{
@@ -300,7 +307,7 @@ class Cart extends Component {
           <TouchableOpacity
             onPress={() => {
               this.setState({ cart: true })
-              axios.post('https://mysterious-temple-58549.herokuapp.com/add/order',{
+              axios.post('http://192.168.0.108:3000/add/order',{
                 storeId: sId,
                 products: this.props.cart,
                 totalAmount: subTotal,
@@ -309,8 +316,10 @@ class Cart extends Component {
                 email: "b.murphey@gmail.com",
                 address: "bac Street",
                 orderTime: "5:00 PM",
-                orderDate: "Jan,3 2020",
+                orderDate: timestamp('DD-MM-YYYY'),
                 orderTimeZone: "UST",
+                tax: "2.78",
+                orderNumber: "zk342"
               }).then(resp =>  {
                 this.props.navigation.push('QrCode',{
                   orderId: resp.data.order1._id
