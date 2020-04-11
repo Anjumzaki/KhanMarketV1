@@ -27,6 +27,10 @@ import QrCode from "./src/screens/QrCode";
 import StoreInfo from "./src/screens/StoreInfo";
 import Filters from "./src/screens/Filters";
 import SingleCateg from "./src/screens/SingleCateg";
+import CustomDrawerContent from './src/Helpers/CustomDrawerContent'
+import Favourites from './src/screens/Favourites'
+import StackGrayHeader from './src/Helpers/StackGrayHeader'
+import MyOrders from "./src/screens/MyOrders";
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
   <AuthStack.Navigator headerMode="none">
@@ -42,6 +46,8 @@ const AuthStackScreen = () => (
 const Tabs = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const SearchStack = createStackNavigator();
+const FavouritesStack = createStackNavigator();
+
 const HomeStackScreen = () => (
   <HomeStack.Navigator
   >
@@ -120,6 +126,8 @@ const HomeStackScreen = () => (
         )
       }}
     />
+    <HomeStack.Screen name="Profile" component={Profile}  options={{ header: props => <StackGrayHeader nameTitle="My Profile" {...props} />, }}/>
+
   </HomeStack.Navigator>
 );
 const SearchStackScreen = () => (
@@ -134,16 +142,24 @@ const SearchStackScreen = () => (
     />
   </SearchStack.Navigator>
 );
-const ProfileStack = createStackNavigator();
-const ProfileStackScreen = () => (
-  <ProfileStack.Navigator>
-    <ProfileStack.Screen name="Profile" component={Profile} />
-  </ProfileStack.Navigator>
+const FavouritesStackScreen = () => (
+  <FavouritesStack.Navigator initialRouteName="Favourites">
+    <FavouritesStack.Screen name="Favourites"   component={Favourites} 
+     options={{ header: props => <StackGrayHeader nameTitle="Favourites" {...props} />, }}
+    />
+    
+  </FavouritesStack.Navigator>
 );
+const MyOrderStack = createStackNavigator();
+const MyOrderStackScreen = () => (
+  <MyOrderStack.Navigator initialRouteName="MyOrders">
+    <MyOrderStack.Screen name="MyOrders" component={MyOrders}  options={{ header: props => <StackGrayHeader nameTitle="My Orders" {...props} />, }}/>
+  </MyOrderStack.Navigator>
+);
+
 const TabsScreen = () => (
   <Tabs.Navigator
     initialRouteName="Home"
-    
     screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
         let iconName;
@@ -182,16 +198,93 @@ const TabsScreen = () => (
       inactiveTintColor: "#89898C",
     }}
   >
-    <Tabs.Screen name="Favourites" component={SearchStackScreen} />
+    <Tabs.Screen name="Favourites" component={FavouritesStackScreen} />
     <Tabs.Screen name="Home" component={HomeStackScreen} />
-    <Tabs.Screen name="My Orders" component={SearchStackScreen} />
+    <Tabs.Screen name="My Orders" component={MyOrderStackScreen} />
   </Tabs.Navigator>
 );
 const Drawer = createDrawerNavigator();
 const DrawerScreen = () => (
-  <Drawer.Navigator initialRouteName="Home">
+  <Drawer.Navigator  drawerContentOptions={{
+    activeTintColor: '#e91e63',
+    itemStyle: {backgroundColor:'transparent' },
+    labelStyle:{color:'#FFFFFF'}
+  }}  drawerContent={props => <CustomDrawerContent {...props} />}
+  screenOptions={({ route }) => ({
+    drawerIcon: ({ focused, color, size }) => {
+      let iconName;
+      if (route.name === "About Us") {
+        return (
+          <MaterialCommunityIcons
+            name="information"
+            size={26}
+            color={focused ? "#2e2e2e" : "#89898c"}
+          />
+        );
+      } else if (route.name === "Favourites") {
+        return (
+          <Entypo
+            name="heart"
+            size={26}
+            color={focused ? "#2e2e2e" : "#89898c"}
+          />
+        );
+      }
+      else if (route.name === "Home") {
+        return (
+          <Entypo
+            name="home"
+            size={26}
+            color={focused ? "#2e2e2e" : "#89898c"}
+          />
+        );
+      } else if (route.name === "My Orders") {
+        return (
+          <MaterialCommunityIcons
+            name="clipboard-text"
+            size={26}
+            color={focused ? "#2e2e2e" : "#89898c"}
+          />
+        );
+      }
+      else if (route.name === "Rate Us") {
+        return (
+          <MaterialCommunityIcons
+            name="star"
+            size={26}
+            color={focused ? "#2e2e2e" : "#89898c"}
+          />
+        );
+      }
+      else if (route.name === "Share") {
+        return (
+          <MaterialCommunityIcons
+            name="share-variant"
+            size={26}
+            color={focused ? "#2e2e2e" : "#89898c"}
+          />
+        );
+      }
+      else if (route.name === "Share") {
+        return (
+          <Entypo
+            name="Home"
+            size={26}
+            color={focused ? "#2e2e2e" : "#89898c"}
+          />
+        );
+      }
+
+    }
+  })}
+  
+  >
     <Drawer.Screen name="Home" component={TabsScreen} />
-    <Drawer.Screen name="Profile" component={ProfileStackScreen} />
+    <Drawer.Screen name="Favourites" component={FavouritesStackScreen} />
+    <Drawer.Screen name="My Orders" component={MyOrderStackScreen} />
+    <Drawer.Screen name="About Us" component={TabsScreen} />
+    <Drawer.Screen name="Rate Us" component={TabsScreen} />
+    <Drawer.Screen name="Share" component={TabsScreen} />
   </Drawer.Navigator>
 );
 
@@ -205,6 +298,7 @@ const RootStackScreen = ({ userToken }) => (
         animationEnabled: false
       }}
     />
+
     <RootStack.Screen
       name="App"
       component={DrawerScreen}

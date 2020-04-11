@@ -35,6 +35,8 @@ export default class Home extends React.Component {
   render() {
     return (
       <View style={{ marginTop: 100, justifyContent: "center" }}>
+        <StatusBar  translucent={true} barStyle="light-content" backgroundColor='transparent'/>
+
         <ScrollView>
           {this.state.stores.length > 0 &&
             this.state.stores.map((item,ind) => (

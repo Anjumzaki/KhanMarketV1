@@ -9,7 +9,6 @@ import {
   LinearGradient,
   TouchableOpacity
 } from "react-native";
-import Carousel from "react-native-looped-carousel";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import LatoText from "../Helpers/LatoText";
 import { ScrollView } from "react-native-gesture-handler";
@@ -17,11 +16,11 @@ import Expandable from "../Helpers/Expandable";
 import { btnStyles, bottomTab, lines } from "../styles/base";
 import { Row } from "native-base";
 import CheckBox from "react-native-check-box";
-import ProcardsSmall from "../Helpers/ProcardsSmall";
+import OrderCards from "../Helpers/OrderCards";
 const { width } = Dimensions.get("window");
 const { height } = 300;
 
-export default class SingleCateg extends Component {
+export default class MyOrders extends Component {
   constructor(props) {
     super(props); 
 
@@ -35,7 +34,16 @@ export default class SingleCateg extends Component {
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>
           <View style={{ marginVertical: 10, flexDirection: "row",width:'100%',flexWrap: 'wrap' }}>
-            <ProcardsSmall
+              <View style={{paddingLeft:5,paddingTop:20,paddingBottom:10}}>
+              <LatoText
+                fontName="Lato-Regular"
+                fonSiz={20}
+                col="#5C5C5C"
+                text={"Active (2)"}
+              />
+              </View>
+
+            <OrderCards
               navigation={this.props.navigation}
               key={1}
               product={{
@@ -68,7 +76,7 @@ export default class SingleCateg extends Component {
                 transFatInGm: "34"
               }}
             />
-            <ProcardsSmall
+            <OrderCards
               width={"50%"}
               navigation={this.props.navigation}
               key={1}
@@ -102,7 +110,7 @@ export default class SingleCateg extends Component {
                 transFatInGm: "34"
               }}
             />
-            <ProcardsSmall
+            <OrderCards
               navigation={this.props.navigation}
               key={1}
               product={{
@@ -135,7 +143,7 @@ export default class SingleCateg extends Component {
                 transFatInGm: "34"
               }}
             />
-            <ProcardsSmall
+            <OrderCards
               width={"50%"}
               navigation={this.props.navigation}
               key={1}
