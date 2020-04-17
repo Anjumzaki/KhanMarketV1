@@ -85,7 +85,7 @@ export default class CarouselExample extends Component {
                     
                 >
                     {this.props.featuredProducts.map((fp,ind) => (
-                    <SliderItem key={ind} data={fp}/>
+                    <SliderItem navigation={this.props.navigation} key={ind} data={fp}/>
 
                     ))}
                     {/* <SliderItem data={this.state.data1}/>
