@@ -300,7 +300,7 @@ class Cart extends Component {
           <TouchableOpacity
             onPress={() => {
               this.setState({ cart: true })
-              axios.post('https://mysterious-temple-58549.herokuapp.com/add/order',{
+              axios.post('https://sheltered-scrubland-52295.herokuapp.com/add/order',{
                 storeId: sId,
                 products: this.props.cart,
                 totalAmount: subTotal,

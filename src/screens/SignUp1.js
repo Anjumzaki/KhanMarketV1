@@ -24,7 +24,7 @@ import {
 import { conStyles, textStyles, textIn, btnStyles } from "../styles/base";
 import LatoText from "../Helpers/LatoText";
 
-export default class Login extends React.Component {
+export default class SignUp1 extends React.Component {
   static navigationOptions = { header: null };
 
   constructor(props) {
@@ -63,7 +63,7 @@ export default class Login extends React.Component {
     const { icEye, isPassword } = this.state;
     const styles = StyleSheet.create({
       logo: {
-        width: wp("60%"),
+        width: wp("30%"),
         alignSelf: "center"
       },
       icon: {
@@ -75,12 +75,14 @@ export default class Login extends React.Component {
     });
     return (
       <SafeAreaView style={[conStyles.safeAreaMy, { backgroundColor: 'white' }]}>
-        <StatusBar  translucent={true} barStyle="dark-content" />
+        <StatusBar translucent={true} barStyle="dark-content"  />
+        <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={{ paddingLeft: 30, paddingTop: 30, paddingBottom: 10 }}>
+          <Image source={require('../../assets/back.png')} />
+        </TouchableOpacity>
         <ScrollView
           style={{ flex: 1 }}
-          contentContainerStyle={conStyles.scroll}
+          contentContainerStyle={[conStyles.scroll,{justifyContent:'space-around'}]}
         >
-         
 
           <Image
             style={styles.logo}
@@ -90,14 +92,14 @@ export default class Login extends React.Component {
           <View
             style={{
               justifyContent: "flex-start",
-              paddingHorizontal: wp("10%")
+              paddingHorizontal: wp("10%"),
             }}
           >
             <LatoText
               fontName="Lato-Regular"
               fonSiz={20}
               col="#000000"
-              text={"SIGN IN"}
+              text={"SIGN UP"}
             />
             <View style={textIn.Flabel}>
               <View>
@@ -105,7 +107,7 @@ export default class Login extends React.Component {
                   fontName="Lato-Regular"
                   fonSiz={17}
                   col="#5C5C5C"
-                  text={"Email address"}
+                  text={"Name"}
                 />
               </View>
               <View>
@@ -118,36 +120,86 @@ export default class Login extends React.Component {
                   fontName="Lato-Regular"
                   fonSiz={17}
                   col="#5C5C5C"
-                  text={"Password"}
+                  text={"Email Address"}
                 />
               </View>
               <View>
-                <TextInput style={textIn.input} secureTextEntry={isPassword} />
-                <Icon
-                  style={styles.icon}
-                  name={icEye}
-                  size={20}
-                  color={"#000000"}
-                  onPress={this.changePwdType}
+
+                <TextInput style={textIn.input} />
+
+              </View>
+
+            </View>
+            <View>
+              <View style={textIn.label}>
+                <LatoText
+                  fontName="Lato-Regular"
+                  fonSiz={17}
+                  col="#5C5C5C"
+                  text={"Phone Number"}
                 />
               </View>
-            </View>
-            <TouchableOpacity
-              style={{
-                justifyContent: "flex-end",
-                alignItems: "flex-end",
-                marginTop: 10
-              }}
-            >
-              <LatoText
-                fontName="Lato-Regular"
-                fonSiz={17}
-                col="#B50000"
-                text={"Forgot Password?"}
-              />
-            </TouchableOpacity>
-          </View>
+              <View style={{ marginBottom: 10, flexDirection: 'row', alignContent: 'center', alignItems: 'center' }}>
+                <Image
+                  style={{ width: wp('8%') }}
+                  source={require('../../assets/america.png')}
+                />
+                <View
+                  style={{ width: wp('8%'), justifyContent: 'center', alignContent: 'center', paddingLeft: 5 }}
+                >
+                  <LatoText
+                    fontName="Lato-Regular"
+                    fonSiz={17}
+                    col="#5C5C5C"
+                    text={"+1"}
+                  />
 
+                </View>
+                <TextInput placeholder={'(555) 555-5678'} style={[textIn.input, { width: wp('64%') }]} />
+
+              </View>
+              
+              <View
+                style={{
+                  justifyContent: "flex-end",
+                  alignItems: "flex-end",
+                }}
+              >
+                <TouchableOpacity
+                  style={{
+                    paddingHorizontal:20,
+                    paddingVertical:10,
+                    borderColor: '#C9C9C9',
+                    borderWidth: 1,
+                    borderRadius:5
+                  }}
+                >
+                  <LatoText
+                    fontName="Lato-Regular"
+                    fonSiz={17}
+                    col="#C9C9C9"
+                    text={"Verify"}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View>
+              <View style={textIn.label}>
+                <LatoText
+                  fontName="Lato-Regular"
+                  fonSiz={17}
+                  col="#5C5C5C"
+                  text={"Zip Code"}
+                />
+              </View>
+              <View>
+
+                <TextInput placeholder={'00000'} style={textIn.input} />
+
+              </View>
+
+            </View>
+            </View>
+          </View>
           <View
             style={{
               justifyContent: "space-evenly",
@@ -157,36 +209,29 @@ export default class Login extends React.Component {
           >
             <TouchableOpacity
               style={btnStyles.basic}
-              onPress={() => this.props.navigation.push("App")}
+              onPress={() => this.props.navigation.push("ChoosePass")}
             >
               <LatoText
                 fontName="Lato-Regular"
                 fonSiz={17}
                 col="white"
-                text={"SIGN IN"}
+                text={"Verify"}
               />
             </TouchableOpacity>
             <TouchableOpacity
               style={{ alignItems: "center", marginTop: 20 }}
-              onPress={() => this.props.navigation.push("SignUp1")}
+              onPress={() => this.props.navigation.push("Login")}
             >
               <LatoText
                 fontName="Lato-Regular"
                 fonSiz={17}
                 col="#B50000"
-                text={" New memeber? Sign up "}
+                text={"Already a member Sign In "}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={{ alignItems: "center", marginTop: 20 }}>
-              <LatoText
-                fontName="Lato-Regular"
-                fonSiz={17}
-                col="#B50000"
-                text={"Skip this and continue as guest"}
-              />
-            </TouchableOpacity>
+
           </View>
-          
+
         </ScrollView>
       </SafeAreaView>
     );

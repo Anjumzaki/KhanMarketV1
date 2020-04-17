@@ -17,11 +17,12 @@ import { bindActionCreators } from "redux";
 import { storeAsync, cartAsync } from "../store/actions";
 import { connect } from "react-redux";
 
+
 class StoreHeader extends React.Component {
   render() {
     return (
       <SafeAreaView style={[conStyles.safeAreaMy, { backgroundColor: '#2E2E2E' }]}>
-
+        <StatusBar translucent={true} barStyle='light-content'/>
         <View style={headerStyles.storeStyles}>
           <View
             style={{ justifyContent: "space-between", flexDirection: "row" }}

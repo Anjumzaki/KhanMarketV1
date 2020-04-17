@@ -26,18 +26,19 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { bindActionCreators } from "redux";
 import { storeAsync, cartAsync } from "../store/actions";
 import { connect } from "react-redux";
-
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 class SingleStoreHeader extends React.Component {
   render() {
+    
 
     return (
       <View
         style={{
-          height: 140 + StatusBar.currentHeight,
+          height: 135 + getStatusBarHeight(),
           width: Dimensions.get("window").width,
           justifyContent: "flex-end",
           padding: 5,
-          paddingTop: 0,
+          paddingTop: 20,
           backgroundColor: "transparent",
           shadowOffset: {
             width: 0,
@@ -51,7 +52,7 @@ class SingleStoreHeader extends React.Component {
       >
         <Image
           style={{
-            height: 140 + StatusBar.currentHeight,
+            height: 135 + getStatusBarHeight() ,
             width: Dimensions.get("window").width,
             position: "absolute",
             top: 0,
@@ -60,7 +61,7 @@ class SingleStoreHeader extends React.Component {
           source={require("../../assets/bgheader.png")}
           resizeMode="cover"
         />
-        <View style={{ justifyContent: "space-between", flexDirection: "row" }}>
+        <View style={{ justifyContent: "space-between", flexDirection: "row",paddingTop:30 }}>
           <TouchableOpacity
             style={{ padding: 20 }}
             onPress={() => this.props.navigation.goBack()}

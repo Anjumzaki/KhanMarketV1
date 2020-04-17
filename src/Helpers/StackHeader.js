@@ -26,13 +26,14 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { bindActionCreators } from "redux";
 import { storeAsync, cartAsync } from "../store/actions";
 import { connect } from "react-redux";
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 class StackHeader extends React.Component {
   render() {
     return (
       <View
         style={{
-          height: 65 + StatusBar.currentHeight,
+          height: 65 + getStatusBarHeight(),
           width: Dimensions.get("window").width,
           justifyContent: "flex-end",
           backgroundColor: "transparent",
@@ -48,7 +49,7 @@ class StackHeader extends React.Component {
       >
         <Image
           style={{
-          height: 65 + StatusBar.currentHeight,
+          height: 65 + getStatusBarHeight(),
             width: Dimensions.get("window").width,
             position: "absolute",
             top: 0,

@@ -6,10 +6,11 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import axios from "axios";
 import fb from "../config/Fire";
 import firebase from "firebase";
+import {Platform} from 'react-native';
+import StoreHeader from "../Helpers/StoreHeader";
 
 export default class Home extends React.Component {
   static navigationOptions = {
-    //To hide the ActionBar/NavigationBar
     header: null,
 };
   constructor(props) {
@@ -24,7 +25,7 @@ export default class Home extends React.Component {
   }
   componentDidMount() {
     axios
-      .get("https://mysterious-temple-58549.herokuapp.com/get/stores/")
+      .get("https://sheltered-scrubland-52295.herokuapp.com/get/stores/")
       .then(resp => {
         this.setState({
           stores: resp.data
@@ -34,10 +35,12 @@ export default class Home extends React.Component {
   }
   render() {
     return (
-      <View style={{ marginTop: 100, justifyContent: "center" }}>
+      <View style={{ justifyContent: "center" }}>
         <StatusBar  translucent={true} barStyle="light-content" backgroundColor='transparent'/>
+        <View>
 
-        <ScrollView>
+        <StoreHeader props={this.props} />
+        <ScrollView style={{marginTop:110}}> 
           {this.state.stores.length > 0 &&
             this.state.stores.map((item,ind) => (
               <StoreCard key={ind}
@@ -50,6 +53,8 @@ export default class Home extends React.Component {
             />
             ))}
         </ScrollView>
+        </View>
+
       </View>
     );
   }

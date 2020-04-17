@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet,Dimensions } from "react-native";
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 const conStyles = StyleSheet.create({
   safeAreaMy: {
@@ -7,7 +8,9 @@ const conStyles = StyleSheet.create({
   },
   scroll: {
     justifyContent: "space-evenly",
-    flexGrow: 1
+    flexGrow: 1,
+    minHeight:Dimensions.get("window").height /2
+
   }
 });
 const cardStyles = StyleSheet.create({
@@ -38,8 +41,9 @@ const cardStyles = StyleSheet.create({
 });
 const headerStyles = StyleSheet.create({
   storeStyles: {
-    height: 100,
-    backgroundColor: "#2E2E2E"
+    minHeight: 100 +getStatusBarHeight(true),
+    paddingTop:getStatusBarHeight(true),
+    backgroundColor: "#2E2E2E",
   },
   cartTxt: {
     position: "absolute",
@@ -69,8 +73,9 @@ const textIn = StyleSheet.create({
   input: {
     borderBottomColor: "#000000",
     borderBottomWidth: 1,
-    paddingTop: 10,
-    fontSize: 17
+    paddingTop: 5,
+    fontSize: 17,
+    paddingBottom:5
   }
 });
 const btnStyles = StyleSheet.create({

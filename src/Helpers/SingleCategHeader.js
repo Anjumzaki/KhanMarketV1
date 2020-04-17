@@ -26,13 +26,14 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { bindActionCreators } from "redux";
 import { storeAsync, cartAsync } from "../store/actions";
 import { connect } from "react-redux";
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 class SingleCategHeader extends React.Component {
   render() {
     return (
       <View
         style={{
-          height: 120 + StatusBar.currentHeight,
+          height: 120 + getStatusBarHeight(),
           width: Dimensions.get("window").width,
           justifyContent: "flex-end",
           padding: 5,
@@ -50,7 +51,7 @@ class SingleCategHeader extends React.Component {
       >
         <Image
           style={{
-            height: 120 + StatusBar.currentHeight,
+            height: 120 + getStatusBarHeight(),
             width: Dimensions.get("window").width,
             position: "absolute",
             top: 0,
