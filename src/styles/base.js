@@ -41,8 +41,8 @@ const cardStyles = StyleSheet.create({
 });
 const headerStyles = StyleSheet.create({
   storeStyles: {
-    minHeight: 100 +getStatusBarHeight(true),
-    paddingTop:getStatusBarHeight(true),
+    minHeight: 100 ,
+    // paddingTop:getStatusBarHeight(true),
     backgroundColor: "#2E2E2E",
   },
   cartTxt: {

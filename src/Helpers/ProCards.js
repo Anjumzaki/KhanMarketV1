@@ -117,8 +117,8 @@ class ProCards extends React.Component {
             }
           >
             <LatoText
-              fontName="Lato-Regular"
-              fonSiz={20}
+              fontName="Lato-Bold"
+              fonSiz={15}
               col="#5C5C5C"
               text={this.props.product.productName.substring(0,15)}
             ></LatoText>

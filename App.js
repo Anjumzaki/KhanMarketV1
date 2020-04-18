@@ -10,6 +10,8 @@ import Home from "./src/screens/Home";
 import Login from "./src/screens/Login";
 import Map from "./src/screens/Map";
 import StackHeader from "./src/Helpers/StackHeader";
+import StoreHeader from "./src/Helpers/StoreHeader";
+
 import {
   Entypo,
   MaterialCommunityIcons
@@ -53,81 +55,82 @@ const HomeStack = createStackNavigator();
 const FavouritesStack = createStackNavigator();
 const HomeStackScreen = () => (
   <HomeStack.Navigator
-  headerMode="none"
   >
     <HomeStack.Screen
       name="Home"
       component={Home}
+      options={{ header: props => <StoreHeader {...props} />}}
+
     />
     <HomeStack.Screen
       name="StoreDetails"
       component={StoreDetails}
-      // options={{ header: props => <SingleStoreHeader {...props} />}}
+      options={{ header: props => <SingleStoreHeader {...props} />}}
     />
     <HomeStack.Screen
       name="ProductDetails"
       component={ProductDetails}
-      // options={{
-      //   header: props => (
-      //     <StackHeader cart={true} nameTitle="Product Details" {...props} />
-      //   ),
-      //   tabBarOptions: false
-      // }}
+      options={{
+        header: props => (
+          <StackHeader cart={true} nameTitle="Product Details" {...props} />
+        ),
+        tabBarOptions: false
+      }}
     />
     <HomeStack.Screen
       name="Cart"
       component={Cart}
-      // options={{
-      //   header: props => (
-      //     <StackHeader cart={false} nameTitle="Cart" {...props} />
-      //   )
-      // }}
+      options={{
+        header: props => (
+          <StackHeader cart={false} nameTitle="Cart" {...props} />
+        )
+      }}
     />
     <HomeStack.Screen
       name="Checkout1"
       component={Checkout1}
-      // options={{
-      //   header: props => (
-      //     <StackHeader cart={false} nameTitle="PICK UP DETAILS" {...props} />
-      //   )
-      // }}
+      options={{
+        header: props => (
+          <StackHeader cart={false} nameTitle="PICK UP DETAILS" {...props} />
+        )
+      }}
     />
     <HomeStack.Screen
       name="QrCode"
       component={QrCode}
-      // options={{
-      //   header: props => (
-      //     <StackHeader cart={false} nameTitle="ORDER PLACED" {...props} />
-      //   )
-      // }}
+      options={{
+        header: props => (
+          <StackHeader cart={false} nameTitle="ORDER PLACED" {...props} />
+        )
+      }}
     />
     <HomeStack.Screen
       name="StoreInfo"
       component={StoreInfo}
-      // options={{
-      //   header: props => (
-      //     <StackHeader cart={false} nameTitle="STORE INFO" {...props} />
-      //   )
-      // }}
+      options={{
+        header: props => (
+          <StackHeader cart={false} nameTitle="STORE INFO" {...props} />
+        )
+      }}
     />
     <HomeStack.Screen
       name="Filters"
       component={Filters}
-      // options={{
-      //   header: props => (
-      //     <StackHeader cart={false} nameTitle="Filters" {...props} />
-      //   )
-      // }}
+      options={{
+        header: props => (
+          <StackHeader cart={false} nameTitle="Filters" {...props} />
+        )
+      }}
     />
     <HomeStack.Screen
       name="SingleCateg"
       component={SingleCateg}
       
-      // options={{
-      //   header: props => (
-      //     <SingleCategHeader cart={false} nameTitle="BEEF" {...props} />
-      //   )
-      // }}
+      options={{
+        header: props => (
+          <SingleCategHeader cart={false} nameTitle="BEEF" {...props} />
+        )
+      }}
     />
    
     <HomeStack.Screen name="Profile" component={Profile}  options={{ header: props => <StackGrayHeader nameTitle="My Profile" {...props} />, }}/>

@@ -39,8 +39,7 @@ export default class Home extends React.Component {
         <StatusBar  translucent={true} barStyle="light-content" backgroundColor='transparent'/>
         <View>
 
-        <StoreHeader props={this.props} />
-        <ScrollView style={{marginTop:110}}> 
+        <ScrollView> 
           {this.state.stores.length > 0 &&
             this.state.stores.map((item,ind) => (
               <StoreCard key={ind}

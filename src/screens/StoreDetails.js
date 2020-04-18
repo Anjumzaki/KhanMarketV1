@@ -66,7 +66,6 @@ class StoreDetails extends React.Component {
 
     return (
       <View>
-        <SingleStoreHeader props={this.props} navigation={this.props.navigation} />
         <ScrollView showsVerticalScrollIndicator={false} >
           {this.state.featuredProducts.length > 0 ? (
             <Slider featuredProducts={this.state.featuredProducts} navigation={this.props.navigation}/>
