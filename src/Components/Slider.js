@@ -61,7 +61,7 @@ export default class CarouselExample extends Component {
     }
 
     render() {
-        console.log("FeaturedProducts",this.props.featuredProducts)
+        // console.log("FeaturedProducts",this.props.featuredProducts)
         return (
             <View onLayout={this._onLayoutDidChange} style={{marginBottom:40}}>
                 {/* <Text>asd</Text> */}
@@ -80,7 +80,7 @@ export default class CarouselExample extends Component {
                         padding: 0,
                         margin: 3,
                         marginTop: 110,
-                        backgroundColor: "#89898C"
+                        backgroundColor: "#89898C" 
                       }}
                     
                 >

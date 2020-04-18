@@ -24,12 +24,13 @@ import {
 import LatoText from "./LatoText";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { bindActionCreators } from "redux";
-import { storeAsync, cartAsync } from "../store/actions";
+import { storeAsync, cartAsync, cartSizeAsync } from "../store/actions";
 import { connect } from "react-redux";
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 class SingleCategHeader extends React.Component {
   render() {
+    console.log("single heaer props",this.props)
     return (
       <View
         style={{
@@ -85,7 +86,7 @@ class SingleCategHeader extends React.Component {
                   fontName="Lato-Regular"
                   fonSiz={7}
                   col="white"
-                  text={this.props.cartData.length}
+                  text={this.props.cartSize}
                 />
               </View>
               <MaterialIcons name="shopping-cart" size={26} color={"white"} />
@@ -130,6 +131,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
   store: state.Store.storeData, 
   cartData: state.Cart.cartData, 
+  cartSize: state.CartSize.cartSizeData,
   loading: state.Store.storeLoading,
   error: state.Store.storeError
 });
@@ -137,7 +139,8 @@ const mapDispatchToProps = (dispatch, ownProps) =>
   bindActionCreators(
       {
           storeAsync,
-          cartAsync
+          cartAsync,
+          cartSizeAsync
       },
       dispatch
   );

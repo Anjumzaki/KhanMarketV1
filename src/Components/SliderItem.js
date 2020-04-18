@@ -22,7 +22,7 @@ class SliderItem extends React.Component {
         });
     }
   render(){
-      console.log("CCCCC",this.props.data)
+    //   console.log("CCCCC",this.props.data)
     return (
         <View>
         <ImageBackground style={styles.imgCon} source={{uri: this.state.image}} >
