@@ -256,7 +256,7 @@ class Cart extends Component {
           </View>
           <View style={{ alignItems: "flex-end", paddingHorizontal: 20 }}>
             <TouchableOpacity
-              onPress={() => this.props.navigation.push("Checkout1")}
+              onPress={() => this.props.navigation.navigate("Checkout1")}
               style={[btnStyles.cartBtnOutline, { width: "35%" }]}
             >
               <LatoText
@@ -321,7 +321,7 @@ class Cart extends Component {
                 tax: "2.78",
                 orderNumber: "zk342"
               }).then(resp =>  {
-                this.props.navigation.push('QrCode',{
+                this.props.navigation.navigate('QrCode',{
                   orderId: resp.data.order1._id
                 })
               })

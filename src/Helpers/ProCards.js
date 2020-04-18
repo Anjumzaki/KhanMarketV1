@@ -75,7 +75,7 @@ class ProCards extends React.Component {
       <View style={styles.procards}>
         <TouchableOpacity
           onPress={() =>
-            this.props.navigation.push("ProductDetails", {
+            this.props.navigation.navigate("ProductDetails", {
               product: this.props.product
             })
           }
@@ -111,7 +111,7 @@ class ProCards extends React.Component {
         <View style={styles.underCard}>
           <TouchableOpacity
             onPress={() =>
-              this.props.navigation.push("ProductDetails", {
+              this.props.navigation.navigate("ProductDetails", {
                 product: this.props.product
               })
             }

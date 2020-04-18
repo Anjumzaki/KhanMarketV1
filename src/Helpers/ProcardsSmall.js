@@ -24,7 +24,7 @@ handleChange(num) {
   render() {
     return (
       <View  style={styles.procards}>
-        <TouchableOpacity onPress={()=>this.props.navigation.push('ProductDetails',{
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductDetails',{
         product: this.props.product
       })}>
         <ImageBackground  style={styles.proCardsImage} source={require('../../assets/products/veg1.png')}>

@@ -67,7 +67,7 @@ class StackGrayHeader extends React.Component {
 
           <View>
             <TouchableOpacity
-              onPress={() => this.props.navigation.push("Cart")}
+              onPress={() => this.props.navigation.navigate("Cart")}
               style={{ padding: 20 }}
             >
               {this.props.cart ? (

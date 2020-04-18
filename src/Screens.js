@@ -32,7 +32,7 @@ export const Details = ({ route }) => (
 export const Search = ({ navigation }) => (
   <ScreenContainer>
     <Text>Search Screen</Text>
-    <Button title="Search 2" onPress={() => navigation.push("Search2")} />
+    <Button title="Search 2" onPress={() => navigation.navigate("Search2")} />
     <Button
       title="React Native School"
       onPress={() => {

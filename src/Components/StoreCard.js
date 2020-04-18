@@ -29,7 +29,7 @@ class StoreCard extends React.Component {
       <TouchableOpacity
         onPress={() => {
           this.props.storeAsync(name)
-          this.props.navigation.push("StoreDetails",{
+          this.props.navigation.navigate("StoreDetails",{
           storeId: id
         })}}
         style={cardStyles.storeCard}

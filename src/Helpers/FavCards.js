@@ -34,7 +34,7 @@ class FavCards extends React.Component {
         <View style={styles.wrapCards}>
           <TouchableOpacity
             onPress={() =>
-              this.props.navigation.push("ProductDetails", {
+              this.props.navigation.navigate("ProductDetails", {
                 product: this.props.product,
               })
             }
