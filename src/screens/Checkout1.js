@@ -307,11 +307,7 @@ class Cart extends Component {
           <TouchableOpacity
             onPress={() => {
               this.setState({ cart: true })
-<<<<<<< HEAD
               axios.post('https://sheltered-scrubland-52295.herokuapp.com/add/order',{
-=======
-              axios.post('http://192.168.0.108:3000/add/order',{
->>>>>>> 177281e1a2daf523f376b564838717716d9c7df8
                 storeId: sId,
                 products: this.props.cart,
                 totalAmount: subTotal,
@@ -329,7 +325,6 @@ class Cart extends Component {
                   orderId: resp.data.order1._id
                 })
               })
-              
             }}
             style={[btnStyles.cartBtn, { width: "100%" }]}
           >
