@@ -41,7 +41,7 @@ export default class Home extends React.Component {
 
         <ScrollView> 
           {this.state.stores.length > 0 &&
-            this.state.stores.map((item,ind) => (
+            this.state.stores.slice(0).reverse().map((item,ind) => (
               <StoreCard key={ind}
               key={item._id}
               navigation={this.props.navigation}
