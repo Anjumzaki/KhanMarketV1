@@ -28,7 +28,10 @@ class StoreCard extends React.Component {
     return (
       <TouchableOpacity
         onPress={() => {
-          this.props.storeAsync(name)
+          this.props.storeAsync({
+            name: name,
+            address: address
+          })
           this.props.navigation.push("StoreDetails",{
           storeId: id
         })}}

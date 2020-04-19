@@ -73,7 +73,7 @@ class SingleStoreHeader extends React.Component {
               fontName="Lato-Regular"
               fonSiz={20}
               col="white"
-              text={this.props.store.toUpperCase().substring(0,18)}
+              text={this.props.store.name.toUpperCase().substring(0,18)}
             />
           </TouchableOpacity> 
           <TouchableOpacity
@@ -85,7 +85,7 @@ class SingleStoreHeader extends React.Component {
                 <LatoText
                   fontName="Lato-Regular"
                   fonSiz={7}
-                  col="white"
+                  col="white" 
                   text={this.props.cartData.length}
                 />
               </View>
@@ -107,7 +107,7 @@ class SingleStoreHeader extends React.Component {
             fontName="Lato-Light"
             fonSiz={16}
             col="white"
-            text="Hemisphere Black 32"
+            text={this.props.store.address}
           />
         </View>
         <View style={{ flexDirection: "row" }}>

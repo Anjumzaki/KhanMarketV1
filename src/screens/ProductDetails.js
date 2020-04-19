@@ -222,7 +222,7 @@ class ProductDetails extends Component {
             onPress={() => {
               var pCart=this.props.cart;
               pCart.push({
-                product: product,
+                product: product, 
                 quantity: this.state.qt
               })
               this.props.cartAsync(pCart)

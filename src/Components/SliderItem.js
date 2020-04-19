@@ -19,7 +19,7 @@ class SliderItem extends React.Component {
       .ref("/product_images/" + this.props.data._id + "_1.jpg");
         ref.getDownloadURL().then(url => {
         this.setState({ image: url });
-        });
+        }); 
     }
   render(){
     //   console.log("CCCCC",this.props.data)

@@ -14,10 +14,12 @@ class CourseImage extends React.Component {
   }  
 
   componentWillMount() {
+    console.log("PROD DET ID",this.props.id)
     const ref = firebase
       .storage()
       .ref("/product_images/"+this.props.id+"_"+this.props.index+".jpg");
     ref.getDownloadURL().then(url => {
+      console.log("URL#",url)
       this.setState({ image: url });
     });
 }
