@@ -30,7 +30,8 @@ class StoreCard extends React.Component {
         onPress={() => {
           this.props.storeAsync({
             name: name,
-            address: address
+            address: address,
+            id: id
           })
           this.props.navigation.push("StoreDetails",{
           storeId: id

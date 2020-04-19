@@ -17,8 +17,10 @@ import Expandable from "../Helpers/Expandable";
 import { btnStyles, bottomTab, lines } from "../styles/base";
 import { Row } from "native-base";
 import CheckBox from "react-native-check-box";
+import firebase from "firebase";
+import axios from "axios";
 const { width } = Dimensions.get("window");
-const { height } = 300;
+const { height } = 300; 
 
 export default class StoreInfo extends Component {
   constructor(props) {
@@ -26,7 +28,10 @@ export default class StoreInfo extends Component {
 
     this.state = {
       heart: false,
-      qt: 1
+      qt: 1,
+      store: "",
+      timings: [],
+      image: ''
     };
   }
 
@@ -41,7 +46,25 @@ export default class StoreInfo extends Component {
       this.setState({ qt: preNum });
     }
   }
+
+  componentDidMount(){
+    // this.props.route.params.storeId
+    console.log("INFO STORE INFO",this.props.route.params.storeId)
+    axios.get('https://sheltered-scrubland-52295.herokuapp.com/get/store/'+this.props.route.params.storeId)
+    .then(resp => this.setState({store: resp.data, timings: resp.data.storeTimings}))
+    .catch(err => console.log(err))
+
+    const ref = firebase
+    .storage()
+    .ref("/store_logos/" + this.props.route.params.storeId + ".jpg");
+      ref.getDownloadURL().then(url => {
+      this.setState({ image: url });
+      }); 
+  }
+
+
   render() {
+    console.log(this.state)
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>
@@ -71,18 +94,19 @@ export default class StoreInfo extends Component {
           >
             <Image
               style={{ width: 44, height: 44, marginRight: 10 }}
-              source={require("../../assets/new.png")}
+              // source={require("../../assets/new.png")}
+              source={{uri: this.state.image}}
             />
             <View>
               <LatoText
                 fontName="Lato-Regular"
                 fonSiz={17}
                 col="#2E2E2E"
-                text="KHAN MARKET"
+                text={this.state.store.storeName}
               />
             </View>
           </View>
-          <View
+          {/* <View
             style={{
               flexDirection: "row",
               paddingHorizontal: 20,
@@ -96,7 +120,7 @@ export default class StoreInfo extends Component {
               col="#2E2E2E"
               text="Category: Meat & Vegetables"
             />
-          </View>
+          </View> */}
 
           <View
             style={{
@@ -117,7 +141,7 @@ export default class StoreInfo extends Component {
               fontName="Lato-Regular"
               fonSiz={20}
               col="#5C5C5C"
-              text="Hemisphere black 32"
+              text={this.state.store.storeAddress}
             />
           </View>
           <View
@@ -146,7 +170,7 @@ export default class StoreInfo extends Component {
                 fontName="Lato-Regular"
                 fonSiz={20}
                 col="#5C5C5C"
-                text="(555) 555-1234"
+                text={this.state.store.phoneNumber}
               />
             </View>
             <LatoText
@@ -184,13 +208,59 @@ export default class StoreInfo extends Component {
               fontName="Lato-Regular"
               fonSiz={15}
               col="#5C5C5C"
-              text="Sunday"
+              text={this.state.timings.length > 0 && this.state.timings[6].day}
             />
              <LatoText
               fontName="Lato-Regular"
               fonSiz={15}
               col="#5C5C5C"
-              text="Open 24 Hours"
+              text={this.state.timings.length > 0 && (this.state.timings[6].openTime+ "-"+this.state.timings[6].ClosingTime)}
+            />
+          </View>
+          {/* { this.state.timings.map((item,ind) => { */}
+            <View
+            // key={ind}
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingVertical: 10,
+              justifyContent: "space-between"
+            }}
+          >
+            <LatoText
+              fontName="Lato-Regular"
+              fonSiz={15}
+              col="#5C5C5C"
+              text={this.state.timings.length > 0 && this.state.timings[0].day}
+            />
+            <LatoText
+              fontName="Lato-Regular"
+              fonSiz={15}
+              col="#5C5C5C"
+              text={this.state.timings.length > 0 && (this.state.timings[0].openTime+ "-"+this.state.timings[0].ClosingTime)}
+            />
+          </View>
+         {/* })}  */}
+      
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 20,
+              paddingVertical: 10,
+              justifyContent: "space-between"
+            }}
+          >
+            <LatoText
+              fontName="Lato-Regular"
+              fonSiz={15}
+              col="#5C5C5C"
+              text={this.state.timings.length > 0 && this.state.timings[1].day}
+            />
+             <LatoText
+              fontName="Lato-Regular"
+              fonSiz={15}
+              col="#5C5C5C"
+              text={this.state.timings.length > 0 && (this.state.timings[1].openTime+ "-"+this.state.timings[1].ClosingTime)}
             />
           </View>
           <View
@@ -205,13 +275,13 @@ export default class StoreInfo extends Component {
               fontName="Lato-Regular"
               fonSiz={15}
               col="#5C5C5C"
-              text="Monday"
+              text={this.state.timings.length > 0 && this.state.timings[2].day}
             />
              <LatoText
               fontName="Lato-Regular"
               fonSiz={15}
               col="#5C5C5C"
-              text="12pm-12am"
+              text={this.state.timings.length > 0 && (this.state.timings[2].openTime+ "-"+this.state.timings[2].ClosingTime)}
             />
           </View>
           <View
@@ -226,13 +296,13 @@ export default class StoreInfo extends Component {
               fontName="Lato-Regular"
               fonSiz={15}
               col="#5C5C5C"
-              text="Tuesday"
+              text={this.state.timings.length > 0 && this.state.timings[3].day}
             />
              <LatoText
               fontName="Lato-Regular"
               fonSiz={15}
               col="#5C5C5C"
-              text="12pm-12am"
+              text={this.state.timings.length > 0 && (this.state.timings[3].openTime+ "-"+this.state.timings[3].ClosingTime)}
             />
           </View>
           <View
@@ -247,13 +317,13 @@ export default class StoreInfo extends Component {
               fontName="Lato-Regular"
               fonSiz={15}
               col="#5C5C5C"
-              text="Wednesday"
+              text={this.state.timings.length > 0 && this.state.timings[4].day}
             />
              <LatoText
               fontName="Lato-Regular"
               fonSiz={15}
               col="#5C5C5C"
-              text="12pm-12am"
+              text={this.state.timings.length > 0 && (this.state.timings[4].openTime+ "-"+this.state.timings[4].ClosingTime)}
             />
           </View>
           <View
@@ -268,58 +338,17 @@ export default class StoreInfo extends Component {
               fontName="Lato-Regular"
               fonSiz={15}
               col="#5C5C5C"
-              text="Thursday"
+              text={this.state.timings.length > 0 && this.state.timings[5].day}
             />
              <LatoText
               fontName="Lato-Regular"
               fonSiz={15}
               col="#5C5C5C"
-              text="12pm-12am"
-            />
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingVertical: 10,
-              justifyContent: "space-between"
-            }}
-          >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={15}
-              col="#5C5C5C"
-              text="Friday"
-            />
-             <LatoText
-              fontName="Lato-Regular"
-              fonSiz={15}
-              col="#5C5C5C"
-              text="12pm-12am"
-            />
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 20,
-              paddingVertical: 10,
-              justifyContent: "space-between"
-            }}
-          >
-            <LatoText
-              fontName="Lato-Regular"
-              fonSiz={15}
-              col="#5C5C5C"
-              text="Saturday"
-            />
-             <LatoText
-              fontName="Lato-Regular"
-              fonSiz={15}
-              col="#5C5C5C"
-              text="12pm-12am"
+              text={this.state.timings.length > 0 && (this.state.timings[5].openTime+ "-"+this.state.timings[5].ClosingTime)}
             />
           </View>
           <View style={lines.simple} />
+          {this.state.store.messageFromStore ? (
           <View
             style={{
               flexDirection: "row",
@@ -334,7 +363,8 @@ export default class StoreInfo extends Component {
               col="#2E2E2E"
               text="Message From Store"
             ></LatoText>
-          </View>
+          </View>): null}
+          {this.state.store.messageFromStore ? (
           <View
             style={{
               flexDirection: "row",
@@ -347,9 +377,10 @@ export default class StoreInfo extends Component {
               fontName="Lato-Regular"
               fonSiz={17}
               col="#5C5C5C"
-              text="Eiusmod qui esse ullamco laborum quis. Magna duis laborum est et exercitation minim esse ad esse excepteur. Cupidatat minim consequat anim non laboris veniam nisi ullamco esse. Ullamco aliqua aliqua tempor fugiat esse exercitation culpa"
+              text={this.state.store.messageFromStore}
             ></LatoText>
-          </View>
+          </View>): null}
+          {this.state.store.orderCancellationPolicy ? (
           <View
             style={{
               flexDirection: "row",
@@ -364,7 +395,8 @@ export default class StoreInfo extends Component {
               col="#2E2E2E"
               text="Order cancelation policy "
             ></LatoText>
-          </View>
+          </View>): null}
+           {this.state.store.orderCancellationPolicy ? (
           <View
             style={{
               flexDirection: "row",
@@ -377,9 +409,10 @@ export default class StoreInfo extends Component {
               fontName="Lato-Regular"
               fonSiz={17}
               col="#5C5C5C"
-              text="Eiusmod qui esse ullamco laborum quis. Magna duis laborum est et exercitation minim esse ad esse excepteur. Cupidatat minim consequat anim non laboris veniam nisi ullamco esse. Ullamco aliqua aliqua tempor fugiat esse exercitation culpa"
+              text={this.state.store.orderCancellationPolicy}
             ></LatoText>
-          </View>
+          </View>): null}
+          {this.state.store.termsAndCondition ? (
           <View
             style={{
               flexDirection: "row",
@@ -394,7 +427,8 @@ export default class StoreInfo extends Component {
               col="#2E2E2E"
               text="Terms & conditions"
             ></LatoText>
-          </View>
+          </View>): null}
+          {this.state.store.termsAndCondition ? (
           <View
             style={{
               flexDirection: "row",
@@ -407,9 +441,9 @@ export default class StoreInfo extends Component {
               fontName="Lato-Regular"
               fonSiz={17}
               col="#5C5C5C"
-              text="Eiusmod qui esse ullamco laborum quis. Magna duis laborum est et exercitation minim esse ad esse excepteur. Cupidatat minim consequat anim non laboris veniam nisi ullamco esse. Ullamco aliqua aliqua tempor fugiat esse exercitation culpa"
+              text={this.state.store.termsAndCondition}
             ></LatoText>
-          </View>
+          </View>): null}
         </ScrollView>
       </View>
     );
