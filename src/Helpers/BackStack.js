@@ -6,13 +6,13 @@ export const BackStack = ({ navigation, backScreen }) => (
       <Button
         title="React Native by Example"
         onPress={() =>
-          navigation.push("Details", { name: "React Native by Example " })
+          navigation.navigate("Details", { name: "React Native by Example " })
         }
       />
       <Button
         title="React Native School"
         onPress={() =>
-          navigation.push("Details", { name: "React Native School" })
+          navigation.navigate("Details", { name: "React Native School" })
         }
       />
     </View>

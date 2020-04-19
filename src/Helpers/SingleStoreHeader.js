@@ -68,7 +68,7 @@ class SingleStoreHeader extends React.Component {
           >
             <MaterialIcons name="arrow-back" color="white" size={25} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=> this.props.navigation.push('StoreInfo')} style={{ padding: 20 }}>
+          <TouchableOpacity onPress={()=> this.props.navigation.navigate('StoreInfo')} style={{ padding: 20 }}>
             <LatoText
               fontName="Lato-Regular"
               fonSiz={20}
@@ -77,7 +77,7 @@ class SingleStoreHeader extends React.Component {
             />
           </TouchableOpacity> 
           <TouchableOpacity
-            onPress={() => this.props.navigation.push("Cart")}
+            onPress={() => this.props.navigation.navigate("Cart")}
             style={{ padding: 20 }}
           >
             <View>

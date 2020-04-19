@@ -14,10 +14,10 @@ export default class Map extends React.Component {
         },
         {
           text: "Select Manually",
-          onPress: () => this.props.navigation.push("App"),
+          onPress: () => this.props.navigation.navigate("App"),
           style: "cancel"
         },
-        { text: "Go Back", onPress: () => this.props.navigation.push("App") }
+        { text: "Go Back", onPress: () => this.props.navigation.navigate("App") }
       ],
       { cancelable: false }
     );

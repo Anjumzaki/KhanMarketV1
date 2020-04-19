@@ -160,7 +160,7 @@ class QrCode extends Component {
         </ScrollView>
         <View style={bottomTab.cartSheet}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.push('Home')}
+            onPress={() => this.props.navigation.navigate('Home')}
             style={[btnStyles.cartBtn, { width: "55%" }]}
           >
             <LatoText

@@ -44,7 +44,7 @@ class SliderItem extends React.Component {
                             <TouchableOpacity style={styles.buybBtn} 
                             
                             onPress={() =>
-                                this.props.navigation.push("ProductDetails", {
+                                this.props.navigation.navigate("ProductDetails", {
                                   product: this.props.data
                                 })
                               }

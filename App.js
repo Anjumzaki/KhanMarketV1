@@ -55,6 +55,7 @@ const HomeStack = createStackNavigator();
 const FavouritesStack = createStackNavigator();
 const HomeStackScreen = () => (
   <HomeStack.Navigator
+  headerMode="screen"
   >
     <HomeStack.Screen
       name="Home"

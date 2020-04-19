@@ -146,7 +146,7 @@ export default class SignUp1 extends React.Component {
                     >
                         <TouchableOpacity
                             style={btnStyles.basic}
-                            onPress={() => this.props.navigation.push("App")}
+                            onPress={() => this.props.navigation.navigate("App")}
                         >
                             <LatoText
                                 fontName="Lato-Regular"
@@ -157,7 +157,7 @@ export default class SignUp1 extends React.Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={{ alignItems: "center", marginTop: 20 }}
-                            onPress={() => this.props.navigation.push("SignUp1")}
+                            onPress={() => this.props.navigation.navigate("SignUp1")}
                         >
                             <LatoText
                                 fontName="Lato-Regular"

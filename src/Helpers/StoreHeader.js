@@ -42,7 +42,7 @@ class StoreHeader extends React.Component {
                 text={"STORES NEAR YOU"}
               />
             </View>
-            <TouchableOpacity onPress={()=>this.props.navigation.push('Cart')}   style={{padding:20}}>
+            <TouchableOpacity onPress={()=>this.props.navigation.navigate('Cart')}   style={{padding:20}}>
                <View>
                   <View style={headerStyles.cartTxt}>
                     <LatoText
