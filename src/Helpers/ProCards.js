@@ -12,7 +12,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import LatoText from "./LatoText";
 import { btnStyles } from "../styles/base";
 import { bindActionCreators } from "redux";
-import { cartAsync } from "../store/actions";
+import { cartAsync, cartSizeAsync } from "../store/actions";
 import { connect } from "react-redux";
 
 class ProCards extends React.Component {
@@ -69,6 +69,8 @@ class ProCards extends React.Component {
 
   }
   render() {
+    console.log("PRop CRAD props", this.props.cart.length, "cartSize",this.props.cartSize)
+    this.props.cartSizeAsync(this.props.cart.length)
     return (
       <View style={styles.procards}>
         <TouchableOpacity
@@ -252,12 +254,14 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
   cart: state.Cart.cartData, 
   loading: state.Cart.cartLoading,
+  cartSize: state.CartSize.cartSizeData,
   error: state.Cart.cartError
 });
 const mapDispatchToProps = (dispatch, ownProps) =>
   bindActionCreators(
       {
-          cartAsync
+          cartAsync,
+          cartSizeAsync
       },
       dispatch
   );

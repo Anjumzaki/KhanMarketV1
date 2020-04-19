@@ -30,7 +30,7 @@ class StoreDetails extends React.Component {
 
     axios.get("https://sheltered-scrubland-52295.herokuapp.com/get/all/featured/products/" + this.props.route.params.storeId)
       .then(resp => {
-        console.log(resp)
+        // console.log(resp)
         this.setState({ featuredProducts: resp.data, loading: false })
       })
       .catch(err => console.log(err))
@@ -39,7 +39,7 @@ class StoreDetails extends React.Component {
 
     axios.get("https://sheltered-scrubland-52295.herokuapp.com/get/all/subCategories")
       .then(resp => {
-        console.log("Cat", resp.data)
+        // console.log("Cat", resp.data)
         this.setState({ categories: resp.data })
       })
       .catch(err => console.log(err))
@@ -61,14 +61,15 @@ class StoreDetails extends React.Component {
       })
     ))
     console.log("FFFFFPPPPPP", fp)
+    console.log("PROPSSSSSS", this.props)
     console.log("stateeeeeeeee", this.state)
 
     return (
       <View>
-        <SingleStoreHeader props={this.props} />
+        <SingleStoreHeader props={this.props} navigation={this.props.navigation} />
         <ScrollView showsVerticalScrollIndicator={false} >
           {this.state.featuredProducts.length > 0 ? (
-            <Slider featuredProducts={this.state.featuredProducts} />
+            <Slider featuredProducts={this.state.featuredProducts} navigation={this.props.navigation}/>
           ) : null}
           {fp.map((cat, index) => (
             cat.products.length > 0 ? (
