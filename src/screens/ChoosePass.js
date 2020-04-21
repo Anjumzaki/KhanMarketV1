@@ -23,8 +23,12 @@ import {
 } from "react-native-responsive-screen";
 import { conStyles, textStyles, textIn, btnStyles } from "../styles/base";
 import LatoText from "../Helpers/LatoText";
+import axios from "axios";
+import { bindActionCreators } from "redux";
+import { userAsync } from "../store/actions";
+import { connect } from "react-redux";
 
-export default class SignUp1 extends React.Component {
+class SignUp1 extends React.Component {
     static navigationOptions = { header: null };
 
     constructor(props) {
@@ -33,10 +37,13 @@ export default class SignUp1 extends React.Component {
         this.state = {
             icEye: "visibility-off",
             isPassword: true,
-            fontLoaded: false
+            fontLoaded: false,
+            user: {}
         };
     }
     async componentDidMount() {
+        console.log("cP", this.props.route.params)
+        this.setState({user: this.props.route.params })
         await Font.loadAsync({
             "Lato-Light": require("../../assets/fonts/Lato-Light.ttf"),
             "Lato-Bold": require("../../assets/fonts/Lato-Bold.ttf"),
@@ -60,6 +67,7 @@ export default class SignUp1 extends React.Component {
         });
     };
     render() {
+        console.log("state",this.state)
         const { icEye, isPassword } = this.state;
         const styles = StyleSheet.create({
             logo: {
@@ -111,7 +119,15 @@ export default class SignUp1 extends React.Component {
                                 />
                             </View>
                             <View>
-                                <TextInput style={textIn.input} secureTextEntry={isPassword} />
+                                <TextInput style={textIn.input} secureTextEntry={isPassword} 
+                                onChangeText={ (password) => {
+                                    this.setState({
+                                    password
+                                  })
+                                    this.state.user.password = password
+                                }
+                                }
+                                  value={this.state.password}/>
                                 <Icon
                                     style={styles.icon}
                                     name={icEye}
@@ -138,6 +154,9 @@ export default class SignUp1 extends React.Component {
                         <View>
                         </View>
                     </View>
+                    <View>
+                        <Text style={{textAlign: "center", color: "red", fontWeight: "bold"}}>{this.state.msg}</Text>
+                    </View>
                     <View
                         style={{
                             justifyContent: "space-evenly",
@@ -146,7 +165,16 @@ export default class SignUp1 extends React.Component {
                     >
                         <TouchableOpacity
                             style={btnStyles.basic}
-                            onPress={() => this.props.navigation.navigate("App")}
+                            onPress={() => {
+                                console.log("PRESSED")
+                                axios.post("http://192.168.0.108:3000/api/users/signup",this.state.user)
+                                .then(resp => {
+                                    console.log("resp",resp)
+                                    this.props.userAsync(resp.data)
+                                    this.props.navigation.navigate("App")
+                                })
+                                .catch(err => this.setState({msg: "Email already exist!"}))         
+                            }}
                         >
                             <LatoText
                                 fontName="Lato-Regular"
@@ -174,3 +202,20 @@ export default class SignUp1 extends React.Component {
         );
     }
 }
+const mapStateToProps = state => ({
+    user: state.user.user, 
+    loading: state.user.userLoading,
+    error: state.user.userError
+  });
+  const mapDispatchToProps = (dispatch, ownProps) =>
+    bindActionCreators(
+        {
+          userAsync
+        },
+        dispatch
+    );
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SignUp1);

@@ -3,14 +3,13 @@ export const GET_USER_DATA = "GET_USER_DATA";
 export const GET_USER_DATA_LOADING = "GET_USER_DATA_LOADING";
 export const GET_USER_DATA_ERROR = "GET_USER_DATA_ERROR";
 
-export const userAsync = (userId) => {
+export const userAsync = (userData) => {
+  console.log("IN REDUX1", userData)
   return (dispatch, getState) => {
    
     dispatch(userLoading(true))
-
-   
-      dispatch(user(userId));
-      dispatch(userLoading(false))
+    dispatch(user(userData));
+    dispatch(userLoading(false))
     
   };
 };

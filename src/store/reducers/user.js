@@ -5,7 +5,7 @@ import {
   } from "../actions";
   
   const userData = {
-    userId: "",
+    user: {},
     userLoading: false,
     userError: "",
   };
@@ -15,7 +15,7 @@ import {
       case GET_USER_DATA:
         return {
           ...state,
-          userId: action.payload
+          user: action.payload
         };
       case GET_USER_DATA_LOADING:
         return {

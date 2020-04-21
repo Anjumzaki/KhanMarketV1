@@ -5,7 +5,7 @@ import {
   } from "../actions";
   
   const cartSizeData = {
-    cartSizeData: 0,
+    cartSizeData: {},
     cartSizeLoading: false,
     cartSizeError: "",
   };

@@ -23,8 +23,12 @@ import {
 } from "react-native-responsive-screen";
 import { conStyles, textStyles, textIn, btnStyles } from "../styles/base";
 import LatoText from "../Helpers/LatoText";
+import axios from "axios";
+import { bindActionCreators } from "redux";
+import { userAsync } from "../store/actions";
+import { connect } from "react-redux";
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   static navigationOptions = { header: null };
 
   constructor(props) {
@@ -33,7 +37,10 @@ export default class Login extends React.Component {
     this.state = {
       icEye: "visibility-off",
       isPassword: true,
-      fontLoaded: false
+      fontLoaded: false,
+      email: "",
+      password: "",
+      msg: ""
     };
   }
   async componentDidMount() {
@@ -60,6 +67,7 @@ export default class Login extends React.Component {
     });
   };
   render() {
+    console.log("state L", this.state)
     const { icEye, isPassword } = this.state;
     const styles = StyleSheet.create({
       logo: {
@@ -109,7 +117,11 @@ export default class Login extends React.Component {
                 />
               </View>
               <View>
-                <TextInput style={textIn.input} />
+                <TextInput style={textIn.input}
+                onChangeText={ (email) => this.setState({
+                  email
+                })}
+                value={this.state.email} />
               </View>
             </View>
             <View>
@@ -122,7 +134,14 @@ export default class Login extends React.Component {
                 />
               </View>
               <View>
-                <TextInput style={textIn.input} secureTextEntry={isPassword} />
+                <TextInput style={textIn.input} secureTextEntry={isPassword}
+                onChangeText={ (password) => {
+                  this.setState({
+                  password
+                })
+              }
+              }
+                value={this.state.password} />
                 <Icon
                   style={styles.icon}
                   name={icEye}
@@ -147,7 +166,9 @@ export default class Login extends React.Component {
               />
             </TouchableOpacity>
           </View>
-
+          <View>
+              <Text style={{textAlign: "center", color: "red", fontWeight: "bold"}}>{this.state.msg}</Text>
+          </View>
           <View
             style={{
               justifyContent: "space-evenly",
@@ -157,7 +178,20 @@ export default class Login extends React.Component {
           >
             <TouchableOpacity
               style={btnStyles.basic}
-              onPress={() => this.props.navigation.navigate("App")}
+              onPress={() => {
+                axios.post("http://192.168.0.108:3000/api/users/signin",{
+                  email: this.state.email,
+                  password: this.state.password
+                })
+                .then(resp => {
+                    console.log("resp",resp.data)
+                    this.setState({msg: ""})
+                    this.props.userAsync(resp.data)
+                    this.props.navigation.navigate("App")
+                })
+                .catch(err => this.setState({msg: "Incorrect email or password."})) 
+              
+              }}
             >
               <LatoText
                 fontName="Lato-Regular"
@@ -192,3 +226,21 @@ export default class Login extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user.user, 
+  loading: state.user.userLoading,
+  error: state.user.userError
+});
+const mapDispatchToProps = (dispatch, ownProps) =>
+  bindActionCreators(
+      {
+        userAsync
+      },
+      dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

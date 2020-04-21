@@ -18,7 +18,7 @@ import * as Font from "expo-font";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
-  listenOrientationChange as lor,
+  listenOrientationChangeText as lor,
   removeOrientationListener as rol
 } from "react-native-responsive-screen";
 import { conStyles, textStyles, textIn, btnStyles } from "../styles/base";
@@ -33,7 +33,12 @@ export default class SignUp1 extends React.Component {
     this.state = {
       icEye: "visibility-off",
       isPassword: true,
-      fontLoaded: false
+      fontLoaded: false,
+      name: "",
+      email: "",
+      mobile: "",
+      zipCode: "",
+      password: ""
     };
   }
   async componentDidMount() {
@@ -73,6 +78,7 @@ export default class SignUp1 extends React.Component {
       },
       myText: { fontSize: hp("5%") }
     });
+    console.log("this", this.state)
     return (
       <SafeAreaView style={[conStyles.safeAreaMy, { backgroundColor: 'white' }]}>
         <StatusBar translucent={true} barStyle="dark-content"  />
@@ -111,7 +117,11 @@ export default class SignUp1 extends React.Component {
                 />
               </View>
               <View>
-                <TextInput style={textIn.input} />
+                <TextInput style={textIn.input} 
+                onChangeText={ (name) => this.setState({
+                  name
+                })}
+                value={this.state.name}  />
               </View>
             </View>
             <View>
@@ -125,7 +135,11 @@ export default class SignUp1 extends React.Component {
               </View>
               <View>
 
-                <TextInput style={textIn.input} />
+                <TextInput style={textIn.input} 
+                onChangeText={ (email) => this.setState({
+                  email
+                })}
+                value={this.state.email}/>
 
               </View>
 
@@ -155,7 +169,13 @@ export default class SignUp1 extends React.Component {
                   />
 
                 </View>
-                <TextInput placeholder={'(555) 555-5678'} style={[textIn.input, { width: wp('64%') }]} />
+                <TextInput placeholder={'(555) 555-5678'} 
+                keyboardType={'numeric'}
+                onChangeText={ (mobile) => this.setState({
+                  mobile
+                })}
+                value={this.state.mobile}
+                style={[textIn.input, { width: wp('64%') }]} />
 
               </View>
               
@@ -193,7 +213,11 @@ export default class SignUp1 extends React.Component {
               </View>
               <View>
 
-                <TextInput placeholder={'00000'} style={textIn.input} />
+                <TextInput placeholder={'00000'} style={textIn.input} 
+                onChangeText={ (zipCode) => this.setState({
+                  zipCode
+                })} 
+                value={this.state.zipCode}/>
 
               </View>
 
@@ -209,7 +233,13 @@ export default class SignUp1 extends React.Component {
           >
             <TouchableOpacity
               style={btnStyles.basic}
-              onPress={() => this.props.navigation.navigate("ChoosePass")}
+              onPress={() => this.props.navigation.navigate("ChoosePass",{
+                name: this.state.name,
+                email: this.state.email,
+                mobile: this.state.mobile,
+                zipCode: this.state.zipCode,
+                password: this.state.password,
+              })}
             >
               <LatoText
                 fontName="Lato-Regular"

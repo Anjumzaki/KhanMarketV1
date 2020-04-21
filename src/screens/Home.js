@@ -7,8 +7,11 @@ import axios from "axios";
 import fb from "../config/Fire";
 import firebase from "firebase";
 import StoreHeader from "../Helpers/StoreHeader";
+import { bindActionCreators } from "redux";
+import { userAsync } from "../store/actions";
+import { connect } from "react-redux"
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   static navigationOptions = {
     header: null,
 };
@@ -33,6 +36,7 @@ export default class Home extends React.Component {
       });
   }
   render() {
+    console.log("propsssss",this.props.user)
     return (
       <View style={{ justifyContent: "center" }}>
         <StatusBar  translucent={true} barStyle="light-content" backgroundColor='transparent'/>
@@ -57,3 +61,21 @@ export default class Home extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user.user, 
+  loading: state.user.userLoading,
+  error: state.user.userError
+});
+const mapDispatchToProps = (dispatch, ownProps) =>
+  bindActionCreators(
+      {
+        userAsync
+      },
+      dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
