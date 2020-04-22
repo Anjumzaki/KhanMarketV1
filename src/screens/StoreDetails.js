@@ -45,7 +45,7 @@ class StoreDetails extends React.Component {
       .catch(err => console.log(err))
 
   }
-  capitalize = (s) => {
+  capitalize = (s) => { 
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
   }

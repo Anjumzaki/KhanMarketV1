@@ -29,6 +29,7 @@ class OrderCards extends React.Component {
     }
   }
   render() {
+    console.log("order",this.props.order)
     return (
       <View style={styles.procards}>
         <View style={styles.wrapCards}>
@@ -44,7 +45,7 @@ class OrderCards extends React.Component {
                 fontName="Lato-Regular"
                 fonSiz={20}
                 col="#5C5C5C"
-                text={"Khan Market"}
+                text={this.props.order.storeName}
               />
             </View>
             <View
@@ -58,13 +59,17 @@ class OrderCards extends React.Component {
                 fontName="Lato-Regular"
                 fonSiz={17}
                 col="#5C5C5C"
-                text={"Order # DBZ-876"}
+                text={"Order # "+this.props.order.orderNumber}
               />
               <LatoText
                 fontName="Lato-Regular"
                 fonSiz={15}
                 col="#2AA034"
-                text={" Being Prepared"}
+                text={
+                  this.props.order.isAccepted === true && this.props.order.isInPreparation === true ? (
+                    "Being Prepared"
+                  ) : "wait"
+                }
               />
             </View>
             <View>
@@ -73,7 +78,7 @@ class OrderCards extends React.Component {
                   fontName="Lato-Regular"
                   fonSiz={17}
                   col="#2E2E2E"
-                  text={"Total: $14.00"}
+                  text={"Total: $"+parseFloat(this.props.order.totalAmount).toFixed(2)}
                 />
               </View>
               <View style={{flexDirection:"row",justifyContent:'space-between'}}>
@@ -81,7 +86,7 @@ class OrderCards extends React.Component {
                   fontName="Lato-Regular"
                   fonSiz={15}
                   col="#5C5C5C"
-                  text={"Dec 19, 2019 2:32 PM"}
+                  text={this.props.order.orderDate + " "+ this.props.order.orderTime}
                 />
                  <LatoText
                   fontName="Lato-Regular"

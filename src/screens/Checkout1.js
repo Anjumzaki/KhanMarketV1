@@ -51,7 +51,7 @@ class Cart extends Component {
     console.log(timestamp('DDMMYYYY'));
     console.log(timestamp('YYYY-MM-DD'));
 
-
+    console.log("CO props user", this.props.user)
     if(this.props.cart.length >0){
       var sId = this.props.cart[0].product.storeId
     }else{
@@ -100,7 +100,7 @@ class Cart extends Component {
                 fontName="Lato-Bold"
                 fonSiz={20}
                 col="#2E2E2E"
-                text="KHAN MARKET"
+                text={this.props.store.name}
               />
             </View>
           </View>
@@ -116,7 +116,7 @@ class Cart extends Component {
               fontName="Lato-Regular"
               fonSiz={17}
               col="#2E2E2E"
-              text="451 Washington Ave Manchester, Kentucky 39495 "
+              text={this.props.store.address}
             />
           </View>
           
@@ -207,7 +207,7 @@ class Cart extends Component {
               fontName="Lato-Regular"
               fonSiz={17}
               col="#2E2E2E"
-              text="Bernard Murphy"
+              text={this.props.user.user.name}
             />
           </View>
           <View
@@ -229,7 +229,7 @@ class Cart extends Component {
               fontName="Lato-Regular"
               fonSiz={17}
               col="#2E2E2E"
-              text="(555) 555-1234"
+              text={this.props.user.user.mobile}
             />
           </View>
           <View
@@ -251,7 +251,7 @@ class Cart extends Component {
               fontName="Lato-Regular"
               fonSiz={17}
               col="#2E2E2E"
-              text="b.murphy@gmail.com"
+              text={this.props.user.user.email}
             />
           </View>
           <View style={{ alignItems: "flex-end", paddingHorizontal: 20 }}>
@@ -307,13 +307,15 @@ class Cart extends Component {
           <TouchableOpacity
             onPress={() => {
               this.setState({ cart: true })
-              axios.post('https://sheltered-scrubland-52295.herokuapp.com/add/order',{
+              axios.post('http://192.168.0.108:3000/add/order',{
                 storeId: sId,
                 products: this.props.cart,
                 totalAmount: subTotal,
-                name: "Bernard Murphey",
-                phone: "(555) 555-1234",
-                email: "b.murphey@gmail.com",
+                storeName: this.props.store.name, 
+                userId: this.props.user.user._id,
+                name: this.props.user.user.name,
+                phone: this.props.user.user.mobile,
+                email: this.props.user.user.email,
                 address: "bac Street",
                 orderTime: "5:00 PM",
                 orderDate: timestamp('DD-MM-YYYY'),
@@ -390,12 +392,15 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
   cart: state.Cart.cartData, 
   loading: state.Cart.cartLoading,
-  error: state.Cart.cartError
+  error: state.Cart.cartError,
+  user: state.user.user,
+  store: state.Store.storeData, 
+
 });
 const mapDispatchToProps = (dispatch, ownProps) =>
   bindActionCreators(
       {
-          cartAsync
+          cartAsync,
       },
       dispatch
   );

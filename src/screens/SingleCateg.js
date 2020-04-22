@@ -18,6 +18,8 @@ import { btnStyles, bottomTab, lines } from "../styles/base";
 import { Row } from "native-base";
 import CheckBox from "react-native-check-box";
 import ProcardsSmall from "../Helpers/ProcardsSmall";
+
+
 const { width } = Dimensions.get("window");
 const { height } = 300;
 
@@ -31,10 +33,85 @@ export default class SingleCateg extends Component {
     };
   }
   render() {
+    console.log("Signle cat props",this.props.route.params)
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>
           <View style={{ marginVertical: 10, flexDirection: "row",width:'100%',flexWrap: 'wrap' }}>
+            {this.props.route.params.products.map((item,ind) => (
+              
+            <ProcardsSmall
+              navigation={this.props.navigation}
+              key={1}
+              product={item
+              //   {
+              //   __v: 0,
+              //   _id: "5e6c73426ab4b4fa150ea5ef",
+              //   calories: "32",
+              //   cholesterol: "34",
+              //   dietaryFiber: "34",
+              //   discount: "23",
+              //   fatInGm: "54",
+              //   monounsaturatedFatInGm: "344",
+              //   noOfImages: "3",
+              //   polyunsaturatedFatInGm: "3",
+              //   potassium: "34",
+              //   price: "23",
+              //   productDescription:
+              //     "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
+              //   productName: "ASD",
+              //   productType: "Vegetable",
+              //   protienInGm: "34",
+              //   saturatedFatInGm: "34",
+              //   servingPerContainer: "34",
+              //   servingSize: "34",
+              //   sodium: "34",
+              //   specialInstruction:
+              //     "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
+              //   storeId: "5e658f62cead2c04281c9f85",
+              //   sugar: "34",
+              //   totalCarbs: "34",
+              //   transFatInGm: "34"
+              // }
+            }
+            />
+
+            
+            ))}
+            {/* <ProcardsSmall
+              width={"50%"}
+              navigation={this.props.navigation}
+              key={1}
+              product={{
+                __v: 0,
+                _id: "5e6c73426ab4b4fa150ea5ef",
+                calories: "32",
+                cholesterol: "34", 
+                dietaryFiber: "34",
+                discount: "23",
+                fatInGm: "54",
+                monounsaturatedFatInGm: "344",
+                noOfImages: "3",
+                polyunsaturatedFatInGm: "3",
+                potassium: "34",
+                price: "23",
+                productDescription:
+                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
+                productName: "ASD",
+                productType: "Vegetable",
+                protienInGm: "34",
+                saturatedFatInGm: "34",
+                servingPerContainer: "34",
+                servingSize: "34",
+                sodium: "34",
+                specialInstruction:
+                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
+                storeId: "5e658f62cead2c04281c9f85",
+                sugar: "34",
+                totalCarbs: "34",
+                transFatInGm: "34"
+              }}
+            />
             <ProcardsSmall
               navigation={this.props.navigation}
               key={1}
@@ -101,74 +178,7 @@ export default class SingleCateg extends Component {
                 totalCarbs: "34",
                 transFatInGm: "34"
               }}
-            />
-            <ProcardsSmall
-              navigation={this.props.navigation}
-              key={1}
-              product={{
-                __v: 0,
-                _id: "5e6c73426ab4b4fa150ea5ef",
-                calories: "32",
-                cholesterol: "34",
-                dietaryFiber: "34",
-                discount: "23",
-                fatInGm: "54",
-                monounsaturatedFatInGm: "344",
-                noOfImages: "3",
-                polyunsaturatedFatInGm: "3",
-                potassium: "34",
-                price: "23",
-                productDescription:
-                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
-                productName: "ASD",
-                productType: "Vegetable",
-                protienInGm: "34",
-                saturatedFatInGm: "34",
-                servingPerContainer: "34",
-                servingSize: "34",
-                sodium: "34",
-                specialInstruction:
-                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
-                storeId: "5e658f62cead2c04281c9f85",
-                sugar: "34",
-                totalCarbs: "34",
-                transFatInGm: "34"
-              }}
-            />
-            <ProcardsSmall
-              width={"50%"}
-              navigation={this.props.navigation}
-              key={1}
-              product={{
-                __v: 0,
-                _id: "5e6c73426ab4b4fa150ea5ef",
-                calories: "32",
-                cholesterol: "34",
-                dietaryFiber: "34",
-                discount: "23",
-                fatInGm: "54",
-                monounsaturatedFatInGm: "344",
-                noOfImages: "3",
-                polyunsaturatedFatInGm: "3",
-                potassium: "34",
-                price: "23",
-                productDescription:
-                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
-                productName: "ASD",
-                productType: "Vegetable",
-                protienInGm: "34",
-                saturatedFatInGm: "34",
-                servingPerContainer: "34",
-                servingSize: "34",
-                sodium: "34",
-                specialInstruction:
-                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
-                storeId: "5e658f62cead2c04281c9f85",
-                sugar: "34",
-                totalCarbs: "34",
-                transFatInGm: "34"
-              }}
-            />
+            /> */}
           </View>
         </ScrollView>
       </View>
@@ -220,3 +230,5 @@ const styles = StyleSheet.create({
     elevation: 5
   }
 });
+
+

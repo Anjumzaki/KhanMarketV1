@@ -4,6 +4,9 @@ import ProCards from '../Helpers/ProCards'
 import LatoText from '../Helpers/LatoText'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { bindActionCreators } from "redux";
+import { singleCatAsync } from "../store/actions";
+import { connect } from "react-redux";
 
 class Cart extends React.Component {
 
@@ -15,7 +18,11 @@ class Cart extends React.Component {
                     <View style={{ width: '80%' }}>
                         <LatoText fontName="Sarabun-Light" fonSiz={25} col='#5C5C5C' text={this.props.name} ></LatoText>
                     </View>
-                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate('SingleCateg'),{products:this.props.products}}}>
+                    <TouchableOpacity onPress={()=>{
+                        this.props.singleCatAsync(this.props.name)
+                        this.props.navigation.navigate('SingleCateg',{products:this.props.products, name: this.props.name})
+                        
+                        }}>
                         <View style={{  justifyContent: 'center', position: 'relative', top: 12 }}>
                             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                                 <LatoText style={{ alignSelf: 'flex-end' }} fontName="Lato-Light" fonSiz={16} col='#5C5C5C' text="See All" ></LatoText>
@@ -24,7 +31,7 @@ class Cart extends React.Component {
                         </View>
                     </TouchableOpacity>
  
-                </View>  
+                </View>   
                 <View style={{ height: 312 }}> 
                     <ScrollView
                         horizontal={true}
@@ -41,7 +48,7 @@ class Cart extends React.Component {
         );
     }
 }
-export default Cart
+// export default Cart
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -50,3 +57,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
+
+
+const mapStateToProps = state => ({
+    cart: state.Cart.cartData, 
+    loading: state.Cart.cartLoading,
+    error: state.Cart.cartError
+  });
+  const mapDispatchToProps = (dispatch, ownProps) =>
+    bindActionCreators(
+        {
+          singleCatAsync
+        },
+        dispatch
+    );
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Cart);

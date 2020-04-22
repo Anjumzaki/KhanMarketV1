@@ -30,6 +30,7 @@ class ProCards extends React.Component {
       this.setState({ image: url });
     });
   }
+  
   handleChange(num) {
     var preNum = this.state.qt;
     preNum = num + preNum;
@@ -51,21 +52,7 @@ class ProCards extends React.Component {
 
     console.log("pacart 11111",pCart)
 
-
-      // pCart.push(pCart1)
       this.props.cartAsync(pCart)
-      // this.setState({cart: true})
-      
-  
-      //   this.handleChange(1)
-      // this.setState({qt: this.state.qt+1})
-
-      // var temp=this.state.cart[this.props.index]
-      // temp.price = ((this.props.product.product.price - ((this.props.product.product.price * this.props.product.product.discount)/100))*parseInt(this.state.qt+1)).toFixed(3)
-      // temp.quantity = parseInt(this.state.qt+1)
-      // this.state.cart[this.props.index] = temp
-      // this.props.cartAsync(this.state.cart)
-      
 
   }
   render() {
@@ -260,7 +247,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, ownProps) =>
   bindActionCreators(
       {
-          cartAsync,
+          cartAsync, 
           cartSizeAsync
       },
       dispatch

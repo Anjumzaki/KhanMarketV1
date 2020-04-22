@@ -24,7 +24,7 @@ import {
 import LatoText from "./LatoText";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { bindActionCreators } from "redux";
-import { storeAsync, cartAsync, cartSizeAsync } from "../store/actions";
+import { storeAsync, cartAsync, cartSizeAsync, singleCatAsync } from "../store/actions";
 import { connect } from "react-redux";
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
@@ -73,7 +73,7 @@ class SingleCategHeader extends React.Component {
               fontName="Lato-Regular"
               fonSiz={20}
               col="white"
-              text={"BEEF"}
+              text={this.props.name}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -133,14 +133,16 @@ const mapStateToProps = state => ({
   cartData: state.Cart.cartData, 
   cartSize: state.CartSize.cartSizeData,
   loading: state.Store.storeLoading,
-  error: state.Store.storeError
+  error: state.Store.storeError,
+  name: state.SingleCatName.singleCatData
 });
 const mapDispatchToProps = (dispatch, ownProps) =>
   bindActionCreators(
       {
           storeAsync,
           cartAsync,
-          cartSizeAsync
+          cartSizeAsync,
+          singleCatAsync
       },
       dispatch
   );

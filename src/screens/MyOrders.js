@@ -17,19 +17,31 @@ import { btnStyles, bottomTab, lines } from "../styles/base";
 import { Row } from "native-base";
 import CheckBox from "react-native-check-box";
 import OrderCards from "../Helpers/OrderCards";
+import axios from "axios";
+import { bindActionCreators } from "redux";
+import { userAsync } from "../store/actions";
+import { connect } from "react-redux"
 const { width } = Dimensions.get("window");
 const { height } = 300;
 
-export default class MyOrders extends Component {
+class MyOrders extends Component {
   constructor(props) {
     super(props); 
 
     this.state = {
       heart: false,
-      qt: 1
+      qt: 1,
+      myOrders: []
     };
   }
+
+  componentDidMount(){
+    axios.get("http://192.168.0.108:3000/get/my/orders/"+this.props.user.user._id)
+    .then(resp => this.setState({myOrders: resp.data}))
+    .catch(err => console.log(err))
+  }
   render() {
+    console.log("my order state",this.state)
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>
@@ -42,141 +54,14 @@ export default class MyOrders extends Component {
                 text={"Active (2)"}
               />
               </View>
-
+            {this.state.myOrders.length > 0 ? this.state.myOrders.map((item,ind) => (
             <OrderCards
               navigation={this.props.navigation}
-              key={1}
-              product={{
-                __v: 0,
-                _id: "5e6c73426ab4b4fa150ea5ef",
-                calories: "32",
-                cholesterol: "34",
-                dietaryFiber: "34",
-                discount: "23",
-                fatInGm: "54",
-                monounsaturatedFatInGm: "344",
-                noOfImages: "3",
-                polyunsaturatedFatInGm: "3",
-                potassium: "34",
-                price: "23",
-                productDescription:
-                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
-                productName: "ASD",
-                productType: "Vegetable",
-                protienInGm: "34",
-                saturatedFatInGm: "34",
-                servingPerContainer: "34",
-                servingSize: "34",
-                sodium: "34",
-                specialInstruction:
-                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
-                storeId: "5e658f62cead2c04281c9f85",
-                sugar: "34",
-                totalCarbs: "34",
-                transFatInGm: "34"
-              }}
-            />
-            <OrderCards
-              width={"50%"}
-              navigation={this.props.navigation}
-              key={1}
-              product={{
-                __v: 0,
-                _id: "5e6c73426ab4b4fa150ea5ef",
-                calories: "32",
-                cholesterol: "34",
-                dietaryFiber: "34",
-                discount: "23",
-                fatInGm: "54",
-                monounsaturatedFatInGm: "344",
-                noOfImages: "3",
-                polyunsaturatedFatInGm: "3",
-                potassium: "34",
-                price: "23",
-                productDescription:
-                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
-                productName: "ASD",
-                productType: "Vegetable",
-                protienInGm: "34",
-                saturatedFatInGm: "34",
-                servingPerContainer: "34",
-                servingSize: "34",
-                sodium: "34",
-                specialInstruction:
-                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
-                storeId: "5e658f62cead2c04281c9f85",
-                sugar: "34",
-                totalCarbs: "34",
-                transFatInGm: "34"
-              }}
-            />
-            <OrderCards
-              navigation={this.props.navigation}
-              key={1}
-              product={{
-                __v: 0,
-                _id: "5e6c73426ab4b4fa150ea5ef",
-                calories: "32",
-                cholesterol: "34",
-                dietaryFiber: "34",
-                discount: "23",
-                fatInGm: "54",
-                monounsaturatedFatInGm: "344",
-                noOfImages: "3",
-                polyunsaturatedFatInGm: "3",
-                potassium: "34",
-                price: "23",
-                productDescription:
-                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
-                productName: "ASD",
-                productType: "Vegetable",
-                protienInGm: "34",
-                saturatedFatInGm: "34",
-                servingPerContainer: "34",
-                servingSize: "34",
-                sodium: "34",
-                specialInstruction:
-                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
-                storeId: "5e658f62cead2c04281c9f85",
-                sugar: "34",
-                totalCarbs: "34",
-                transFatInGm: "34"
-              }}
-            />
-            <OrderCards
-              width={"50%"}
-              navigation={this.props.navigation}
-              key={1}
-              product={{
-                __v: 0,
-                _id: "5e6c73426ab4b4fa150ea5ef",
-                calories: "32",
-                cholesterol: "34",
-                dietaryFiber: "34",
-                discount: "23",
-                fatInGm: "54",
-                monounsaturatedFatInGm: "344",
-                noOfImages: "3",
-                polyunsaturatedFatInGm: "3",
-                potassium: "34",
-                price: "23",
-                productDescription:
-                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
-                productName: "ASD",
-                productType: "Vegetable",
-                protienInGm: "34",
-                saturatedFatInGm: "34",
-                servingPerContainer: "34",
-                servingSize: "34",
-                sodium: "34",
-                specialInstruction:
-                  "asdasdasd asdasdhas dahsgda sdjagsd asdgjasd jashgd asdiagsd asjdhgas diagsdmasdjhgasd ashdgas dhasgdba sdhgasd asdgkasdm ashdgka sdasgdk asdj",
-                storeId: "5e658f62cead2c04281c9f85",
-                sugar: "34",
-                totalCarbs: "34",
-                transFatInGm: "34"
-              }}
-            />
+              key={ind}
+              order={item}
+            /> 
+            )): null}
+    
           </View>
         </ScrollView>
       </View>
@@ -228,3 +113,22 @@ const styles = StyleSheet.create({
     elevation: 5
   }
 });
+
+const mapStateToProps = state => ({
+  cart: state.Cart.cartData, 
+  loading: state.Cart.cartLoading,
+  error: state.Cart.cartError,
+  user: state.user.user
+});
+const mapDispatchToProps = (dispatch, ownProps) =>
+  bindActionCreators(
+      {
+        userAsync,
+      },
+      dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyOrders);
