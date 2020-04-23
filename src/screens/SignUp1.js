@@ -46,7 +46,8 @@ export default class SignUp1 extends React.Component {
       isDisabled: false,
       swipeToClose: true,
       sliderValue: 0.3,
-      codeMsg:false
+      codeMsg: false,
+      numVerified: false,
     };
   }
   onClose() {
@@ -117,7 +118,7 @@ export default class SignUp1 extends React.Component {
             codeLength={6}
             inputPosition='center'
             size={wp(8)}
-            onFulfill={(isValid) => isValid ? this.setState({codeMsg:false,numVerified:true},this.refs.modal3.close())  : this.setState({ codeMsg: true })}
+            onFulfill={(isValid) => isValid ? this.setState({ codeMsg: false, numVerified: true }, this.refs.modal3.close()) : this.setState({ codeMsg: true })}
             containerStyle={{ marginTop: 30 }}
             codeInputStyle={{ borderWidth: 1.5, borderRadius: 5, borderColor: '#EFEFF4', color: '#000000' }}
           />
@@ -129,15 +130,15 @@ export default class SignUp1 extends React.Component {
             text={"Code is incorect"}
           />}
           <View style={{ paddingBottom: 10 }} />
-          <TouchableOpacity onPress={()=>this.refs.modal3.close()}> 
+          <TouchableOpacity onPress={() => this.refs.modal3.close()}>
 
-          <LatoText
-            fontName="Lato-Regular"
-            fonSiz={15}
-            col="#B50000"
-            txtAlign={'center'}
-            text={"Cancel"}
-          />
+            <LatoText
+              fontName="Lato-Regular"
+              fonSiz={15}
+              col="#B50000"
+              txtAlign={'center'}
+              text={"Cancel"}
+            />
           </TouchableOpacity>
 
         </Modal>
@@ -244,24 +245,33 @@ export default class SignUp1 extends React.Component {
                   alignItems: "flex-end",
                 }}
               >
-                <TouchableOpacity
-                  style={{
-                    paddingHorizontal: 20,
-                    paddingVertical: 10,
-                    borderColor: '#C9C9C9',
-                    borderWidth: 1,
-                    borderRadius: 5
-                  }}
-                  onPress={() => this.refs.modal3.open()}
-                >
-
+                {this.state.numVerified ?
                   <LatoText
                     fontName="Lato-Regular"
                     fonSiz={17}
-                    col="#C9C9C9"
-                    text={"Verify"}
-                  />
-                </TouchableOpacity>
+                    col="#2AA034"
+                    text={"Verified"}
+                  /> :
+                  <TouchableOpacity
+                    style={{
+                      paddingHorizontal: 20,
+                      paddingVertical: 10,
+                      borderColor: '#C9C9C9',
+                      borderWidth: 1,
+                      borderRadius: 5
+                    }}
+                    onPress={() => this.refs.modal3.open()}
+                  >
+
+                    <LatoText
+                      fontName="Lato-Regular"
+                      fonSiz={17}
+                      col="#C9C9C9"
+                      text={"Verify"}
+                    />
+                  </TouchableOpacity>
+                }
+
               </View>
               <View>
                 <View style={textIn.label}>
@@ -349,7 +359,7 @@ const styles = StyleSheet.create({
 
   modal3: {
     height: 230,
-  width: 300
+    width: 300
   },
 
   modal4: {

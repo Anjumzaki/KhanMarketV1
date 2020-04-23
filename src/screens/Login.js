@@ -77,7 +77,7 @@ class Login extends React.Component {
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "Send", onPress: () => console.log("OK Pressed") }
+        { text: "Okay", onPress: () => console.log("OK Pressed") }
       ],
       { cancelable: false }
     );
