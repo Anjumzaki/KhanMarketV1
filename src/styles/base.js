@@ -10,7 +10,6 @@ const conStyles = StyleSheet.create({
     justifyContent: "space-evenly",
     flexGrow: 1,
     minHeight:Dimensions.get("window").height /2
-
   }
 });
 const cardStyles = StyleSheet.create({

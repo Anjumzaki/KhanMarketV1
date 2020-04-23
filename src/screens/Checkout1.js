@@ -307,7 +307,7 @@ class Cart extends Component {
           <TouchableOpacity
             onPress={() => {
               this.setState({ cart: true })
-              axios.post('http://192.168.0.108:3000/add/order',{
+              axios.post('https://sheltered-scrubland-52295.herokuapp.com/add/order',{
                 storeId: sId,
                 products: this.props.cart,
                 totalAmount: subTotal,

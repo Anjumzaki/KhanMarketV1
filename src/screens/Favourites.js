@@ -39,13 +39,13 @@ class Favourites extends Component {
   }
 
   componentWillMount(){
-      axios.get('http://192.168.0.108:3000/get/all/favourites/'+this.props.user.user._id)
+      axios.get('https://sheltered-scrubland-52295.herokuapp.com/get/all/favourites/'+this.props.user.user._id)
       .then(resp => this.setState({favourites: resp.data}))
       .catch(err => console.log(err))
   }
 
   componentDidMount(){
-    axios.get('http://192.168.0.108:3000/get/all/favourites/'+this.props.user.user._id)
+    axios.get('https://sheltered-scrubland-52295.herokuapp.com/get/all/favourites/'+this.props.user.user._id)
     .then(resp => this.setState({favourites: resp.data}))
     .catch(err => console.log(err))
 }
@@ -54,10 +54,7 @@ class Favourites extends Component {
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
              
-             <NavigationEvents
-                onDidFocus={() => Alert.alert('Refreshed')}
-              />
-
+          
 
         <ScrollView style={{ backgroundColor: "white" }}>
           <View style={{ marginVertical: 10, flexDirection: "row",width:'100%',flexWrap: 'wrap' }}>

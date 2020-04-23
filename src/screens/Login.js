@@ -9,7 +9,8 @@ import {
   ScrollView,
   TouchableOpacity,
   StatusBar,
-  Dimensions
+  Dimensions,
+  Alert
 } from "react-native";
 import { BackStack } from "../Helpers/BackStack";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -66,6 +67,21 @@ class Login extends React.Component {
       isPassword: !isPassword
     });
   };
+  handleForgot = () =>{
+    Alert.alert(
+      "Reset Password",
+      "A password reset link has been sent to abc@example.com. Please check your inbox. Also, don’t forget to check your spam folder",
+      [
+        {
+          text: "Dismiss",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "Send", onPress: () => console.log("OK Pressed") }
+      ],
+      { cancelable: false }
+    );
+  }
   render() {
     console.log("state L", this.state)
     const { icEye, isPassword } = this.state;
@@ -152,6 +168,7 @@ class Login extends React.Component {
               </View>
             </View>
             <TouchableOpacity
+              onPress={this.handleForgot}
               style={{
                 justifyContent: "flex-end",
                 alignItems: "flex-end",
@@ -179,7 +196,7 @@ class Login extends React.Component {
             <TouchableOpacity
               style={btnStyles.basic}
               onPress={() => {
-                axios.post("http://192.168.0.108:3000/api/users/signin",{
+                axios.post("https://sheltered-scrubland-52295.herokuapp.com/api/users/signin",{
                   email: this.state.email,
                   password: this.state.password
                 })

@@ -29,6 +29,7 @@ class LatoText extends React.Component {
           fontFamily: this.state.fontLoaded ? this.props.fontName : null,
           color: this.props.col,
           fontSize: this.props.fonSiz,
+          textAlign:this.props.txtAlign && this.props.txtAlign,
           textDecorationLine:this.props.lineThrough && this.props.lineThrough,
           // textDecoration: this.props.lineThrough ? "line-through" : null
         }}

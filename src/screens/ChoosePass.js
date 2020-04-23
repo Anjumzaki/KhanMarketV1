@@ -167,7 +167,7 @@ class SignUp1 extends React.Component {
                             style={btnStyles.basic}
                             onPress={() => {
                                 console.log("PRESSED")
-                                axios.post("http://192.168.0.108:3000/api/users/signup",this.state.user)
+                                axios.post("https://sheltered-scrubland-52295.herokuapp.com/api/users/signup",this.state.user)
                                 .then(resp => {
                                     console.log("resp",resp)
                                     this.props.userAsync(resp.data)

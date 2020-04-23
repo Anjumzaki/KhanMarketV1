@@ -14,6 +14,8 @@ import {
 import { BackStack } from "../Helpers/BackStack";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import Modal from 'react-native-modalbox';
+import CodeInput from 'react-native-confirmation-code-input';
 import * as Font from "expo-font";
 import {
   widthPercentageToDP as wp,
@@ -38,8 +40,25 @@ export default class SignUp1 extends React.Component {
       email: "",
       mobile: "",
       zipCode: "",
-      password: ""
+      password: "",
+      isOpen: false,
+      isOpen: false,
+      isDisabled: false,
+      swipeToClose: true,
+      sliderValue: 0.3,
+      codeMsg:false
     };
+  }
+  onClose() {
+    console.log('Modal just closed');
+  }
+
+  onOpen() {
+    console.log('Modal just opened');
+  }
+
+  onClosingState(state) {
+    console.log('the open/close of the swipeToClose just changed');
   }
   async componentDidMount() {
     await Font.loadAsync({
@@ -64,30 +83,70 @@ export default class SignUp1 extends React.Component {
       isPassword: !isPassword
     });
   };
+
   render() {
     const { icEye, isPassword } = this.state;
-    const styles = StyleSheet.create({
-      logo: {
-        width: wp("30%"),
-        alignSelf: "center"
-      },
-      icon: {
-        position: "absolute",
-        right: 10,
-        paddingTop: 8
-      },
-      myText: { fontSize: hp("5%") }
-    });
+
     console.log("this", this.state)
     return (
       <SafeAreaView style={[conStyles.safeAreaMy, { backgroundColor: 'white' }]}>
-        <StatusBar translucent={true} barStyle="dark-content"  />
+        <StatusBar translucent={true} barStyle="dark-content" />
+        <Modal style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"} isDisabled={this.state.isDisabled}>
+
+          <LatoText
+            fontName="Lato-Regular"
+            fonSiz={20}
+            col="#5C5C5C"
+            text={"Please enter the code!"}
+          />
+          <View style={{ paddingBottom: 10 }} />
+          <LatoText
+            fontName="Lato-Regular"
+            fonSiz={15}
+            col="#5C5C5C"
+            txtAlign={'center'}
+            text={"A 6-digit code has been sent to example@gmail.com"}
+          />
+          <CodeInput
+            ref="codeInputRef2"
+            compareWithCode='123456'
+            activeColor='#000000'
+            inactiveColor='#000000'
+            autoFocus={true}
+            ignoreCase={true}
+            codeLength={6}
+            inputPosition='center'
+            size={wp(8)}
+            onFulfill={(isValid) => isValid ? this.setState({codeMsg:false,numVerified:true},this.refs.modal3.close())  : this.setState({ codeMsg: true })}
+            containerStyle={{ marginTop: 30 }}
+            codeInputStyle={{ borderWidth: 1.5, borderRadius: 5, borderColor: '#EFEFF4', color: '#000000' }}
+          />
+          {this.state.codeMsg && <LatoText
+            fontName="Lato-Regular"
+            fonSiz={15}
+            col="red"
+            txtAlign={'center'}
+            text={"Code is incorect"}
+          />}
+          <View style={{ paddingBottom: 10 }} />
+          <TouchableOpacity onPress={()=>this.refs.modal3.close()}> 
+
+          <LatoText
+            fontName="Lato-Regular"
+            fonSiz={15}
+            col="#B50000"
+            txtAlign={'center'}
+            text={"Cancel"}
+          />
+          </TouchableOpacity>
+
+        </Modal>
         <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={{ paddingLeft: 30, paddingTop: 30, paddingBottom: 10 }}>
           <Image source={require('../../assets/back.png')} />
         </TouchableOpacity>
         <ScrollView
           style={{ flex: 1 }}
-          contentContainerStyle={[conStyles.scroll,{justifyContent:'space-around'}]}
+          contentContainerStyle={[conStyles.scroll, { justifyContent: 'space-around' }]}
         >
 
           <Image
@@ -117,11 +176,11 @@ export default class SignUp1 extends React.Component {
                 />
               </View>
               <View>
-                <TextInput style={textIn.input} 
-                onChangeText={ (name) => this.setState({
-                  name
-                })}
-                value={this.state.name}  />
+                <TextInput style={textIn.input}
+                  onChangeText={(name) => this.setState({
+                    name
+                  })}
+                  value={this.state.name} />
               </View>
             </View>
             <View>
@@ -135,11 +194,11 @@ export default class SignUp1 extends React.Component {
               </View>
               <View>
 
-                <TextInput style={textIn.input} 
-                onChangeText={ (email) => this.setState({
-                  email
-                })}
-                value={this.state.email}/>
+                <TextInput style={textIn.input}
+                  onChangeText={(email) => this.setState({
+                    email
+                  })}
+                  value={this.state.email} />
 
               </View>
 
@@ -169,16 +228,16 @@ export default class SignUp1 extends React.Component {
                   />
 
                 </View>
-                <TextInput placeholder={'(555) 555-5678'} 
-                keyboardType={'numeric'}
-                onChangeText={ (mobile) => this.setState({
-                  mobile
-                })}
-                value={this.state.mobile}
-                style={[textIn.input, { width: wp('64%') }]} />
+                <TextInput placeholder={'(555) 555-5678'}
+                  keyboardType={'numeric'}
+                  onChangeText={(mobile) => this.setState({
+                    mobile
+                  })}
+                  value={this.state.mobile}
+                  style={[textIn.input, { width: wp('64%') }]} />
 
               </View>
-              
+
               <View
                 style={{
                   justifyContent: "flex-end",
@@ -187,13 +246,15 @@ export default class SignUp1 extends React.Component {
               >
                 <TouchableOpacity
                   style={{
-                    paddingHorizontal:20,
-                    paddingVertical:10,
+                    paddingHorizontal: 20,
+                    paddingVertical: 10,
                     borderColor: '#C9C9C9',
                     borderWidth: 1,
-                    borderRadius:5
+                    borderRadius: 5
                   }}
+                  onPress={() => this.refs.modal3.open()}
                 >
+
                   <LatoText
                     fontName="Lato-Regular"
                     fonSiz={17}
@@ -203,25 +264,25 @@ export default class SignUp1 extends React.Component {
                 </TouchableOpacity>
               </View>
               <View>
-              <View style={textIn.label}>
-                <LatoText
-                  fontName="Lato-Regular"
-                  fonSiz={17}
-                  col="#5C5C5C"
-                  text={"Zip Code"}
-                />
+                <View style={textIn.label}>
+                  <LatoText
+                    fontName="Lato-Regular"
+                    fonSiz={17}
+                    col="#5C5C5C"
+                    text={"Zip Code"}
+                  />
+                </View>
+                <View>
+
+                  <TextInput placeholder={'00000'} style={textIn.input}
+                    onChangeText={(zipCode) => this.setState({
+                      zipCode
+                    })}
+                    value={this.state.zipCode} />
+
+                </View>
+
               </View>
-              <View>
-
-                <TextInput placeholder={'00000'} style={textIn.input} 
-                onChangeText={ (zipCode) => this.setState({
-                  zipCode
-                })} 
-                value={this.state.zipCode}/>
-
-              </View>
-
-            </View>
             </View>
           </View>
           <View
@@ -233,7 +294,7 @@ export default class SignUp1 extends React.Component {
           >
             <TouchableOpacity
               style={btnStyles.basic}
-              onPress={() => this.props.navigation.navigate("ChoosePass",{
+              onPress={() => this.props.navigation.navigate("ChoosePass", {
                 name: this.state.name,
                 email: this.state.email,
                 mobile: this.state.mobile,
@@ -267,3 +328,63 @@ export default class SignUp1 extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+
+  wrapper: {
+    paddingTop: 50,
+    flex: 1
+  },
+
+  modal: {
+    borderRadius: 10,
+    padding: 20,
+    alignItems: 'center'
+  },
+
+  modal2: {
+    height: 230,
+    backgroundColor: "#3B5998"
+  },
+
+  modal3: {
+    height: 230,
+  width: 300
+  },
+
+  modal4: {
+    height: 300
+  },
+
+  btn: {
+    margin: 10,
+    backgroundColor: "#3B5998",
+    color: "white",
+    padding: 10
+  },
+
+  btnModal: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    width: 50,
+    height: 50,
+    backgroundColor: "transparent"
+  },
+
+  text: {
+    color: "black",
+    fontSize: 22
+  },
+  logo: {
+    width: wp("30%"),
+    alignSelf: "center"
+  },
+  icon: {
+    position: "absolute",
+    right: 10,
+    paddingTop: 8
+  },
+  myText: { fontSize: hp("5%") }
+
+});
