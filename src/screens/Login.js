@@ -210,7 +210,7 @@ class Login extends React.Component {
                     this.props.userAsync(resp.data)
                     this.props.navigation.navigate("App")
                 })
-                .catch(err => this.setState({msg: "Incorrect email or password."})) 
+                .catch(err => this.setState({msg: err.message})) 
               
               }}
             >

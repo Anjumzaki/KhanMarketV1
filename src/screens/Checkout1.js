@@ -28,7 +28,7 @@ import timestamp  from "time-stamp";
 class Cart extends Component {
   constructor(props) {
     super(props);
-
+ 
     this.state = { 
       heart: false,
       qt: 1

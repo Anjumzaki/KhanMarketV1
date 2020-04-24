@@ -34,6 +34,8 @@ import StackGrayHeader from './src/Helpers/StackGrayHeader'
 import MyOrders from "./src/screens/MyOrders";
 import SignUp1 from "./src/screens/SignUp1"
 import ChoosePass from './src/screens/ChoosePass'
+import OrderDetails from './src/screens/OrderDetails'
+
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
   <AuthStack.Navigator headerMode="none">
@@ -96,6 +98,16 @@ const HomeStackScreen = () => (
         )
       }}
     />
+    <HomeStack.Screen
+      name="OrderDetails"
+      component={OrderDetails}
+      options={{
+        header: props => (
+          <StackHeader cart={false} nameTitle="ORDER DETAILS" {...props} />
+        )
+      }}
+    />
+    
     <HomeStack.Screen
       name="QrCode"
       component={QrCode}

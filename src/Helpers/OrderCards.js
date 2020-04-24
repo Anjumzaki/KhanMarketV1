@@ -31,7 +31,7 @@ class OrderCards extends React.Component {
   render() {
     console.log("order",this.props.order)
     return (
-      <View style={styles.procards}>
+      <TouchableOpacity onPress={()=>this.props.navigation.navigate('OrderDetails')} style={styles.procards}>
         <View style={styles.wrapCards}>
           <View style={styles.underCard}>
             <View
@@ -115,7 +115,7 @@ class OrderCards extends React.Component {
             </View>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }

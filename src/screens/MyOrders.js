@@ -21,6 +21,7 @@ import axios from "axios";
 import { bindActionCreators } from "redux";
 import { userAsync } from "../store/actions";
 import { connect } from "react-redux"
+
 const { width } = Dimensions.get("window");
 const { height } = 300;
 
