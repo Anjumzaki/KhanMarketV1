@@ -61,16 +61,33 @@ class OrderCards extends React.Component {
                 col="#5C5C5C"
                 text={"Order # "+this.props.order.orderNumber}
               />
+              {this.props.order.isRejected === true ? (
+
               <LatoText
+                fontName="Lato-Regular"
+                fonSiz={15}
+                col="#808080"
+                text={
+                    "Cancelled" 
+                }
+              />) : (
+                <LatoText
                 fontName="Lato-Regular"
                 fonSiz={15}
                 col="#2AA034"
                 text={
                   this.props.order.isAccepted === true && this.props.order.isInPreparation === true ? (
                     "Being Prepared"
-                  ) : "wait"
+                  ) : (
+                    this.props.order.isAccepted === true && this.props.order.isPicked === true ? (
+                      "Completed"
+                    ): (
+                      "Wait"
+                    )
+                  )
                 }
               />
+              )}
             </View>
             <View>
               <View style={{ marginBottom: 10 }}>

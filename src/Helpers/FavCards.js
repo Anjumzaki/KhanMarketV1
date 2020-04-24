@@ -21,6 +21,17 @@ class FavCards extends React.Component {
     qt: 1,
   };
 
+
+  componentDidMount(){
+    console.log("FAVVV",this.props.product)
+    const ref = firebase
+      .storage()
+      .ref("/product_images/" + this.props.product.product._id + "_1.jpg");
+    ref.getDownloadURL().then(url => {
+      this.setState({ image: url });
+    });
+  }
+
   handleChange(num) {
     var preNum = this.state.qt;
     preNum = num + preNum;
@@ -31,17 +42,19 @@ class FavCards extends React.Component {
   render() {
     return (
       <View style={styles.procards}>
+    
+
         <View style={styles.wrapCards}>
           <TouchableOpacity
             onPress={() =>
               this.props.navigation.navigate("ProductDetails", {
-                product: this.props.product,
+                product: this.props.product.product,
               })
             }
           >
             <Image
               style={styles.proCardsImage}
-              source={require("../../assets/products/veg1.png")}
+              source={{uri: this.state.image}}
             />
           </TouchableOpacity>
           <View style={styles.underCard}>
@@ -56,7 +69,7 @@ class FavCards extends React.Component {
                 fontName="Lato-Regular"
                 fonSiz={20}
                 col="#5C5C5C"
-                text={this.props.product.productName}
+                text={this.props.product.product.productName}
               ></LatoText>
 
               <TouchableOpacity
@@ -81,7 +94,7 @@ class FavCards extends React.Component {
                 fonSiz={13}
                 col="#89898C"
                 lineThrough="line-through"
-                text={"$" + this.props.product.price + " / kg"}
+                text={"$" + this.props.product.product.price + " / kg"}
               ></LatoText>
               <Text> 
 
@@ -92,8 +105,8 @@ class FavCards extends React.Component {
                 col="#2E2E2E"
                 text={
                   "$" +
-                  (this.props.product.price -
-                    (this.props.product.price * this.props.product.discount) /
+                  (parseInt(this.props.product.product.price) -
+                    (parseInt(this.props.product.product.price) * parseInt(this.props.product.product.discount)) /
                       100) +
                   " / kg"
                 }
@@ -104,7 +117,7 @@ class FavCards extends React.Component {
                 fontName="Lato-Regular"
                 fonSiz={15}
                 col="#B50000"
-                text={"You will save " + this.props.product.discount + "%"}
+                text={"You will save " + this.props.product.product.discount + "%"}
               ></LatoText>
             </View>
            <View>
@@ -112,7 +125,7 @@ class FavCards extends React.Component {
                 fontName="Lato-Regular"
                 fonSiz={13}
                 col="#2E2E2E"
-                text={"Khan Market"}
+                text={this.props.product.storeName}
               />
               <LatoText
                 fontName="Lato-Regular"

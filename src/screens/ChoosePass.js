@@ -171,7 +171,7 @@ class SignUp1 extends React.Component {
                                 .then(resp => {
                                     console.log("resp",resp)
                                     this.props.userAsync(resp.data)
-                                    this.props.navigation.navigate("App")
+                                    this.props.navigation.navigate("Login")
                                 })
                                 .catch(err => this.setState({msg: "Email already exist!"}))         
                             }}

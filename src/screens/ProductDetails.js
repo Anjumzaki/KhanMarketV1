@@ -23,17 +23,35 @@ import firebase from "firebase";
 import { bindActionCreators } from "redux";
 import { cartAsync } from "../store/actions";
 import { connect } from "react-redux";
- 
+import axios from "axios";
+
 class ProductDetails extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       heart: false,
-        qt: 1
+        qt: 1,
+        favourites: []
     };
   }
 
+
+
+  componentDidMount(){
+
+
+    if(this.props.route.params.product.favourites === undefined){
+      this.setState({favourites: []})
+  }else{
+    for(var i=0; i<this.props.route.params.product.favourites.length; i++){
+      if(this.props.route.params.product.favourites[i].userId === this.props.user.user._id){
+        this.setState({heart: true})
+      }
+    }
+    this.setState({favourites: this.props.route.params.product.favourites})
+  }
+  }
 
   _onLayoutDidChange = e => {
     const layout = e.nativeEvent.layout;
@@ -98,19 +116,58 @@ class ProductDetails extends Component {
             
                   <CourselImage id={product._id} index={index+1}/>
               // </View>
-                ))}
+                ))} 
                 {/* </> */}
             </Carousel>
           </View>
 
           <TouchableOpacity
-            onPress={() =>
-              this.setState(prevState => {
-                return {
-                  heart: !prevState.heart
-                };
-              })
-            }
+                onPress={async() =>{
+                console.log("HEARTTTTTTTTT",this.state.heart)
+                console.log("FAVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV",this.state.favourites)
+                if(this.state.heart === false){
+                    await this.state.favourites.push({userId: this.props.user.user._id})
+
+                    axios.post('http://192.168.0.108:3000/add/favourite',{
+                      userId: this.props.user.user._id,
+                      product: product,
+                      storeName: this.props.store.name
+                  })
+                  .then(resp => console.log(resp))
+                  .catch(err => console.log(err))
+
+                }else{
+                  console.log("iNCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC")
+                  var that=this
+                  this.state.favourites = this.state.favourites.filter(function(el){
+                    return el.userId !== that.props.user.user._id;
+                    // console.log("asd",el.userId,that.props.user.user._id)
+                  });
+
+                  axios.delete('http://192.168.0.108:3000/delete/favourite/'+this.props.user.user._id+'/'+product._id)
+                  .then(resp =>console.log(resp))
+                  .catch(err => err)
+
+                  console.log("afteeeeeeeeeeeeeeeeeeeeeeee")
+
+                }
+                console.log("FAVVVVVVVVVVVVV11111111111111111111111111",this.state.favourites)
+
+                axios.put('http://192.168.0.108:3000/edit/favourites/'+product._id,{
+                  favourites: this.state.favourites
+                })
+                .then(resp => {
+                  this.setState(prevState => {
+                    return {
+                      heart: !prevState.heart
+                    };
+                  })
+                })
+                .catch(err => console.log(err))
+
+                console.log("AFTERR Call")
+              }
+              }
             style={{
               alignSelf: "flex-end",
               backgroundColor: "rgb(255, 255, 255)",
@@ -290,7 +347,10 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
   cart: state.Cart.cartData, 
   loading: state.Cart.cartLoading,
-  error: state.Cart.cartError
+  error: state.Cart.cartError,
+  user: state.user.user,
+  store: state.Store.storeData
+
 });
 const mapDispatchToProps = (dispatch, ownProps) =>
   bindActionCreators(

@@ -42,27 +42,64 @@ class MyOrders extends Component {
   }
   render() {
     console.log("my order state",this.state)
+    var active= []
+    var past= []
+
+    for(var i=0; i<this.state.myOrders.length; i++){
+        if((this.state.myOrders[i].isPicked === true && this.state.myOrders[i].isAccepted === true) || this.state.myOrders[i].isRejected === true){
+          past.push(this.state.myOrders[i])
+        }else{
+          active.push(this.state.myOrders[i])
+        }
+    }
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView style={{ backgroundColor: "white" }}>
+          {active.length > 0 ? (
+
+          
           <View style={{ marginVertical: 10, flexDirection: "row",width:'100%',flexWrap: 'wrap' }}>
               <View style={{paddingLeft:5,paddingTop:20,paddingBottom:10}}>
               <LatoText
                 fontName="Lato-Regular"
                 fonSiz={20}
                 col="#5C5C5C"
-                text={"Active (2)"}
+                text={"Active ("+active.length+")"}
               />
               </View>
-            {this.state.myOrders.length > 0 ? this.state.myOrders.map((item,ind) => (
+            {active.map((item,ind) => (
             <OrderCards
               navigation={this.props.navigation}
               key={ind}
               order={item}
             /> 
-            )): null}
+            ))}
     
           </View>
+          ): null}
+
+        {past.length > 0 ? (
+
+                  
+        <View style={{ marginVertical: 10, flexDirection: "row",width:'100%',flexWrap: 'wrap' }}>
+            <View style={{paddingLeft:5,paddingTop:20,paddingBottom:10}}>
+            <LatoText
+              fontName="Lato-Regular"
+              fonSiz={20}
+              col="#5C5C5C"
+              text={"Past ("+past.length+")"}
+            />
+            </View>
+          {past.map((item,ind) => (
+          <OrderCards
+            navigation={this.props.navigation}
+            key={ind}
+            order={item}
+          /> 
+          ))}
+
+        </View>
+        ): null}
         </ScrollView>
       </View>
     );
