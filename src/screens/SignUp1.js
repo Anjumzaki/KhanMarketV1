@@ -23,6 +23,7 @@ import {
 } from "react-native-responsive-screen";
 import { conStyles, textStyles, textIn, btnStyles } from "../styles/base";
 import LatoText from "../Helpers/LatoText";
+import Axios from "axios";
 
 export default class SignUp1 extends React.Component {
   static navigationOptions = { header: null };
@@ -193,6 +194,7 @@ export default class SignUp1 extends React.Component {
                     borderWidth: 1,
                     borderRadius:5
                   }}
+                
                 >
                   <LatoText
                     fontName="Lato-Regular"
