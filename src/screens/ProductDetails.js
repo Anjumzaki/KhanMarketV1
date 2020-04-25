@@ -128,7 +128,7 @@ class ProductDetails extends Component {
                 if(this.state.heart === false){
                     await this.state.favourites.push({userId: this.props.user.user._id})
 
-                    axios.post('http://192.168.0.108:3000/add/favourite',{
+                    axios.post('https://sheltered-scrubland-52295.herokuapp.com/add/favourite',{
                       userId: this.props.user.user._id,
                       product: product,
                       storeName: this.props.store.name
@@ -144,7 +144,7 @@ class ProductDetails extends Component {
                     // console.log("asd",el.userId,that.props.user.user._id)
                   });
 
-                  axios.delete('http://192.168.0.108:3000/delete/favourite/'+this.props.user.user._id+'/'+product._id)
+                  axios.delete('https://sheltered-scrubland-52295.herokuapp.com/delete/favourite/'+this.props.user.user._id+'/'+product._id)
                   .then(resp =>console.log(resp))
                   .catch(err => err)
 
@@ -153,7 +153,7 @@ class ProductDetails extends Component {
                 }
                 console.log("FAVVVVVVVVVVVVV11111111111111111111111111",this.state.favourites)
 
-                axios.put('http://192.168.0.108:3000/edit/favourites/'+product._id,{
+                axios.put('https://sheltered-scrubland-52295.herokuapp.com/edit/favourites/'+product._id,{
                   favourites: this.state.favourites
                 })
                 .then(resp => {

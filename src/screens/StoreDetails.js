@@ -30,7 +30,6 @@ class StoreDetails extends React.Component {
 
     axios.get("https://sheltered-scrubland-52295.herokuapp.com/get/all/featured/products/" + this.props.route.params.storeId)
       .then(resp => {
-        // console.log(resp)
         this.setState({ featuredProducts: resp.data, loading: false })
       })
       .catch(err => console.log(err))
