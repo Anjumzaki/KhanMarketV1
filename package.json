@@ -14,7 +14,7 @@
     "@react-navigation/drawer": "^5.0.5",
     "@react-navigation/native": "^5.0.5",
     "@react-navigation/stack": "^5.0.5",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "expo": "~36.0.0",
     "firebase": "^7.10.0",
     "native-base": "2.13.8",
